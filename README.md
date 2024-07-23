@@ -2,8 +2,7 @@
 
 <!--
 **sumitmalik51/sumitmalik51** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
---!>
+-->
 
 # Sumit Malik
 
@@ -24,7 +23,7 @@ I am Sumit Malik, passionate about cloud technologies and automation. Currently,
 - 👯 I’m looking to collaborate on open-source cloud automation projects.
 - 🤔 I’m looking for help with implementing best practices in cloud security.
 - 💬 Ask me about anything related to Microsoft Azure and cloud automation.
-- 📫 How to reach me: You can email me at [your-email@example.com](mailto:sumitmalik51@gmail.com) or connect with me on [LinkedIn](https://www.linkedin.com/in/sumitmalik51).
+- 📫 How to reach me: You can email me at [sumitmalik51@gmail.com](mailto:sumitmalik51@gmail.com) or connect with me on [LinkedIn](https://www.linkedin.com/in/sumitmalik51).
 - 😄 Pronouns: He/Him
 - ⚡ Fun fact: I love hiking and have summited some of the tallest peaks in the region.
 
