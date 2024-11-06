@@ -30,13 +30,6 @@ I am Sumit Malik, passionate about cloud technologies and automation. Currently,
 ## GitHub Stats
 ![Sumit Malik's GitHub Stats](https://github-readme-stats.vercel.app/api?username=sumitmalik51&show_icons=true&theme=radical)
 
-## Popular Repositories
-1. [AZ-100-MicrosoftAzureInfrastructureDeployment](https://github.com/sumitmalik51/AZ-100-MicrosoftAzureInfrastructureDeployment)
-2. [Microservices-architecture-master-doc](https://github.com/sumitmalik51/Microservices-architecture-master-doc)
-3. [MCW-SQL-Server-hybrid-cloud-](https://github.com/sumitmalik51/MCW-SQL-Server-hybrid-cloud-)
-4. [MCW-MCW-Real-time-data-with-Azure-Database-for-PostgreSQL-Hyperscale](https://github.com/sumitmalik51/MCW-MCW-Real-time-data-with-Azure-Database-for-PostgreSQL-Hyperscale)
-5. [Microsoft-Cloud-Workshop](https://github.com/sumitmalik51/Microsoft-Cloud-Workshop)
-6. [readme.md](https://github.com/sumitmalik51/readme.md)
 
 ## Connect with Me
 - [GitHub Profile](https://github.com/sumitmalik51)
