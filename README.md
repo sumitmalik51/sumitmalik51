@@ -7,7 +7,7 @@
 # Sumit Malik
 
 **Location:** Bangalore  
-**Occupation:** Working from home  
+**Occupation:** Azure Cloud Solution Architect
 **Specialization:** Microsoft Azure, Cloud, Cloud Automation
 
 ## About Me
