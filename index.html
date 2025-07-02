@@ -6,15 +6,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sumit Malik | Cloud Architect</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com">    // Cursor effect
+    const dot = document.getElementById("cursor-dot");
+    document.body.classList.add("custom-cursor");
+    dot.classList.remove("hidden");
+
+    window.addEventListener("mousemove", (e) => {
+  dot.style.left = e.clientX + "px";
+  dot.style.top = e.clientY + "px";
+});
+
+const hoverables = document.querySelectorAll('a, button, .hover\:underline');
+hoverables.forEach(el => {
+  el.addEventListener('mouseenter', () => dot.classList.add('hovered'));
+  el.addEventListener('mouseleave', () => dot.classList.remove('hovered'));
+});
+    function toggleAmbientSound() {
+      const audio = document.getElementById("ambient-sound");
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
+</script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.remove('opacity-0');
   document.documentElement.classList.add('dark');
   const icon = document.getElementById('theme-icon');
   if (icon) icon.textContent = '🌙';
 });
   </script>
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
   <script>
     tailwind.config = {
@@ -36,10 +61,53 @@
     body {
       transition: background-color 0.5s, color 0.5s;
     }
+      a:hover {
+      text-shadow: 0 0 5px rgba(255,255,255,0.5);
+    }
+    .glow-hover:hover {
+      box-shadow: 0 0 10px 2px rgba(59, 130, 246, 0.5);
+    }
+    .cursor-dot.hovered {
+      background-color: #3b82f6;
+      transform: scale(1.8);
+    }
+  </style>
+<style>
+    body.custom-cursor {
+      cursor: none;
+    }
+    .cursor-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.8);
+      position: fixed;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      transition: transform 0.15s ease;
+    }
+    .floating-cta {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background-color: #1e40af;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 9999px;
+      font-size: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      animation: pulse 2s infinite;
+      z-index: 50;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
   </style>
 </head>
 
-<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
+<body class="opacity-0 transition-opacity duration-500 bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
   <!-- Audio for theme toggle -->
   <audio id="theme-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-light-switch-on-2585.mp3" preload="auto"></audio>
 
@@ -60,10 +128,10 @@
   </header>
 
   <!-- Hero -->
-  <section id="bio" class="py-16 text-center bg-white dark:bg-gray-900 transition-colors duration-500">
+  <section id="bio" class="py-16 text-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 transition-colors duration-500">
     <div class="max-w-3xl mx-auto" data-aos="fade-up">
       <img src="https://avatars.githubusercontent.com/u/50233625?v=4" alt="Sumit Malik" class="mx-auto rounded-full w-32 h-32 mb-4">
-      <h2 class="text-3xl font-bold mb-2">Technical Lead | Azure Cloud Architect</h2>
+      <h2 id="animated-title" class="text-3xl font-bold mb-2 animate-pulse">Technical Lead | Azure Cloud Architect</h2>
       <p class="text-lg mb-4">I have 4.2+ years of experience in cloud computing platforms, especially Microsoft Azure and Windows Server Administration. I specialize in automation, DevOps, and cloud infrastructure.</p>
       
     </div>
@@ -165,13 +233,17 @@
     }
 
     window.addEventListener("scroll", () => {
-      document.getElementById("backToTop").classList.toggle("hidden", window.scrollY < 200);
-    });
+  document.getElementById("backToTop").classList.toggle("hidden", window.scrollY < 200);
+});
 
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   </script>
+  <div id="cursor-dot" class="cursor-dot hidden"></div>
+  <a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="floating-cta">🚀 Let’s build together</a>
+  <audio id="ambient-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2e3e49d68a.mp3?filename=calm-rain-ambient-110397.mp3" preload="auto" loop></audio>
+  <button onclick="toggleAmbientSound()" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-4 py-2 rounded-full shadow hover:bg-blue-700 transition-all z-40">🎧 Ambient</button>
 </body>
 
 </html>
