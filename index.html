@@ -9,8 +9,10 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      document.documentElement.classList.add('dark');
-    });
+  document.documentElement.classList.add('dark');
+  const icon = document.getElementById('theme-icon');
+  if (icon) icon.textContent = '🌙';
+});
   </script>
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
