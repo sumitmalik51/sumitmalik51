@@ -9,27 +9,31 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-  document.body.classList.remove('opacity-0');
-  document.documentElement.classList.add('dark');
-  const icon = document.getElementById('theme-icon');
-  if (icon) icon.textContent = '🌙';
+      document.body.classList.remove('opacity-0');
+      document.documentElement.classList.add('dark');
+      const icon = document.getElementById('theme-icon');
+      if (icon) icon.textContent = '🌙';
 
-  const greetingPopup = document.getElementById('popup-greeting');
-  if (greetingPopup) {
-    const hour = new Date().getHours();
-    let message = '';
-    if (hour < 12) message = '🌄 Good morning! Ready to conquer the cloud ☁️';
-    else if (hour < 18) message = '🚀 Let\'s ship something awesome this afternoon';
-    else message = '🌙 Still coding? That\'s dedication. Let\'s go!';
-    greetingPopup.textContent = message;
-    greetingPopup.classList.remove('hidden');
-    setTimeout(() => greetingPopup.classList.add('hidden'), 10000);
-    setInterval(() => {
-      greetingPopup.classList.remove('hidden');
-      setTimeout(() => greetingPopup.classList.add('hidden'), 10000);
-    }, 60000);
-  }
-});
+      const greetingPopup = document.getElementById('popup-greeting');
+      if (greetingPopup) {
+        const hour = new Date().getHours();
+        let message = '';
+        if (hour < 12) message = '🌄 Good morning! Ready to conquer the cloud ☁️';
+        else if (hour < 18) message = '🚀 Let\'s ship something awesome this afternoon';
+        else message = '🌙 Still coding? That\'s dedication. Let\'s go!';
+
+        setTimeout(() => {
+          greetingPopup.textContent = message;
+          greetingPopup.classList.remove('hidden');
+          setTimeout(() => greetingPopup.classList.add('hidden'), 10000);
+        }, 5000);
+
+        setInterval(() => {
+          greetingPopup.classList.remove('hidden');
+          setTimeout(() => greetingPopup.classList.add('hidden'), 10000);
+        }, 60000);
+      }
+    });
   </script>
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
@@ -94,31 +98,29 @@
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.08); }
     }
-      @keyframes fade-in {
+    @keyframes fade-in {
       0% { opacity: 0; transform: translateY(20px); }
       100% { opacity: 1; transform: translateY(0); }
     }
     .animate-fade-in {
       animation: fade-in 0.6s ease-out;
     }
-</style>
+  </style>
 </head>
-
 <body class="opacity-0 transition-opacity duration-500 bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
   <div id="popup-greeting" class="fixed bottom-24 right-6 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 text-sm font-medium hidden transition-all duration-500 ease-in-out transform hover:scale-105 animate-fade-in"></div>
-  <!-- Audio for theme toggle -->
   <audio id="theme-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-light-switch-on-2585.mp3" preload="auto"></audio>
 
   <!-- Header -->
   <header class="sticky top-0 bg-blue-600 text-white shadow z-50">
     <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
       <h1 class="text-xl font-semibold flex items-center gap-2">
-  <span id="status-badge" class="relative flex h-3 w-3">
-    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-  </span>
-  Sumit Malik
-</h1>
+        <span id="status-badge" class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+        </span>
+        Sumit Malik
+      </h1>
       <nav class="space-x-4 hidden sm:block">
         <a href="#bio" class="hover:underline">Bio</a>
         <a href="#experience" class="hover:underline">Experience</a>
@@ -131,76 +133,111 @@
     </div>
   </header>
 
-  <!-- Hero -->
   <section id="bio" class="py-16 text-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 transition-colors duration-500">
-    <div class="max-w-3xl mx-auto" data-aos="fade-up">
-      <img src="https://avatars.githubusercontent.com/u/50233625?v=4" alt="Sumit Malik" class="mx-auto rounded-full w-32 h-32 mb-4">
-      <h2 id="animated-title" class="text-3xl font-bold mb-2 animate-pulse">Technical Lead | Azure Cloud Architect</h2>
-      <p class="text-lg mb-4">I have 4.2+ years of experience in cloud computing platforms, especially Microsoft Azure and Windows Server Administration. I specialize in automation, DevOps, and cloud infrastructure.</p>
-    </div>
-  </section>
+  <div class="max-w-3xl mx-auto" data-aos="fade-up">
+    <img src="https://avatars.githubusercontent.com/u/50233625?v=4" alt="Sumit Malik" class="mx-auto rounded-full w-32 h-32 mb-4">
+    <h2 id="animated-title" class="text-3xl font-bold mb-2 animate-pulse">Technical Lead | Azure Cloud Architect</h2>
+    <p class="text-lg mb-4">I have 4.2+ years of experience in cloud computing platforms, especially Microsoft Azure and Windows Server Administration. I specialize in automation, DevOps, and cloud infrastructure.</p>
+  </div>
+</section>
 
-  <!-- Experience -->
-  <section id="experience" class="py-16 bg-gray-100 dark:bg-gray-800">
-    <div class="max-w-4xl mx-auto px-4 space-y-8">
-      <h3 class="text-2xl font-bold mb-6 text-center">Experience</h3>
-      <div class="space-y-8">
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300" data-aos="fade-right">
-          <h4 class="text-xl font-semibold">Technical Lead – Cloud Team (May 2022 – Present)</h4>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
-          <ul class="list-disc list-inside text-sm">
-            <li>Managed Microsoft AIW and Cloud Workshop projects</li>
-            <li>Terraform automation, ARM/Bicep templates, CI/CD pipelines</li>
-            <li>Landing zones, AKS, Azure DevOps automation</li>
-          </ul>
-        </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300" data-aos="fade-up">
-          <h4 class="text-xl font-semibold">Consultant – Cloud Team (Jan 2019 – May 2022)</h4>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
-          <ul class="list-disc list-inside text-sm">
-            <li>Azure policy, ML, App Services, Virtual Networking</li>
-            <li>Application Insights, VM image creation, NSG setup</li>
-          </ul>
-        </div>
+<!-- Experience -->
+<section id="experience" class="py-16 bg-gray-100 dark:bg-gray-800">
+  <div class="max-w-4xl mx-auto px-4 space-y-8">
+    <h3 class="text-2xl font-bold mb-6 text-center">Experience</h3>
+    <div class="space-y-8">
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300" data-aos="fade-right">
+        <h4 class="text-xl font-semibold">Technical Lead – Cloud Team (May 2022 – Present)</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
+        <ul class="list-disc list-inside text-sm">
+          <li>Managed Microsoft AIW and Cloud Workshop projects</li>
+          <li>Terraform automation, ARM/Bicep templates, CI/CD pipelines</li>
+          <li>Landing zones, AKS, Azure DevOps automation</li>
+        </ul>
+      </div>
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300" data-aos="fade-up">
+        <h4 class="text-xl font-semibold">Consultant – Cloud Team (Jan 2019 – May 2022)</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
+        <ul class="list-disc list-inside text-sm">
+          <li>Azure policy, ML, App Services, Virtual Networking</li>
+          <li>Application Insights, VM image creation, NSG setup</li>
+        </ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- GitHub Stats -->
-  <section class="py-16 bg-gray-100 dark:bg-gray-800">
-    <div class="max-w-4xl mx-auto px-4 text-center" data-aos="zoom-in">
-      <h3 class="text-2xl font-bold mb-6">GitHub Activity</h3>
-      <img src="https://github-readme-stats.vercel.app/api?username=sumitmalik51&show_icons=true&theme=radical" class="mx-auto rounded-lg shadow-lg w-full max-w-xl" alt="GitHub Stats" loading="lazy">
-    </div>
-  </section>
+<!-- GitHub Stats -->
+<section class="py-16 bg-gray-100 dark:bg-gray-800">
+  <div class="max-w-4xl mx-auto px-4 text-center" data-aos="zoom-in">
+    <h3 class="text-2xl font-bold mb-6">GitHub Activity</h3>
+    <img src="https://github-readme-stats.vercel.app/api?username=sumitmalik51&show_icons=true&theme=radical" class="mx-auto rounded-lg shadow-lg w-full max-w-xl" alt="GitHub Stats" loading="lazy">
+  </div>
+</section>
 
-  <!-- Fun Facts -->
-  <section class="py-16 bg-white dark:bg-gray-900">
-    <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
-      <h3 class="text-2xl font-bold mb-6">Fun Facts</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div class="bg-blue-50 dark:bg-blue-800 p-6 rounded-lg transition-transform transform hover:rotate-1 hover:scale-105 duration-300 shadow">
-          <h4 class="text-lg font-semibold mb-2">🏍️ Triumph Rider</h4>
-          <p class="text-sm text-blue-900 dark:text-blue-100">Loves hitting the rugged trails with my Scrambler 400X. Just completed the Spiti circuit!</p>
-        </div>
-        <div class="bg-green-50 dark:bg-green-800 p-6 rounded-lg transition-transform transform hover:-rotate-1 hover:scale-105 duration-300 shadow">
-          <h4 class="text-lg font-semibold mb-2">⚡ Always Automating</h4>
-          <p class="text-sm text-green-900 dark:text-green-100">Scripts, pipelines, infra — if I can automate it, I will.</p>
-        </div>
-        <div class="bg-yellow-50 dark:bg-yellow-800 p-6 rounded-lg transition-transform transform hover:rotate-2 hover:scale-105 duration-300 shadow">
-          <h4 class="text-lg font-semibold mb-2">🏕️ Offbeat Explorer</h4>
-          <p class="text-sm text-yellow-900 dark:text-yellow-100">Planning a ride to Zanskar & Ladakh. Adventure fuels my creativity.</p>
-        </div>
-        <div class="bg-pink-50 dark:bg-pink-800 p-6 rounded-lg transition-transform transform hover:-rotate-2 hover:scale-105 duration-300 shadow">
-          <h4 class="text-lg font-semibold mb-2">💡 Tech Workshop Ninja</h4>
-          <p class="text-sm text-pink-900 dark:text-pink-100">Own the tech side of Microsoft Hands-on Labs and partner workshops globally.</p>
-        </div>
+<!-- Fun Facts -->
+<section class="py-16 bg-white dark:bg-gray-900">
+  <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
+    <h3 class="text-2xl font-bold mb-6">Fun Facts</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="bg-blue-50 dark:bg-blue-800 p-6 rounded-lg transition-transform transform hover:rotate-1 hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2">🏍️ Triumph Rider</h4>
+        <p class="text-sm text-blue-900 dark:text-blue-100">Loves hitting the rugged trails with my Scrambler 400X. Just completed the Spiti circuit!</p>
+      </div>
+      <div class="bg-green-50 dark:bg-green-800 p-6 rounded-lg transition-transform transform hover:-rotate-1 hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2">⚡ Always Automating</h4>
+        <p class="text-sm text-green-900 dark:text-green-100">Scripts, pipelines, infra — if I can automate it, I will.</p>
+      </div>
+      <div class="bg-yellow-50 dark:bg-yellow-800 p-6 rounded-lg transition-transform transform hover:rotate-2 hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2">🏕️ Offbeat Explorer</h4>
+        <p class="text-sm text-yellow-900 dark:text-yellow-100">Planning a ride to Zanskar & Ladakh. Adventure fuels my creativity.</p>
+      </div>
+      <div class="bg-pink-50 dark:bg-pink-800 p-6 rounded-lg transition-transform transform hover:-rotate-2 hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2">💡 Tech Workshop Ninja</h4>
+        <p class="text-sm text-pink-900 dark:text-pink-100">Own the tech side of Microsoft Hands-on Labs and partner workshops globally.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+<!-- Certifications -->
+<section id="certifications" class="py-16 bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
+    <h3 class="text-2xl font-bold mb-6">Certifications</h3>
+    <div class="grid gap-6 max-w-md mx-auto">
+  <style>
+    .cert-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+  </style>
+      <div class="flex items-start gap-4 transition-transform duration-300 hover:scale-105 hover:bg-blue-50 dark:hover:bg-blue-900 p-2 rounded-md">
+        <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg" alt="AZ-104 Badge" class="w-6 h-6 md:w-8 md:h-8 object-contain">
+        <p class="text-sm text-gray-800 dark:text-gray-200 leading-tight">AZ-104: Microsoft Certified Azure Administrator Associate</p>
+      </div>
+      <div class="flex items-start gap-4 transition-transform duration-300 hover:scale-105 hover:bg-blue-50 dark:hover:bg-blue-900 p-2 rounded-md">
+        <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-expert-badge.svg" alt="AZ-400 Badge" class="w-6 h-6 md:w-8 md:h-8 object-contain">
+        <p class="text-sm text-gray-800 dark:text-gray-200 leading-tight">AZ-400: Microsoft Certified Azure DevOps Engineer Expert</p>
+      </div>
+      <div class="flex items-start gap-4 transition-transform duration-300 hover:scale-105 hover:bg-blue-50 dark:hover:bg-blue-900 p-2 rounded-md">
+        <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg" alt="AZ-500 Badge" class="w-6 h-6 md:w-8 md:h-8 object-contain">
+        <p class="text-sm text-gray-800 dark:text-gray-200 leading-tight">AZ-500: Microsoft Certified Azure Security Engineer Associate</p>
+      </div>
+      <div class="flex items-start gap-4 transition-transform duration-300 hover:scale-105 hover:bg-blue-50 dark:hover:bg-blue-900 p-2 rounded-md">
+        <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg" alt="AZ-900 Badge" class="w-6 h-6 md:w-8 md:h-8 object-contain">
+        <p class="text-sm text-gray-800 dark:text-gray-200 leading-tight">AZ-900: Microsoft Certified Azure Fundamentals</p>
+      </div>
+      <div class="flex items-start gap-4 transition-transform duration-300 hover:scale-105 hover:bg-blue-50 dark:hover:bg-blue-900 p-2 rounded-md">
+        <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg" alt="DP-900 Badge" class="w-6 h-6 md:w-8 md:h-8 object-contain">
+        <p class="text-sm text-gray-800 dark:text-gray-200 leading-tight">DP-900: Microsoft Certified Azure Data Fundamentals</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- Technology -->
-  <section id="technology" class="py-16 bg-white dark:bg-gray-900 transition-colors duration-500">
+<!-- Technology -->
+<section id="technology" class="py-16 bg-white dark:bg-gray-900 transition-colors duration-500">
   <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-left">
     <h3 class="text-2xl font-bold mb-6">Technology</h3>
     <div class="flex justify-center mb-6">
@@ -224,22 +261,7 @@
   </div>
 </section>
 
-<!-- Tech Constellation -->
-<section class="py-16 bg-gray-100 dark:bg-gray-800">
-  <div class="max-w-4xl mx-auto px-4 text-center" data-aos="zoom-in">
-    <h3 class="text-2xl font-bold mb-6">Tech Universe</h3>
-    <div class="relative w-full h-64 flex items-center justify-center">
-      <div class="absolute animate-spin-slow">
-        <span class="absolute left-0 top-1/2 transform -translate-y-1/2 text-blue-500">☁️ Azure</span>
-        <span class="absolute right-0 top-1/2 transform -translate-y-1/2 text-green-500">🔧 Terraform</span>
-        <span class="absolute top-0 left-1/2 transform -translate-x-1/2 text-yellow-500">📜 PowerShell</span>
-        <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-purple-500">🛠️ Bicep</span>
-        <span class="absolute top-12 right-1/3 text-pink-500">🚀 AKS</span>
-        <span class="absolute bottom-12 left-1/3 text-red-500">🧠 Azure AI</span>
-      </div>
-    </div>
-  </div>
-</section>
+
 <script>
   function filterTech(category) {
     const tags = document.querySelectorAll('#tech-tags .tag');
@@ -270,52 +292,393 @@
   }
 </style>
 
-  <!-- Contact -->
-  <section id="contact" class="py-16 bg-gray-100 dark:bg-gray-800">
-    <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
-      <h3 class="text-2xl font-bold mb-4">Get In Touch</h3>
-      <p class="mb-4">Feel free to reach out via email or check out my LinkedIn & GitHub profiles. <br><span class='text-lg'>📧 🔗 🐙</span></p>
-      <p>Email: <a href="mailto:sumitmalik51@gmail.com" class="text-blue-500 hover:underline">sumitmalik51@gmail.com</a></p>
-      <p>LinkedIn: <a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="text-blue-500 hover:underline">sumitmalik51</a></p>
-      <p>GitHub: <a href="https://github.com/sumitmalik51" target="_blank" class="text-blue-500 hover:underline">sumitmalik51</a></p>
-    </div>
-  </section>
+<!-- Contact -->
+<section id="contact" class="py-16 bg-gray-100 dark:bg-gray-800">
+  <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
+    <h3 class="text-2xl font-bold mb-4">Get In Touch</h3>
+    <p class="mb-4">Feel free to reach out via email or check out my LinkedIn & GitHub profiles. <br><span class='text-lg'>📧 🔗 🐙</span></p>
+    <p>Email: <a href="mailto:sumitmalik51@gmail.com" class="text-blue-500 hover:underline">sumitmalik51@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="text-blue-500 hover:underline">sumitmalik51</a></p>
+    <p>GitHub: <a href="https://github.com/sumitmalik51" target="_blank" class="text-blue-500 hover:underline">sumitmalik51</a></p>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer class="text-center text-xs py-4">
-    <p>&copy; 2025 Sumit Malik. All rights reserved.</p>
-  </footer>
+<!-- Footer -->
+<footer class="text-center text-xs py-4">
+  <p>&copy; 2025 Sumit Malik. All rights reserved.</p>
+</footer>
 
+<script>
+  AOS.init();
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const icon = document.getElementById('theme-icon');
+    const audio = document.getElementById('theme-sound');
+    html.classList.toggle('dark');
+    const isDark = html.classList.contains('dark');
+    icon.textContent = isDark ? '🌙' : '🌞';
+    audio.currentTime = 0;
+    audio.play();
+  }
+
+  window.addEventListener("scroll", () => {
+    document.getElementById("backToTop").classList.toggle("hidden", window.scrollY < 200);
+  });
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+</script>
+<button onclick="scrollToTop()" id="backToTop" class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300 z-50">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+</button>
+
+<div id="cursor-dot" class="cursor-dot hidden"></div>
+<a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="floating-cta">🚀 Let’s build together</a>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sumit Malik | Cloud Architect</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    AOS.init();
-
-    function toggleTheme() {
-      const html = document.documentElement;
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.remove('opacity-0');
+      document.documentElement.classList.add('dark');
       const icon = document.getElementById('theme-icon');
-      const audio = document.getElementById('theme-sound');
-      html.classList.toggle('dark');
-      const isDark = html.classList.contains('dark');
-      icon.textContent = isDark ? '🌙' : '🌞';
-      audio.currentTime = 0;
-      audio.play();
-    }
+      if (icon) icon.textContent = '🌙';
 
-    window.addEventListener("scroll", () => {
-      document.getElementById("backToTop").classList.toggle("hidden", window.scrollY < 200);
+      const greetingPopup = document.getElementById('popup-greeting');
+      if (greetingPopup) {
+        const hour = new Date().getHours();
+        let message = '';
+        if (hour < 12) message = '🌄 Good morning! Ready to conquer the cloud ☁️';
+        else if (hour < 18) message = '🚀 Let\'s ship something awesome this afternoon';
+        else message = '🌙 Still coding? That\'s dedication. Let\'s go!';
+
+        setTimeout(() => {
+          greetingPopup.textContent = message;
+          greetingPopup.classList.remove('hidden');
+          setTimeout(() => greetingPopup.classList.add('hidden'), 10000);
+        }, 5000);
+
+        setInterval(() => {
+          greetingPopup.classList.remove('hidden');
+          setTimeout(() => greetingPopup.classList.add('hidden'), 10000);
+        }, 60000);
+      }
     });
-
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+  </script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          },
+        },
+      },
     }
   </script>
-  <button onclick="scrollToTop()" id="backToTop" class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300 z-50">
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-    </svg>
-  </button>
+  <style>
+    html {
+      scroll-behavior: smooth;
+      transition: background-color 0.5s, color 0.5s;
+    }
+    body {
+      transition: background-color 0.5s, color 0.5s;
+    }
+    a:hover {
+      text-shadow: 0 0 5px rgba(255,255,255,0.5);
+    }
+    .glow-hover:hover {
+      box-shadow: 0 0 10px 2px rgba(59, 130, 246, 0.5);
+    }
+    .cursor-dot.hovered {
+      background-color: #3b82f6;
+      transform: scale(1.8);
+    }
+    body.custom-cursor {
+      cursor: none;
+    }
+    .cursor-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.8);
+      position: fixed;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      transition: transform 0.15s ease;
+    }
+    .floating-cta {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background-color: #1e40af;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 9999px;
+      font-size: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      animation: pulse 2s infinite;
+      z-index: 50;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+    @keyframes fade-in {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fade-in 0.6s ease-out;
+    }
+  </style>
+</head>
+<body class="opacity-0 transition-opacity duration-500 bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
+  <div id="popup-greeting" class="fixed bottom-24 right-6 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 text-sm font-medium hidden transition-all duration-500 ease-in-out transform hover:scale-105 animate-fade-in"></div>
+  <audio id="theme-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-light-switch-on-2585.mp3" preload="auto"></audio>
 
-  <div id="cursor-dot" class="cursor-dot hidden"></div>
-  <a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="floating-cta">🚀 Let’s build together</a>
+  <!-- Header -->
+  <header class="sticky top-0 bg-blue-600 text-white shadow z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-semibold flex items-center gap-2">
+        <span id="status-badge" class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+        </span>
+        Sumit Malik
+      </h1>
+      <nav class="space-x-4 hidden sm:block">
+        <a href="#bio" class="hover:underline">Bio</a>
+        <a href="#experience" class="hover:underline">Experience</a>
+        <a href="#technology" class="hover:underline">Technology</a>
+        <a href="#contact" class="hover:underline">Contact</a>
+        <button onclick="toggleTheme()" class="ml-4 text-2xl hover:scale-110 transition-transform duration-200">
+          <span id="theme-icon" class="transition-transform duration-500 ease-in-out transform hover:rotate-180">🌞</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <section id="bio" class="py-16 text-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 transition-colors duration-500">
+  <div class="max-w-3xl mx-auto" data-aos="fade-up">
+    <img src="https://avatars.githubusercontent.com/u/50233625?v=4" alt="Sumit Malik" class="mx-auto rounded-full w-32 h-32 mb-4">
+    <h2 id="animated-title" class="text-3xl font-bold mb-2 animate-pulse">Technical Lead | Azure Cloud Architect</h2>
+    <p class="text-lg mb-4">I have 4.2+ years of experience in cloud computing platforms, especially Microsoft Azure and Windows Server Administration. I specialize in automation, DevOps, and cloud infrastructure.</p>
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience" class="py-16 bg-gray-100 dark:bg-gray-800">
+  <div class="max-w-4xl mx-auto px-4 space-y-8">
+    <h3 class="text-2xl font-bold mb-6 text-center">Experience</h3>
+    <div class="space-y-8">
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300" data-aos="fade-right">
+        <h4 class="text-xl font-semibold">Technical Lead – Cloud Team (May 2022 – Present)</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
+        <ul class="list-disc list-inside text-sm">
+          <li>Managed Microsoft AIW and Cloud Workshop projects</li>
+          <li>Terraform automation, ARM/Bicep templates, CI/CD pipelines</li>
+          <li>Landing zones, AKS, Azure DevOps automation</li>
+        </ul>
+      </div>
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300" data-aos="fade-up">
+        <h4 class="text-xl font-semibold">Consultant – Cloud Team (Jan 2019 – May 2022)</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
+        <ul class="list-disc list-inside text-sm">
+          <li>Azure policy, ML, App Services, Virtual Networking</li>
+          <li>Application Insights, VM image creation, NSG setup</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GitHub Stats -->
+<section class="py-16 bg-gray-100 dark:bg-gray-800">
+  <div class="max-w-4xl mx-auto px-4 text-center" data-aos="zoom-in">
+    <h3 class="text-2xl font-bold mb-6">GitHub Activity</h3>
+    <img src="https://github-readme-stats.vercel.app/api?username=sumitmalik51&show_icons=true&theme=radical" class="mx-auto rounded-lg shadow-lg w-full max-w-xl" alt="GitHub Stats" loading="lazy">
+  </div>
+</section>
+
+<!-- Fun Facts -->
+<section class="py-16 bg-white dark:bg-gray-900">
+  <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
+    <h3 class="text-2xl font-bold mb-6">Fun Facts</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="bg-blue-50 dark:bg-blue-800 p-6 rounded-lg transition-transform transform hover:rotate-1 hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2">🏍️ Triumph Rider</h4>
+        <p class="text-sm text-blue-900 dark:text-blue-100">Loves hitting the rugged trails with my Scrambler 400X. Just completed the Spiti circuit!</p>
+      </div>
+      <div class="bg-green-50 dark:bg-green-800 p-6 rounded-lg transition-transform transform hover:-rotate-1 hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2">⚡ Always Automating</h4>
+        <p class="text-sm text-green-900 dark:text-green-100">Scripts, pipelines, infra — if I can automate it, I will.</p>
+      </div>
+      <div class="bg-yellow-50 dark:bg-yellow-800 p-6 rounded-lg transition-transform transform hover:rotate-2 hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2">🏕️ Offbeat Explorer</h4>
+        <p class="text-sm text-yellow-900 dark:text-yellow-100">Planning a ride to Zanskar & Ladakh. Adventure fuels my creativity.</p>
+      </div>
+      <div class="bg-pink-50 dark:bg-pink-800 p-6 rounded-lg transition-transform transform hover:-rotate-2 hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2">💡 Tech Workshop Ninja</h4>
+        <p class="text-sm text-pink-900 dark:text-pink-100">Own the tech side of Microsoft Hands-on Labs and partner workshops globally.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Certifications -->
+<section id="certifications" class="py-16 bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
+    <h3 class="text-2xl font-bold mb-6">Certifications</h3>
+    <div class="grid gap-6 max-w-md mx-auto">
+  <style>
+    .cert-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+  </style>
+      <div class="flex items-start gap-4 transition-transform duration-300 hover:scale-105 hover:bg-blue-50 dark:hover:bg-blue-900 p-2 rounded-md">
+        <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg" alt="AZ-104 Badge" class="w-6 h-6 md:w-8 md:h-8 object-contain">
+        <p class="text-sm text-gray-800 dark:text-gray-200 leading-tight">AZ-104: Microsoft Certified Azure Administrator Associate</p>
+      </div>
+      <div class="flex items-start gap-4 transition-transform duration-300 hover:scale-105 hover:bg-blue-50 dark:hover:bg-blue-900 p-2 rounded-md">
+        <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-expert-badge.svg" alt="AZ-400 Badge" class="w-6 h-6 md:w-8 md:h-8 object-contain">
+        <p class="text-sm text-gray-800 dark:text-gray-200 leading-tight">AZ-400: Microsoft Certified Azure DevOps Engineer Expert</p>
+      </div>
+      <div class="flex items-start gap-4 transition-transform duration-300 hover:scale-105 hover:bg-blue-50 dark:hover:bg-blue-900 p-2 rounded-md">
+        <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg" alt="AZ-500 Badge" class="w-6 h-6 md:w-8 md:h-8 object-contain">
+        <p class="text-sm text-gray-800 dark:text-gray-200 leading-tight">AZ-500: Microsoft Certified Azure Security Engineer Associate</p>
+      </div>
+      <div class="flex items-start gap-4 transition-transform duration-300 hover:scale-105 hover:bg-blue-50 dark:hover:bg-blue-900 p-2 rounded-md">
+        <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg" alt="AZ-900 Badge" class="w-6 h-6 md:w-8 md:h-8 object-contain">
+        <p class="text-sm text-gray-800 dark:text-gray-200 leading-tight">AZ-900: Microsoft Certified Azure Fundamentals</p>
+      </div>
+      <div class="flex items-start gap-4 transition-transform duration-300 hover:scale-105 hover:bg-blue-50 dark:hover:bg-blue-900 p-2 rounded-md">
+        <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg" alt="DP-900 Badge" class="w-6 h-6 md:w-8 md:h-8 object-contain">
+        <p class="text-sm text-gray-800 dark:text-gray-200 leading-tight">DP-900: Microsoft Certified Azure Data Fundamentals</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Technology -->
+<section id="technology" class="py-16 bg-white dark:bg-gray-900 transition-colors duration-500">
+  <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-left">
+    <h3 class="text-2xl font-bold mb-6">Technology</h3>
+    <div class="flex justify-center mb-6">
+      <button onclick="filterTech('all')" class="px-4 py-1 bg-blue-600 text-white rounded-l hover:bg-blue-700">All</button>
+      <button onclick="filterTech('cloud')" class="px-4 py-1 bg-blue-500 text-white hover:bg-blue-600">Cloud</button>
+      <button onclick="filterTech('devops')" class="px-4 py-1 bg-blue-500 text-white hover:bg-blue-600">DevOps</button>
+      <button onclick="filterTech('scripting')" class="px-4 py-1 bg-blue-500 text-white hover:bg-blue-600">Scripting</button>
+      <button onclick="filterTech('infra')" class="px-4 py-1 bg-blue-500 text-white rounded-r hover:bg-blue-600">Infra</button>
+    </div>
+    <div id="tech-tags" class="flex flex-wrap justify-center gap-3">
+      <span class="tag cloud">Azure IaaS & PaaS</span>
+      <span class="tag devops">Terraform, Bicep, ARM</span>
+      <span class="tag scripting">PowerShell CLI</span>
+      <span class="tag infra">Windows Servers</span>
+      <span class="tag devops">Azure DevOps</span>
+      <span class="tag devops">Kubernetes</span>
+      <span class="tag devops">Monitoring, Insights</span>
+      <span class="tag cloud">Azure Migrate</span>
+      <span class="tag cloud">RBAC, Policies</span>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  function filterTech(category) {
+    const tags = document.querySelectorAll('#tech-tags .tag');
+    tags.forEach(tag => {
+      tag.classList.remove('hidden');
+      if (category !== 'all' && !tag.classList.contains(category)) {
+        tag.classList.add('hidden');
+      }
+    });
+  }
+</script>
+<style>
+  .tag {
+    @apply px-3 py-1 rounded-full text-sm transition-transform duration-200;
+    background-color: rgba(147, 197, 253, 0.2);
+    color: #1e40af;
+  }
+  .dark .tag {
+    background-color: rgba(191, 219, 254, 0.1);
+    color: #bfdbfe;
+  }
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+
+<!-- Contact -->
+<section id="contact" class="py-16 bg-gray-100 dark:bg-gray-800">
+  <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
+    <h3 class="text-2xl font-bold mb-4">Get In Touch</h3>
+    <p class="mb-4">Feel free to reach out via email or check out my LinkedIn & GitHub profiles. <br><span class='text-lg'>📧 🔗 🐙</span></p>
+    <p>Email: <a href="mailto:sumitmalik51@gmail.com" class="text-blue-500 hover:underline">sumitmalik51@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="text-blue-500 hover:underline">sumitmalik51</a></p>
+    <p>GitHub: <a href="https://github.com/sumitmalik51" target="_blank" class="text-blue-500 hover:underline">sumitmalik51</a></p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center text-xs py-4">
+  <p>&copy; 2025 Sumit Malik. All rights reserved.</p>
+</footer>
+
+<script>
+  AOS.init();
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const icon = document.getElementById('theme-icon');
+    const audio = document.getElementById('theme-sound');
+    html.classList.toggle('dark');
+    const isDark = html.classList.contains('dark');
+    icon.textContent = isDark ? '🌙' : '🌞';
+    audio.currentTime = 0;
+    audio.play();
+  }
+
+  window.addEventListener("scroll", () => {
+    document.getElementById("backToTop").classList.toggle("hidden", window.scrollY < 200);
+  });
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+</script>
+<button onclick="scrollToTop()" id="backToTop" class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300 z-50">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+</button>
+
+<div id="cursor-dot" class="cursor-dot hidden"></div>
+<a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="floating-cta">🚀 Let’s build together</a>
 </body>
-
 </html>
