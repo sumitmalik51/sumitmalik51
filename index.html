@@ -980,21 +980,23 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Add bounce animation keyframes
-const style = document.createElement('style');
-style.textContent = `
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
+// Remove duplicate declaration of 'style'
+const bounceAnimationStyle = document.createElement('style');
+bounceAnimationStyle.textContent = `
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
   }
-  40% {
-    transform: translateY(-30px);
-  }
-  60% {
-    transform: translateY(-15px);
-  }
-}`;
-document.head.appendChild(style);
+`;
+document.head.appendChild(bounceAnimationStyle);
+
 /* Ensure Back to Top button animation works */
 window.addEventListener('scroll', () => {
   const backToTopButton = document.getElementById('backToTop');
