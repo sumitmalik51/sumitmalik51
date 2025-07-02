@@ -582,6 +582,31 @@ window.addEventListener('DOMContentLoaded', () => {
         <p class="text-sm text-pink-900 dark:text-pink-100">Own the tech side of Microsoft Hands-on Labs and partner workshops globally.</p>
       </div>
     </div>
+    <!-- Interactive Map -->
+    <div id="map" class="w-full h-96 rounded-lg shadow-lg mt-8"></div>
+    <script>
+      // Initialize the map
+      const map = L.map('map').setView([32.0, 77.0], 5); // Centered around Spiti region
+
+      // Add OpenStreetMap tiles
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(map);
+
+      // Add markers for locations
+      const locations = [
+        { lat: 32.2396, lng: 78.0179, title: 'Spiti Circuit', description: 'Completed the rugged trails with my Scrambler 400X.' },
+        { lat: 34.2268, lng: 77.5619, title: 'Ladakh Adventure', description: 'Planning a ride to Zanskar & Ladakh.' },
+        { lat: 12.9716, lng: 77.5946, title: 'Tech Workshops', description: 'Delivered Microsoft AIW and Cloud Workshops globally.' }
+      ];
+
+      locations.forEach(location => {
+        L.marker([location.lat, location.lng]).addTo(map)
+          .bindPopup(`<strong>${location.title}</strong><br>${location.description}`);
+      });
+    </script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   </div>
 </section>
 <!-- Certifications -->
