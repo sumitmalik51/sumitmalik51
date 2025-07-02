@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sumit Malik | Cloud Architect</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-[Poppins] dark:bg-gray-900 dark:text-white">
+  <header class="p-6 shadow-md flex justify-between items-center bg-blue-600 text-white">
+    <h1 class="text-2xl font-bold">Sumit Malik</h1>
+    <nav class="space-x-4">
+      <a href="#bio" class="hover:underline">Bio</a>
+      <a href="#experience" class="hover:underline">Experience</a>
+      <a href="#tech" class="hover:underline">Technology</a>
+      <a href="#contact" class="hover:underline">Contact</a>
+      <button onclick="document.documentElement.classList.toggle('dark')" class="bg-white text-blue-600 px-2 py-1 rounded">Toggle Theme</button>
+    </nav>
+  </header>
+
+  <main id="app">
+    <section id="bio" class="p-10 text-center" data-aos="fade-up">
+      <img src="https://via.placeholder.com/150" alt="Sumit Malik" class="mx-auto rounded-full mb-4" />
+      <h2 class="text-xl font-semibold">Technical Lead | Azure Cloud Architect</h2>
+      <p class="max-w-2xl mx-auto mt-4">I’m a technical lead with 4.2+ years of experience in cloud computing platforms, especially Microsoft Azure and Windows Server Administration. I specialize in automation, DevOps, and cloud infrastructure.</p>
+      <div class="mt-4">
+        <a href="mailto:sumitmalik51@gmail.com" class="text-blue-500">sumitmalik51@gmail.com</a>
+      </div>
+    </section>
+
+    <section id="experience" class="p-10 bg-gray-100 dark:bg-gray-800" data-aos="fade-right">
+      <h2 class="text-2xl font-semibold mb-6">Experience</h2>
+      <div class="mb-4">
+        <h3 class="font-bold">Technical Lead – Cloud Team (May 2022 – Present)</h3>
+        <p>Spektra Systems LLC</p>
+        <ul class="list-disc list-inside">
+          <li>Managed Microsoft AIW and Cloud Workshop projects</li>
+          <li>Terraform automation, ARM/Bicep templates, CI/CD pipelines</li>
+          <li>Landing zones, AKS, Azure DevOps automation</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold">Consultant – Cloud Team (Jan 2019 – May 2022)</h3>
+        <p>Spektra Systems LLC</p>
+        <ul class="list-disc list-inside">
+          <li>Azure policy, ML, App Services, Virtual Networking</li>
+          <li>Application Insights, VM image creation, NSG setup</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="tech" class="p-10" data-aos="fade-left">
+      <h2 class="text-2xl font-semibold mb-6">Technology</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <span>Azure IAAS & PAAS</span>
+        <span>Terraform, Bicep, ARM</span>
+        <span>PowerShell, CLI</span>
+        <span>Windows Servers</span>
+        <span>Azure DevOps</span>
+        <span>Kubernetes</span>
+        <span>Monitoring, Insights</span>
+        <span>Azure Migrate</span>
+        <span>RBAC, Policies</span>
+      </div>
+    </section>
+
+    <section id="contact" class="p-10 bg-gray-100 dark:bg-gray-800" data-aos="fade-up">
+      <h2 class="text-2xl font-semibold mb-6">Get In Touch</h2>
+      <p>Email: <a href="mailto:sumitmalik51@gmail.com" class="text-blue-500">sumitmalik51@gmail.com</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/sumitmalik51/" class="text-blue-500">sumitmalik51</a></p>
+      <p>GitHub: <a href="https://github.com/sumitmalik51" class="text-blue-500">sumitmalik51</a></p>
+    </section>
+  </main>
+
+  <footer class="text-center p-4 text-sm text-gray-500 dark:text-gray-400">
+    © 2025 Sumit Malik. All rights reserved.
+  </footer>
+
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>
