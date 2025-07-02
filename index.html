@@ -812,10 +812,26 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 </script>
 <button onclick="scrollToTop()" id="backToTop" class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300 z-50">
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-    </svg>
-  </button>
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+</button>
+
+<script>
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  window.addEventListener('scroll', () => {
+    const backToTopButton = document.getElementById('backToTop');
+    if (backToTopButton) {
+      const isAtTop = window.scrollY === 0;
+      backToTopButton.style.transform = isAtTop ? 'translateY(-100px)' : 'translateY(0)';
+      backToTopButton.style.opacity = isAtTop ? '0' : '1';
+      backToTopButton.style.pointerEvents = isAtTop ? 'none' : 'auto';
+    }
+  });
+</script>
 
   <script>
     document.addEventListener('mousemove', (e) => {
@@ -1167,6 +1183,30 @@ document.body.appendChild(particlesContainer);
   setTimeout(() => {
     loadingScreen.remove();
   }, 500);
+</script>
+<script>
+  // Debugging Back to Top button visibility
+  document.addEventListener('DOMContentLoaded', () => {
+    const backToTopButton = document.getElementById('backToTop');
+    if (!backToTopButton) {
+      console.error('Back to Top button element with ID "backToTop" not found.');
+    } else {
+      console.log('Back to Top button element found:', backToTopButton);
+    }
+  });
+
+  window.addEventListener('scroll', () => {
+    const backToTopButton = document.getElementById('backToTop');
+    if (backToTopButton) {
+      const isAtTop = window.scrollY === 0;
+      backToTopButton.style.transform = isAtTop ? 'translateY(-100px)' : 'translateY(0)';
+      backToTopButton.style.opacity = isAtTop ? '0' : '1';
+      backToTopButton.style.pointerEvents = isAtTop ? 'none' : 'auto';
+      console.log('Scroll position:', window.scrollY, 'Button visibility:', !isAtTop);
+    } else {
+      console.error('Back to Top button element with ID "backToTop" not found during scroll event.');
+    }
+  });
 </script>
 </body>
 </html>
