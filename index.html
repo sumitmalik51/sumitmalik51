@@ -123,9 +123,8 @@
       text-decoration: underline;
       background-color: #1e3a8a;
       color: #93c5fd;
-      transform: scale(1.1);
-      transition: all 0.3s ease-in-out;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transform: none;
+      box-shadow: none;
     }
     .technology-group {
       display: flex;
@@ -283,6 +282,51 @@
       background: url('https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/demo/particles.json');
       z-index: -1;
       pointer-events: none;
+    }
+
+    body.light {
+      background-color: #f9fafb; /* Slightly lighter background for better contrast */
+      color: #1f2937; /* Darker text for improved readability */
+    }
+
+    body.light header {
+      background: linear-gradient(270deg, #2563eb, #9333ea, #16a34a, #ca8a04);
+      background-size: 400% 400%;
+      animation: header-gradient 10s ease infinite;
+    }
+
+    body.light .tag {
+      background-color: rgba(147, 197, 253, 0.3); /* Increased opacity for better visibility */
+      color: #1e40af;
+    }
+
+    body.light .tag:hover {
+      background-color: rgba(59, 130, 246, 0.4); /* Slightly darker hover background */
+      color: #1e3a8a;
+    }
+
+    body.light .technology-button {
+      background-color: #2563eb;
+      color: white;
+    }
+
+    body.light .technology-button:hover {
+      background-color: #1e3a8a;
+      color: #93c5fd;
+    }
+
+    body.light .cert-row:hover {
+      background-color: #e0f2fe; /* Slightly darker hover background for certifications */
+    }
+
+    body.light #bio {
+      background: linear-gradient(to bottom, #e0f7fa, #ffffff); /* Light gradient for better visibility */
+      color: #000000; /* Black text for readability */
+    }
+
+    .light-bio {
+      background: linear-gradient(to bottom, #e0f7fa, #ffffff) !important; /* Light gradient for better visibility */
+      color: #000000 !important; /* Black text for readability */
     }
   </style>
 </head>
@@ -490,6 +534,7 @@
       transform: scale(1.1);
       background-color: rgba(59, 130, 246, 0.3);
       color: #1e3a8a;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
     .tag.cloud {
       background-color: rgba(59, 130, 246, 0.2);
@@ -569,6 +614,17 @@
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+      const html = document.documentElement;
+      const bioSection = document.getElementById('bio');
+
+      if (html.classList.contains('light')) {
+        bioSection.style.color = '#000000';
+      } else {
+        bioSection.style.color = ''; // Reset to default dark theme color
+      }
+    });
 </script>
 <button onclick="scrollToTop()" id="backToTop" class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300 z-50">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -591,6 +647,12 @@
       });
       element.addEventListener('mouseleave', () => {
         document.getElementById('cursor-dot').classList.remove('hovered');
+      });
+    });
+
+    document.querySelectorAll('.tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        alert(`You clicked on ${tag.textContent}`);
       });
     });
   </script>
