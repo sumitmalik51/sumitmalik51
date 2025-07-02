@@ -304,15 +304,15 @@
       </div>
     </div>
     <div id="tech-tags" class="flex flex-wrap justify-center gap-3">
-  <span class="tag cloud hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-900">Azure IaaS &amp; PaaS</span>
-  <span class="tag devops hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-900">Terraform, Bicep, ARM</span>
-  <span class="tag scripting hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-900">PowerShell CLI</span>
-  <span class="tag infra hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-900">Windows Servers</span>
-  <span class="tag devops hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-900">Azure DevOps</span>
-  <span class="tag devops hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-900">Kubernetes</span>
-  <span class="tag devops hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-900">Monitoring, Insights</span>
-  <span class="tag cloud hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-900">Azure Migrate</span>
-  <span class="tag cloud hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-900">RBAC, Policies</span>
+  <span class="tag cloud" data-tooltip="Azure IaaS & PaaS services">Azure IaaS &amp; PaaS</span>
+  <span class="tag devops" data-tooltip="Infrastructure as Code tools">Terraform, Bicep, ARM</span>
+  <span class="tag scripting" data-tooltip="Command-line scripting">PowerShell CLI</span>
+  <span class="tag infra" data-tooltip="Server management">Windows Servers</span>
+  <span class="tag devops" data-tooltip="DevOps practices">Azure DevOps</span>
+  <span class="tag devops" data-tooltip="Container orchestration">Kubernetes</span>
+  <span class="tag devops" data-tooltip="Monitoring and insights">Monitoring, Insights</span>
+  <span class="tag cloud" data-tooltip="Migration services">Azure Migrate</span>
+  <span class="tag cloud" data-tooltip="Role-based access control">RBAC, Policies</span>
 </div>
   </div>
 </section>
@@ -346,71 +346,59 @@
   }
 </script>
 <style>
-  .tag {
-    padding: 0.75rem 1rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    transition: transform 0.2s ease-in-out;
-    background-color: rgba(147, 197, 253, 0.2);
-    color: #1e40af;
-    border: none;
-    box-shadow: none;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-  }
-  .tag:hover {
-    transform: scale(1.1);
-    background-color: rgba(59, 130, 246, 0.3);
-    color: #1e3a8a;
-  }
-  .tag.cloud {
-    background-color: rgba(59, 130, 246, 0.2);
-    color: #2563eb;
-  }
-  .tag.devops {
-    background-color: rgba(34, 197, 94, 0.2);
-    color: #16a34a;
-  }
-  .tag.scripting {
-    background-color: rgba(234, 179, 8, 0.2);
-    color: #ca8a04;
-  }
-  .tag.infra {
-    background-color: rgba(168, 85, 247, 0.2);
-    color: #9333ea;
-  }
-  .dark .tag {
-    background-color: rgba(191, 219, 254, 0.1);
-    color: #bfdbfe;
-  }
-  .dark .tag:hover {
-    background-color: rgba(59, 130, 246, 0.2);
-    color: #93c5fd;
-  }
-  .dark .tag.cloud {
-    background-color: rgba(59, 130, 246, 0.1);
-    color: #93c5fd;
-  }
-  .dark .tag.devops {
-    background-color: rgba(34, 197, 94, 0.1);
-    color: #6ee7b7;
-  }
-  .dark .tag.scripting {
-    background-color: rgba(234, 179, 8, 0.1);
-    color: #fde68a;
-  }
-  .dark .tag.infra {
-    background-color: rgba(168, 85, 247, 0.1);
-    color: #d8b4fe;
-  }
-  .animate-spin-slow {
-    animation: spin 20s linear infinite;
-  }
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-</style>
+    .tag {
+      position: relative;
+      padding: 0.5rem 0.75rem; /* Reduced padding */
+      border-radius: 9999px;
+      font-size: 0.75rem; /* Reduced font size */
+      transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+      background-color: rgba(147, 197, 253, 0.2);
+      color: #1e40af;
+      border: none;
+      box-shadow: none;
+      cursor: pointer;
+    }
+    .tag:hover {
+      transform: scale(1.1);
+      background-color: rgba(59, 130, 246, 0.3);
+      color: #1e3a8a;
+    }
+    .tag.cloud {
+      background-color: rgba(59, 130, 246, 0.2);
+      color: #2563eb;
+    }
+    .tag.devops {
+      background-color: rgba(34, 197, 94, 0.2);
+      color: #16a34a;
+    }
+    .tag.scripting {
+      background-color: rgba(234, 179, 8, 0.2);
+      color: #ca8a04;
+    }
+    .tag.infra {
+      background-color: rgba(168, 85, 247, 0.2);
+      color: #9333ea;
+    }
+    .tag::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-in-out;
+    }
+    .tag:hover::after {
+      opacity: 1;
+    }
+  </style>
 
 <!-- Contact -->
 <section id="contact" class="py-16 bg-gray-100 dark:bg-gray-800">
@@ -455,10 +443,10 @@
   }
 </script>
 <button onclick="scrollToTop()" id="backToTop" class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300 z-50">
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"></svg>
-    <path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-  </svg>
-</button>
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </button>
 
 <div id="cursor-dot" class="cursor-dot hidden"></div>
 <a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="floating-cta">🚀 Let’s build together</a>
