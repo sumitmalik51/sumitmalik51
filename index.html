@@ -178,6 +178,21 @@
       animation: header-gradient 10s ease infinite;
     }
 
+    /* Add gradient color to Back to Top button */
+    #backToTop {
+      background: linear-gradient(270deg, #2563eb, #9333ea, #16a34a, #ca8a04);
+      background-size: 400% 400%;
+      animation: gradient-shift 5s ease infinite, pulse 2s infinite;
+    }
+
+    /* Add gradient color to message popup */
+    #popup-greeting {
+      background: linear-gradient(270deg, #2563eb, #9333ea, #16a34a, #ca8a04);
+      background-size: 400% 400%;
+      animation: gradient-shift 5s ease infinite;
+    }
+
+    /* Add loading spinner overlay */
     #loading-screen {
       position: fixed;
       top: 0;
@@ -190,6 +205,7 @@
       align-items: center;
       z-index: 9999;
     }
+
     .spinner {
       width: 50px;
       height: 50px;
@@ -198,6 +214,7 @@
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
+
     @keyframes spin {
       0% {
         transform: rotate(0deg);
@@ -209,6 +226,9 @@
   </style>
 </head>
 <body class="opacity-0 transition-opacity duration-500 bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
+  <div id="loading-screen">
+    <div class="spinner"></div>
+  </div>
   <div id="popup-greeting" class="fixed bottom-24 right-6 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 text-sm font-medium hidden transition-all duration-500 ease-in-out transform hover:scale-105 animate-fade-in"></div>
   <audio id="theme-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-light-switch-on-2585.mp3" preload="auto"></audio>
 
@@ -281,49 +301,21 @@
   <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
     <h3 class="text-2xl font-bold mb-6">Fun Facts</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-      <div class="fun-fact-card">
-        <div class="fun-fact-inner">
-          <div class="fun-fact-front bg-blue-50 dark:bg-blue-800">
-            <h4 class="text-lg font-semibold mb-2">🏍️ Triumph Rider</h4>
-            <p class="text-sm text-blue-900 dark:text-blue-100">Loves hitting the rugged trails with my Scrambler 400X.</p>
-          </div>
-          <div class="fun-fact-back">
-            <p>Just completed the Spiti circuit!</p>
-          </div>
-        </div>
+      <div class="bg-blue-50 dark:bg-blue-800 p-6 rounded-lg transition-transform transform hover:rotate-1 hover:scale-105 duration-300 shadow fun-fact-card">
+        <h4 class="text-lg font-semibold mb-2">🏍️ Triumph Rider</h4>
+        <p class="text-sm text-blue-900 dark:text-blue-100">Loves hitting the rugged trails with my Scrambler 400X. Just completed the Spiti circuit!</p>
       </div>
-      <div class="fun-fact-card">
-        <div class="fun-fact-inner">
-          <div class="fun-fact-front bg-green-50 dark:bg-green-800">
-            <h4 class="text-lg font-semibold mb-2">⚡ Always Automating</h4>
-            <p class="text-sm text-green-900 dark:text-green-100">Scripts, pipelines, infra — if I can automate it, I will.</p>
-          </div>
-          <div class="fun-fact-back">
-            <p>Automation fuels efficiency!</p>
-          </div>
-        </div>
+      <div class="bg-green-50 dark:bg-green-800 p-6 rounded-lg transition-transform transform hover:-rotate-1 hover:scale-105 duration-300 shadow fun-fact-card">
+        <h4 class="text-lg font-semibold mb-2">⚡ Always Automating</h4>
+        <p class="text-sm text-green-900 dark:text-green-100">Scripts, pipelines, infra — if I can automate it, I will.</p>
       </div>
-      <div class="fun-fact-card">
-        <div class="fun-fact-inner">
-          <div class="fun-fact-front bg-yellow-50 dark:bg-yellow-800">
-            <h4 class="text-lg font-semibold mb-2">🏕️ Offbeat Explorer</h4>
-            <p class="text-sm text-yellow-900 dark:text-yellow-100">Planning a ride to Zanskar & Ladakh.</p>
-          </div>
-          <div class="fun-fact-back">
-            <p>Adventure fuels creativity!</p>
-          </div>
-        </div>
+      <div class="bg-yellow-50 dark:bg-yellow-800 p-6 rounded-lg transition-transform transform hover:rotate-2 hover:scale-105 duration-300 shadow fun-fact-card">
+        <h4 class="text-lg font-semibold mb-2">🏕️ Offbeat Explorer</h4>
+        <p class="text-sm text-yellow-900 dark:text-yellow-100">Planning a ride to Zanskar & Ladakh. Adventure fuels my creativity.</p>
       </div>
-      <div class="fun-fact-card">
-        <div class="fun-fact-inner">
-          <div class="fun-fact-front bg-pink-50 dark:bg-pink-800">
-            <h4 class="text-lg font-semibold mb-2">💡 Tech Workshop Ninja</h4>
-            <p class="text-sm text-pink-900 dark:text-pink-100">Own the tech side of Microsoft Hands-on Labs.</p>
-          </div>
-          <div class="fun-fact-back">
-            <p>Global partner workshops!</p>
-          </div>
-        </div>
+      <div class="bg-pink-50 dark:bg-pink-800 p-6 rounded-lg transition-transform transform hover:-rotate-2 hover:scale-105 duration-300 shadow fun-fact-card">
+        <h4 class="text-lg font-semibold mb-2">💡 Tech Workshop Ninja</h4>
+        <p class="text-sm text-pink-900 dark:text-pink-100">Own the tech side of Microsoft Hands-on Labs and partner workshops globally.</p>
       </div>
     </div>
   </div>
@@ -544,18 +536,74 @@
 
   <div id="cursor-dot" class="cursor-dot hidden"></div>
 <a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="floating-cta">🚀 Let’s build together</a>
-
-  <div id="loading-screen">
-    <div class="spinner"></div>
-  </div>
-
-  <script>
-    window.addEventListener('load', () => {
-      const loadingScreen = document.getElementById('loading-screen');
-      if (loadingScreen) {
-        loadingScreen.style.display = 'none';
-      }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script>
+  // GSAP animations
+  document.addEventListener('DOMContentLoaded', () => {
+    gsap.from("header", {
+      duration: 1.5,
+      y: -50,
+      opacity: 0,
+      ease: "power2.out"
     });
-  </script>
+
+    gsap.from("#bio img", {
+      duration: 1.5,
+      scale: 0.8,
+      opacity: 0,
+      ease: "elastic.out(1, 0.5)",
+      delay: 0.5
+    });
+
+    gsap.from("#bio h2", {
+      duration: 1,
+      x: -100,
+      opacity: 0,
+      ease: "power2.out",
+      delay: 0.8
+    });
+
+    gsap.from("#bio p", {
+      duration: 1,
+      x: 100,
+      opacity: 0,
+      ease: "power2.out",
+      delay: 1
+    });
+
+    gsap.from(".fun-fact-card", {
+      duration: 1,
+      y: 50,
+      opacity: 0,
+      stagger: 0.2,
+      ease: "power2.out"
+    });
+
+    gsap.from(".technology-button", {
+      duration: 1,
+      scale: 0.8,
+      opacity: 0,
+      stagger: 0.2,
+      ease: "back.out(1.7)"
+    });
+
+    gsap.from(".tag", {
+      duration: 1,
+      y: 50,
+      opacity: 0,
+      stagger: 0.1,
+      ease: "power2.out"
+    });
+  });
+</script>
+<script>
+  // Show loading spinner until page loads
+  document.addEventListener('DOMContentLoaded', () => {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+      loadingScreen.style.display = 'none';
+    }
+  });
+</script>
 </body>
 </html>
