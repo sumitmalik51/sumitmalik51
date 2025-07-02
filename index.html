@@ -391,6 +391,51 @@
         display: flex;
       }
     }
+
+    /* Adjust bio title and paragraph size */
+    #animated-title {
+  font-size: 2rem; /* Reduced size for better fit */
+}
+
+#bio p {
+  font-size: 0.9rem; /* Reduced paragraph size */
+}
+
+/* Add ripple effect to buttons */
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(59, 130, 246, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+}
+
+button:active::after {
+  width: 200px;
+  height: 200px;
+  opacity: 1;
+}
+
+/* Add hover effects for links and icons */
+a, .icon {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+a:hover, .icon:hover {
+  color: #2563eb;
+  transform: scale(1.1);
+}
   </style>
 </head>
 <body class="opacity-0 transition-opacity duration-500 bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
@@ -856,6 +901,144 @@ style.textContent = `
   }
 }`;
 document.head.appendChild(style);
+/* Ensure Back to Top button animation works */
+window.addEventListener('scroll', () => {
+  const backToTopButton = document.getElementById('backToTop');
+  if (backToTopButton) {
+    const isAtTop = window.scrollY === 0;
+    backToTopButton.style.transform = isAtTop ? 'translateY(-100px)' : 'translateY(0)';
+    backToTopButton.style.opacity = isAtTop ? '0' : '1';
+    backToTopButton.style.pointerEvents = isAtTop ? 'none' : 'auto'; // Disable interaction when hidden
+  }
+});
+</script>
+
+<!-- Add particles.js configuration -->
+<script>
+  const particlesConfig = {
+  particles: {
+    number: {
+      value: 100,
+      density: {
+        enable: true,
+        value_area: 800
+      }
+    },
+    color: {
+      value: '#2563eb'
+    },
+    shape: {
+      type: 'circle',
+      stroke: {
+        width: 0,
+        color: '#000000'
+      },
+      polygon: {
+        nb_sides: 5
+      }
+    },
+    opacity: {
+      value: 0.5,
+      random: false,
+      anim: {
+        enable: false,
+        speed: 1,
+        opacity_min: 0.1,
+        sync: false
+      }
+    },
+    size: {
+      value: 3,
+      random: true,
+      anim: {
+        enable: false,
+        speed: 40,
+        size_min: 0.1,
+        sync: false
+      }
+    },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: '#2563eb',
+      opacity: 0.4,
+      width: 1
+    },
+    move: {
+      enable: true,
+      speed: 6,
+      direction: 'none',
+      random: false,
+      straight: false,
+      out_mode: 'out',
+      bounce: false,
+      attract: {
+        enable: false,
+        rotateX: 600,
+        rotateY: 1200
+      }
+    }
+  },
+  interactivity: {
+    detect_on: 'canvas',
+    events: {
+      onhover: {
+        enable: true,
+        mode: 'repulse'
+      },
+      onclick: {
+        enable: true,
+        mode: 'push'
+      },
+      resize: true
+    },
+    modes: {
+      grab: {
+        distance: 400,
+        line_linked: {
+          opacity: 1
+        }
+      },
+      bubble: {
+        distance: 400,
+        size: 40,
+        duration: 2,
+        opacity: 8,
+        speed: 3
+      },
+      repulse: {
+        distance: 200,
+        duration: 0.4
+      },
+      push: {
+        particles_nb: 4
+      },
+      remove: {
+        particles_nb: 2
+      }
+    }
+  },
+  retina_detect: true
+};
+
+// Load particles.js
+const script = document.createElement('script');
+script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
+script.onload = () => {
+  particlesJS('particles-js', particlesConfig);
+};
+document.head.appendChild(script);
+
+/* Add particles container */
+const particlesContainer = document.createElement('div');
+particlesContainer.id = 'particles-js';
+particlesContainer.style.position = 'fixed';
+particlesContainer.style.top = '0';
+particlesContainer.style.left = '0';
+particlesContainer.style.width = '100%';
+particlesContainer.style.height = '100%';
+particlesContainer.style.zIndex = '-1';
+document.body.appendChild(particlesContainer);
 </script>
 </body>
 </html>
