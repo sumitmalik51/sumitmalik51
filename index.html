@@ -118,13 +118,14 @@
       flex: 1 1 auto;
       max-width: 150px;
       text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Default shadow */
     }
     .technology-button:hover {
       text-decoration: underline;
       background-color: #1e3a8a;
       color: #93c5fd;
       transform: none;
-      box-shadow: none;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
     }
     .technology-group {
       display: flex;
@@ -262,7 +263,7 @@
     /* Add advanced hover effects */
     .fun-fact-card:hover {
       transform: rotateY(15deg) scale(1.1);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
     }
 
     .technology-button:hover {
@@ -340,12 +341,59 @@
         transform: translateY(-15px);
       }
     }
+
+    /* Ensure shadows are visible in both light and dark themes */
+    .fun-fact-card {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Slightly darker default shadow */
+    }
+
+    .fun-fact-card:hover {
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
+    }
+
+    .technology-button {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Slightly darker default shadow */
+    }
+
+    .technology-button:hover {
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
+    }
+
+    /* Responsive navigation menu */
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .menu {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    nav .menu-button {
+      display: none;
+      background-color: #2563eb;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      nav .menu-button {
+        display: block;
+      }
+
+      nav .menu {
+        display: flex;
+      }
+    }
   </style>
 </head>
 <body class="opacity-0 transition-opacity duration-500 bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
-  <div id="loading-screen">
-    <div class="spinner"></div>
-  </div>
   <div id="popup-greeting" class="fixed bottom-24 right-6 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 text-sm font-medium hidden transition-all duration-500 ease-in-out transform hover:scale-105 animate-fade-in"></div>
   <audio id="theme-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-light-switch-on-2585.mp3" preload="auto"></audio>
 
@@ -374,7 +422,7 @@
   <section id="bio" class="py-16 text-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 transition-colors duration-500 text-xs py-4">
     <div class="max-w-3xl mx-auto" data-aos="fade-up">
       <img src="https://avatars.githubusercontent.com/u/50233625?v=4" alt="Sumit Malik" class="mx-auto rounded-full w-32 h-32 mb-4">
-      <h2 id="animated-title" class="text-3xl font-bold mb-2 animate-pulse">Technical Lead | Azure Cloud Architect</h2>
+      <h2 id="animated-title" class="text-3xl font-bold mb-2 animate-pulse">Cloud Infrastructure & Automation Expert | Microsoft Azure Certified</h2>
       <p class="text-lg mb-4">With over 6 years of experience in cloud computing, I specialize in designing and delivering scalable Azure solutions. My expertise spans Azure AI, infrastructure automation, DevOps pipelines, and robust Windows Server administration. I’m passionate about bridging strategy and execution—helping businesses automate, innovate, and operate confidently in the cloud.</p>
     </div>
   </section>
@@ -736,11 +784,35 @@
 <script>
   // Show loading spinner until page loads
   document.addEventListener('DOMContentLoaded', () => {
-    const loadingScreen = document.getElementById('loading-screen');
-    if (loadingScreen) {
-      loadingScreen.style.display = 'none';
-    }
+    const logo = document.createElement('div');
+
+    // Create logo animation
+    logo.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="80" height="80">
+        <circle cx="50" cy="50" r="45" stroke="#2563eb" stroke-width="5" fill="none" />
+        <text x="50" y="55" text-anchor="middle" font-size="20" fill="#2563eb" font-family="Poppins, sans-serif">SM</text>
+      </svg>
+    `;
+    logo.style.animation = 'spin 2s linear infinite';
+
+    // Ensure loading screen is removed after 0.5 seconds
+    setTimeout(() => {
+      logo.remove();
+    }, 500);
   });
+
+  // Add spin animation keyframes
+  const style = document.createElement('style');
+  style.textContent = `
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }`;
+  document.head.appendChild(style);
 
   document.addEventListener('DOMContentLoaded', () => {
   const title = document.getElementById('animated-title');
