@@ -746,7 +746,7 @@
   const title = document.getElementById('animated-title');
   const profileImage = document.querySelector('#bio img');
 
-  // Typewriter effect for title
+  // Typewriter effect for title with increased speed
   if (title) {
     const text = title.textContent;
     title.textContent = '';
@@ -758,12 +758,14 @@
       } else {
         clearInterval(typeWriter);
       }
-    }, 100);
+    }, 50); // Faster typing speed
   }
 
-  // Bounce effect for profile image
+  // Bounce effect for profile image with higher z-index
   if (profileImage) {
     profileImage.style.animation = 'bounce 2s infinite';
+    profileImage.style.zIndex = '100'; // Ensure it appears above the header
+    profileImage.style.position = 'relative';
   }
 });
 
