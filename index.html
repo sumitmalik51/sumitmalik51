@@ -9,15 +9,13 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-  document.body.classList.remove('opacity-0');
-  document.documentElement.classList.add('dark');
-  const icon = document.getElementById('theme-icon');
-  if (icon) icon.textContent = '🌙';
-});
+      document.body.classList.remove('opacity-0');
+      document.documentElement.classList.add('dark');
+      const icon = document.getElementById('theme-icon');
+      if (icon) icon.textContent = '🌙';
+    });
   </script>
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-  
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
   <script>
     tailwind.config = {
@@ -39,7 +37,7 @@
     body {
       transition: background-color 0.5s, color 0.5s;
     }
-      a:hover {
+    a:hover {
       text-shadow: 0 0 5px rgba(255,255,255,0.5);
     }
     .glow-hover:hover {
@@ -49,8 +47,6 @@
       background-color: #3b82f6;
       transform: scale(1.8);
     }
-  </style>
-<style>
     body.custom-cursor {
       cursor: none;
     }
@@ -99,8 +95,8 @@
         <a href="#technology" class="hover:underline">Technology</a>
         <a href="#contact" class="hover:underline">Contact</a>
         <button onclick="toggleTheme()" class="ml-4 text-2xl hover:scale-110 transition-transform duration-200">
-  <span id="theme-icon" class="transition-transform duration-500 ease-in-out transform hover:rotate-180">🌞</span>
-</button>
+          <span id="theme-icon" class="transition-transform duration-500 ease-in-out transform hover:rotate-180">🌞</span>
+        </button>
       </nav>
     </div>
   </header>
@@ -111,7 +107,6 @@
       <img src="https://avatars.githubusercontent.com/u/50233625?v=4" alt="Sumit Malik" class="mx-auto rounded-full w-32 h-32 mb-4">
       <h2 id="animated-title" class="text-3xl font-bold mb-2 animate-pulse">Technical Lead | Azure Cloud Architect</h2>
       <p class="text-lg mb-4">I have 4.2+ years of experience in cloud computing platforms, especially Microsoft Azure and Windows Server Administration. I specialize in automation, DevOps, and cloud infrastructure.</p>
-      
     </div>
   </section>
 
@@ -173,29 +168,7 @@
   <!-- Footer -->
   <footer class="text-center text-xs py-4">
     <p>&copy; 2025 Sumit Malik. All rights reserved.</p>
-      
-</footer>
-
-  <script>
-    AOS.init();
-
-    function toggleTheme() {
-      const html = document.documentElement;
-      const icon = document.getElementById('theme-icon');
-      const audio = document.getElementById('theme-sound');
-      html.classList.toggle('dark');
-      const isDark = html.classList.contains('dark');
-      icon.textContent = isDark ? '🌙' : '🌞';
-      audio.currentTime = 0;
-      audio.play();
-    }
-  </script>
-  <!-- Back to Top Button -->
-  <button onclick="scrollToTop()" id="backToTop" class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300 z-50">
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-  </svg>
-</button>
+  </footer>
 
   <script>
     AOS.init();
@@ -212,47 +185,21 @@
     }
 
     window.addEventListener("scroll", () => {
-  document.getElementById("backToTop").classList.toggle("hidden", window.scrollY < 200);
-});
+      document.getElementById("backToTop").classList.toggle("hidden", window.scrollY < 200);
+    });
 
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  function toggleAmbientSound() {
-  const audio = document.getElementById("ambient-sound");
-  const btn = document.querySelector('[onclick="toggleAmbientSound()"]');
-  if (!audio || !btn) return;
+  </script>
+  <button onclick="scrollToTop()" id="backToTop" class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300 z-50">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </button>
 
-  if (audio.paused) {
-    audio.play().then(() => {
-      btn.textContent = "🔇 Ambient";
-    }).catch(err => console.log("Playback blocked:", err));
-  } else {
-    audio.pause();
-    btn.textContent = "🎧 Ambient";
-  }
-}).catch(err => console.log("Playback blocked:", err));
-  } else {
-    audio.pause();
-    btn.textContent = "🎧 Ambient";
-  }
-}).catch(err => console.log("Playback blocked:", err));
-  } else {
-    audio.pause();
-    btn.textContent = "🎧 Ambient";
-  }
-}).catch(err => console.log("Playback blocked:", err));
-  } 
-} else {
-    audio.pause();
-    btn.textContent = "🎧 Ambient";
-  }
-}
-</script>
-<div id="cursor-dot" class="cursor-dot hidden"></div>
+  <div id="cursor-dot" class="cursor-dot hidden"></div>
   <a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="floating-cta">🚀 Let’s build together</a>
-  <audio id="ambient-sound" src="https://assets.mixkit.co/music/preview/mixkit-rain-in-the-forest-1220.mp3" preload="auto" loop></audio>
-  <button onclick="toggleAmbientSound()" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-4 py-2 rounded-full shadow hover:bg-blue-700 transition-all z-40">🎧 Ambient</button>
 </body>
 
 </html>
