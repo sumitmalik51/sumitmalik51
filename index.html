@@ -224,12 +224,26 @@
   if (!audio || !btn) return;
 
   if (audio.paused) {
-    audio.play()
-      .then(() => {
-        btn.textContent = "🔇 Ambient";
-      })
-      .catch(err => console.log("Playback blocked:", err));
+    audio.play().then(() => {
+      btn.textContent = "🔇 Ambient";
+    }).catch(err => console.log("Playback blocked:", err));
   } else {
+    audio.pause();
+    btn.textContent = "🎧 Ambient";
+  }
+}).catch(err => console.log("Playback blocked:", err));
+  } else {
+    audio.pause();
+    btn.textContent = "🎧 Ambient";
+  }
+}).catch(err => console.log("Playback blocked:", err));
+  } else {
+    audio.pause();
+    btn.textContent = "🎧 Ambient";
+  }
+}).catch(err => console.log("Playback blocked:", err));
+  } 
+} else {
     audio.pause();
     btn.textContent = "🎧 Ambient";
   }
@@ -237,7 +251,7 @@
 </script>
 <div id="cursor-dot" class="cursor-dot hidden"></div>
   <a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="floating-cta">🚀 Let’s build together</a>
-  <audio id="ambient-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2e3e49d68a.mp3?filename=calm-rain-ambient-110397.mp3" preload="auto" loop></audio>
+  <audio id="ambient-sound" src="https://assets.mixkit.co/music/preview/mixkit-rain-in-the-forest-1220.mp3" preload="auto" loop></audio>
   <button onclick="toggleAmbientSound()" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-4 py-2 rounded-full shadow hover:bg-blue-700 transition-all z-40">🎧 Ambient</button>
 </body>
 
