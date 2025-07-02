@@ -56,6 +56,9 @@
     }
     body {
       transition: background-color 0.5s, color 0.5s;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
     }
     a:hover {
       text-shadow: 0 0 5px rgba(255,255,255,0.5);
@@ -106,23 +109,55 @@
       animation: fade-in 0.6s ease-out;
     }
     .technology-button {
-      padding: 0.25rem 1rem;
+      padding: 0.5rem 1rem;
       color: white;
-      border-radius: 0;
+      border-radius: 0.25rem;
       background-color: #2563eb;
       cursor: pointer;
-      display: inline-block;
-      margin: 0;
-      transition: color 0.2s ease-in-out;
+      transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+      flex: 1 1 auto;
+      max-width: 150px;
+      text-align: center;
     }
     .technology-button:hover {
       text-decoration: underline;
       color: #93c5fd;
+      background-color: #1e3a8a;
     }
     .technology-group {
-      display: inline-flex;
-      border-radius: 0.25rem;
-      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(34, 197, 94, 0.1));
+      z-index: -1;
+      pointer-events: none;
+      animation: gradient-shift 10s infinite alternate;
+    }
+
+    @keyframes gradient-shift {
+      0% {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(34, 197, 94, 0.1));
+      }
+      100% {
+        background: linear-gradient(135deg, rgba(234, 179, 8, 0.1), rgba(168, 85, 247, 0.1));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .technology-button {
+        flex: 1 1 100%;
+        max-width: none;
+      }
     }
   </style>
 </head>
@@ -131,9 +166,9 @@
   <audio id="theme-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-light-switch-on-2585.mp3" preload="auto"></audio>
 
   <!-- Header -->
-  <header class="sticky top-0 bg-blue-600 text-white shadow z-50">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-xl font-semibold flex items-center gap-2">
+  <header class="sticky top-0 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white shadow z-50 text-xs py-2 transition-all duration-300 ease-in-out">
+    <div class="max-w-6xl mx-auto px-4 py-2 flex justify-between items-center">
+      <h1 class="text-lg font-semibold flex items-center gap-2 hover:scale-105 transition-transform duration-300">
         <span id="status-badge" class="relative flex h-3 w-3">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
           <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
@@ -141,24 +176,24 @@
         Sumit Malik
       </h1>
       <nav class="space-x-4 hidden sm:block">
-        <a href="#bio" class="hover:underline">Bio</a>
-        <a href="#experience" class="hover:underline">Experience</a>
-        <a href="#technology" class="hover:underline">Technology</a>
-        <a href="#contact" class="hover:underline">Contact</a>
-        <button onclick="toggleTheme()" class="ml-4 text-2xl hover:scale-110 transition-transform duration-200">
+        <a href="#bio" class="hover:underline hover:text-blue-300 transition-colors duration-300">Bio</a>
+        <a href="#experience" class="hover:underline hover:text-blue-300 transition-colors duration-300">Experience</a>
+        <a href="#technology" class="hover:underline hover:text-blue-300 transition-colors duration-300">Technology</a>
+        <a href="#contact" class="hover:underline hover:text-blue-300 transition-colors duration-300">Contact</a>
+        <button onclick="toggleTheme()" class="ml-4 text-xl hover:scale-110 transition-transform duration-300">
           <span id="theme-icon" class="transition-transform duration-500 ease-in-out transform hover:rotate-180">🌞</span>
         </button>
       </nav>
     </div>
   </header>
 
-  <section id="bio" class="py-16 text-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 transition-colors duration-500">
-  <div class="max-w-3xl mx-auto" data-aos="fade-up">
-    <img src="https://avatars.githubusercontent.com/u/50233625?v=4" alt="Sumit Malik" class="mx-auto rounded-full w-32 h-32 mb-4">
-    <h2 id="animated-title" class="text-3xl font-bold mb-2 animate-pulse">Technical Lead | Azure Cloud Architect</h2>
-    <p class="text-lg mb-4">I have 4.2+ years of experience in cloud computing platforms, especially Microsoft Azure and Windows Server Administration. I specialize in automation, DevOps, and cloud infrastructure.</p>
-  </div>
-</section>
+  <section id="bio" class="py-16 text-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 transition-colors duration-500 text-xs py-4">
+    <div class="max-w-3xl mx-auto" data-aos="fade-up">
+      <img src="https://avatars.githubusercontent.com/u/50233625?v=4" alt="Sumit Malik" class="mx-auto rounded-full w-32 h-32 mb-4">
+      <h2 id="animated-title" class="text-3xl font-bold mb-2 animate-pulse">Technical Lead | Azure Cloud Architect</h2>
+      <p class="text-lg mb-4">I have 4.2+ years of experience in cloud computing platforms, especially Microsoft Azure and Windows Server Administration. I specialize in automation, DevOps, and cloud infrastructure.</p>
+    </div>
+  </section>
 
 <!-- Experience -->
 <section id="experience" class="py-16 bg-gray-100 dark:bg-gray-800">
@@ -312,7 +347,10 @@
 </script>
 <style>
   .tag {
-    @apply px-3 py-1 rounded-full text-sm transition-transform duration-200;
+    padding: 0.75rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    transition: transform 0.2s ease-in-out;
     background-color: rgba(147, 197, 253, 0.2);
     color: #1e40af;
     border: none;
@@ -397,6 +435,10 @@
     const html = document.documentElement;
     const icon = document.getElementById('theme-icon');
     const audio = document.getElementById('theme-sound');
+
+    // Add transition effect
+    document.body.style.transition = 'background-color 0.5s ease, color 0.5s ease';
+
     html.classList.toggle('dark');
     const isDark = html.classList.contains('dark');
     icon.textContent = isDark ? '🌙' : '🌞';
@@ -413,7 +455,7 @@
   }
 </script>
 <button onclick="scrollToTop()" id="backToTop" class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300 z-50">
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"></svg>
     <path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
   </svg>
 </button>
