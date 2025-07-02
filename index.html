@@ -330,18 +330,6 @@
       color: inherit !important; /* Keep text color unchanged */
     }
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-      }
-      40% {
-        transform: translateY(-30px);
-      }
-      60% {
-        transform: translateY(-15px);
-      }
-    }
-
     /* Ensure shadows are visible in both light and dark themes */
     .fun-fact-card {
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Slightly darker default shadow */
@@ -436,6 +424,21 @@ a:hover, .icon:hover {
   color: #2563eb;
   transform: scale(1.1);
 }
+
+/* Ensure bounce animation for bio image */
+<script>
+// Ensure bounce animation for bio image works
+window.addEventListener('DOMContentLoaded', () => {
+  const bioImage = document.querySelector('#bio img');
+  if (bioImage) {
+    bioImage.style.position = 'absolute';
+    bioImage.style.top = '10px';
+    bioImage.style.left = '50%';
+    bioImage.style.transform = 'translateX(-50%)';
+    bioImage.style.zIndex = '100';
+  }
+});
+</script>
   </style>
 </head>
 <body class="opacity-0 transition-opacity duration-500 bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
@@ -475,24 +478,67 @@ a:hover, .icon:hover {
 <!-- Experience -->
 <section id="experience" class="py-16 bg-gray-100 dark:bg-gray-800">
   <div class="max-w-4xl mx-auto px-4 space-y-8">
-    <h3 class="text-2xl font-bold mb-6 text-center">Experience</h3>
-    <div class="space-y-8">
-      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300" data-aos="fade-right">
-        <h4 class="text-xl font-semibold">Technical Lead – Cloud Team (May 2022 – Present)</h4>
-        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
-        <ul class="list-disc list-inside text-sm">
-          <li>Managed Microsoft AIW and Cloud Workshop projects</li>
-          <li>Terraform automation, ARM/Bicep templates, CI/CD pipelines</li>
-          <li>Landing zones, AKS, Azure DevOps automation</li>
-        </ul>
+    <h3 class="text-2xl font-bold mb-6 text-center">What I Do</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="bg-blue-50 dark:bg-blue-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-blue-500">🤖</span> Azure AI Solutions
+        </h4>
+        <p class="text-sm text-blue-900 dark:text-blue-100">Design and implement Azure AI solutions, including Azure OpenAI integration, Cognitive Services, and machine learning workspaces.</p>
       </div>
-      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300" data-aos="fade-up">
-        <h4 class="text-xl font-semibold">Consultant – Cloud Team (Jan 2019 – May 2022)</h4>
-        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
-        <ul class="list-disc list-inside text-sm">
-          <li>Azure policy, ML, App Services, Virtual Networking</li>
-          <li>Application Insights, VM image creation, NSG setup</li>
-        </ul>
+      <div class="bg-green-50 dark:bg-green-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-green-500">⚙️</span> Infrastructure Automation
+        </h4>
+        <p class="text-sm text-green-900 dark:text-green-100">Create and automate Azure infrastructure using Terraform, Bicep, ARM templates, and PowerShell.</p>
+      </div>
+      <div class="bg-yellow-50 dark:bg-yellow-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-yellow-500">🚀</span> CI/CD Pipelines
+        </h4>
+        <p class="text-sm text-yellow-900 dark:text-yellow-100">Build and manage CI/CD pipelines with Azure DevOps and GitHub Actions for seamless application delivery.</p>
+      </div>
+      <div class="bg-purple-50 dark:bg-purple-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-purple-500">🔒</span> Secure Azure Landing Zones
+        </h4>
+        <p class="text-sm text-purple-900 dark:text-purple-100">Architect and deliver secure, scalable Azure Landing Zones, incorporating policy enforcement, RBAC, and resource consistency.</p>
+      </div>
+      <div class="bg-red-50 dark:bg-red-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-red-500">📦</span> Reusable Infrastructure Modules
+        </h4>
+        <p class="text-sm text-red-900 dark:text-red-100">Develop reusable infrastructure modules for enterprise-wide cloud adoption.</p>
+      </div>
+      <div class="bg-teal-50 dark:bg-teal-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-teal-500">📦</span> AKS & Container Management
+        </h4>
+        <p class="text-sm text-teal-900 dark:text-teal-100">Configure and manage AKS clusters, container registries, and DevOps-integrated deployments.</p>
+      </div>
+      <div class="bg-indigo-50 dark:bg-indigo-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-indigo-500">📚</span> Microsoft AIW & Cloud Workshops
+        </h4>
+        <p class="text-sm text-indigo-900 dark:text-indigo-100">Deliver Microsoft AIW and Cloud Workshops through automated lab environments (30+ environments managed).</p>
+      </div>
+      <div class="bg-pink-50 dark:bg-pink-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-pink-500">🌐</span> Azure Migration Projects
+        </h4>
+        <p class="text-sm text-pink-900 dark:text-pink-100">Lead Azure migration projects involving networking, VM provisioning, image snapshotting, and cross-region setups.</p>
+      </div>
+      <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-gray-500">📊</span> Monitoring & Observability
+        </h4>
+        <p class="text-sm text-gray-900 dark:text-gray-100">Automate monitoring and observability using Azure Monitor, Log Analytics, and Application Insights.</p>
+      </div>
+      <div class="bg-orange-50 dark:bg-orange-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-orange-500">🔗</span> Hybrid Scenarios
+        </h4>
+        <p class="text-sm text-orange-900 dark:text-orange-100">Support hybrid scenarios using Azure Arc and Azure Stack HCI with ARM and scripting.</p>
       </div>
     </div>
   </div>
@@ -511,20 +557,28 @@ a:hover, .icon:hover {
   <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
     <h3 class="text-2xl font-bold mb-6">Fun Facts</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-      <div class="bg-blue-50 dark:bg-blue-800 p-6 rounded-lg transition-transform transform hover:rotate-1 hover:scale-105 duration-300 shadow fun-fact-card">
-        <h4 class="text-lg font-semibold mb-2">🏍️ Triumph Rider</h4>
+      <div class="bg-blue-50 dark:bg-blue-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-blue-500">🏍️</span> Triumph Rider
+        </h4>
         <p class="text-sm text-blue-900 dark:text-blue-100">Loves hitting the rugged trails with my Scrambler 400X. Just completed the Spiti circuit!</p>
       </div>
-      <div class="bg-green-50 dark:bg-green-800 p-6 rounded-lg transition-transform transform hover:-rotate-1 hover:scale-105 duration-300 shadow fun-fact-card">
-        <h4 class="text-lg font-semibold mb-2">⚡ Always Automating</h4>
+      <div class="bg-green-50 dark:bg-green-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-green-500">⚡</span> Always Automating
+        </h4>
         <p class="text-sm text-green-900 dark:text-green-100">Scripts, pipelines, infra — if I can automate it, I will.</p>
       </div>
-      <div class="bg-yellow-50 dark:bg-yellow-800 p-6 rounded-lg transition-transform transform hover:rotate-2 hover:scale-105 duration-300 shadow fun-fact-card">
-        <h4 class="text-lg font-semibold mb-2">🏕️ Offbeat Explorer</h4>
+      <div class="bg-yellow-50 dark:bg-yellow-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-yellow-500">🏕️</span> Offbeat Explorer
+        </h4>
         <p class="text-sm text-yellow-900 dark:text-yellow-100">Planning a ride to Zanskar & Ladakh. Adventure fuels my creativity.</p>
       </div>
-      <div class="bg-pink-50 dark:bg-pink-800 p-6 rounded-lg transition-transform transform hover:-rotate-2 hover:scale-105 duration-300 shadow fun-fact-card">
-        <h4 class="text-lg font-semibold mb-2">💡 Tech Workshop Ninja</h4>
+      <div class="bg-pink-50 dark:bg-pink-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-pink-500">💡</span> Tech Workshop Ninja
+        </h4>
         <p class="text-sm text-pink-900 dark:text-pink-100">Own the tech side of Microsoft Hands-on Labs and partner workshops globally.</p>
       </div>
     </div>
@@ -878,9 +932,7 @@ a:hover, .icon:hover {
     }, 50); // Faster typing speed
   }
 
-  // Bounce effect for profile image with higher z-index
   if (profileImage) {
-    profileImage.style.animation = 'bounce 2s infinite';
     profileImage.style.zIndex = '100'; // Ensure it appears above the header
     profileImage.style.position = 'relative';
   }
@@ -1039,6 +1091,56 @@ particlesContainer.style.width = '100%';
 particlesContainer.style.height = '100%';
 particlesContainer.style.zIndex = '-1';
 document.body.appendChild(particlesContainer);
+</script>
+<!-- Ensure logo popping animation works -->
+<script>
+  const logo = document.createElement('div');
+  logo.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="80" height="80">
+      <circle cx="50" cy="50" r="45" stroke="#2563eb" stroke-width="5" fill="none" />
+      <text x="50" y="55" text-anchor="middle" font-size="20" fill="#2563eb" font-family="Poppins, sans-serif">SM</text>
+    </svg>
+  `;
+  logo.style.animation = 'pop 0.5s ease-out';
+  logo.style.position = 'fixed';
+  logo.style.top = '50%';
+  logo.style.left = '50%';
+  logo.style.transform = 'translate(-50%, -50%)';
+  logo.style.zIndex = '9999';
+
+  // Add pop animation keyframes
+  const style = document.createElement('style');
+  style.textContent = `
+  @keyframes pop {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }`;
+  document.head.appendChild(style);
+
+  // Append logo to body
+  const loadingScreen = document.createElement('div');
+  loadingScreen.id = 'loading-screen';
+  loadingScreen.style.position = 'fixed';
+  loadingScreen.style.top = '0';
+  loadingScreen.style.left = '0';
+  loadingScreen.style.width = '100%';
+  loadingScreen.style.height = '100%';
+  loadingScreen.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+  loadingScreen.style.zIndex = '9998';
+  loadingScreen.appendChild(logo);
+
+  document.body.appendChild(loadingScreen);
+
+  // Remove logo after animation
+  setTimeout(() => {
+    loadingScreen.remove();
+  }, 500);
 </script>
 </body>
 </html>
