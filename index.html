@@ -9,10 +9,31 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-  document.documentElement.classList.add('dark');
-  const icon = document.getElementById('theme-icon');
-  if (icon) icon.textContent = '🌙';
-});
+      document.body.classList.remove('opacity-0');
+      document.documentElement.classList.add('dark');
+      const icon = document.getElementById('theme-icon');
+      if (icon) icon.textContent = '🌙';
+
+      const greetingPopup = document.getElementById('popup-greeting');
+      if (greetingPopup) {
+        const hour = new Date().getHours();
+        let message = '';
+        if (hour < 12) message = '🌄 Good morning! Ready to conquer the cloud ☁️';
+        else if (hour < 18) message = '🚀 Let\'s ship something awesome this afternoon';
+        else message = '🌙 Still coding? That\'s dedication. Let\'s go!';
+
+        setTimeout(() => {
+          greetingPopup.textContent = message;
+          greetingPopup.classList.remove('hidden');
+          setTimeout(() => greetingPopup.classList.add('hidden'), 10000);
+        }, 5000);
+
+        setInterval(() => {
+          greetingPopup.classList.remove('hidden');
+          setTimeout(() => greetingPopup.classList.add('hidden'), 10000);
+        }, 60000);
+      }
+    });
   </script>
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
@@ -35,143 +56,615 @@
     }
     body {
       transition: background-color 0.5s, color 0.5s;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    a:hover {
+      text-shadow: 0 0 5px rgba(255,255,255,0.5);
+    }
+    .glow-hover:hover {
+      box-shadow: 0 0 10px 2px rgba(59, 130, 246, 0.5);
+    }
+    .cursor-dot.hovered {
+      background-color: rgba(34, 197, 94, 0.8); /* Green tint on hover */
+      transform: scale(1.5); /* Enlarged cursor */
+    }
+    body.custom-cursor {
+      cursor: none;
+    }
+    .cursor-dot {
+      width: 12px; /* Slightly larger cursor */
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(59, 130, 246, 0.8); /* Blue tint */
+      position: fixed;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      transition: transform 0.15s ease, background-color 0.3s ease;
+    }
+    .floating-cta {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background-color: #1e40af;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 9999px;
+      font-size: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      animation: pulse 2s infinite;
+      z-index: 50;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+    @keyframes fade-in {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fade-in 0.6s ease-out;
+    }
+    .technology-button {
+      padding: 0.5rem 1rem;
+      color: white;
+      border-radius: 0.25rem;
+      background-color: #2563eb;
+      cursor: pointer;
+      transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+      flex: 1 1 auto;
+      max-width: 150px;
+      text-align: center;
+    }
+    .technology-button:hover {
+      text-decoration: underline;
+      background-color: #1e3a8a;
+      color: #93c5fd;
+      transform: scale(1.1);
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .technology-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(34, 197, 94, 0.1));
+      z-index: -1;
+      pointer-events: none;
+      animation: gradient-shift 10s infinite alternate;
+    }
+
+    @keyframes gradient-shift {
+      0% {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(34, 197, 94, 0.1));
+      }
+      100% {
+        background: linear-gradient(135deg, rgba(234, 179, 8, 0.1), rgba(168, 85, 247, 0.1));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .technology-button {
+        flex: 1 1 100%;
+        max-width: none;
+      }
+    }
+
+    @keyframes header-gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    header {
+      background: linear-gradient(270deg, #2563eb, #9333ea, #16a34a, #ca8a04);
+      background-size: 400% 400%;
+      animation: header-gradient 10s ease infinite;
+    }
+
+    /* Refine gradient colors for light theme */
+    body.light #backToTop,
+    body.light #popup-greeting,
+    body.light .floating-cta {
+      background: linear-gradient(270deg, #2563eb, #9333ea, #16a34a, #ca8a04);
+      background-size: 400% 400%;
+      animation: gradient-shift 5s ease infinite, pulse 2s infinite;
+    }
+
+    /* Ensure vibrant header gradient in light theme */
+    body.light header {
+      background: linear-gradient(270deg, #2563eb, #9333ea, #16a34a, #ca8a04);
+      background-size: 400% 400%;
+      animation: header-gradient 10s ease infinite;
+    }
+
+    /* Add gradient color to Back to Top button */
+    #backToTop {
+      background: linear-gradient(270deg, #2563eb, #9333ea, #16a34a, #ca8a04);
+      background-size: 400% 400%;
+      animation: gradient-shift 5s ease infinite, pulse 2s infinite;
+    }
+
+    /* Add gradient color to message popup */
+    #popup-greeting {
+      background: linear-gradient(270deg, #2563eb, #9333ea, #16a34a, #ca8a04);
+      background-size: 400% 400%;
+      animation: gradient-shift 5s ease infinite;
+    }
+
+    /* Add loading spinner overlay */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    /* Enhance loading spinner with animation */
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      border-top: 5px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite, pulse 2s infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+
+    /* Restore gradient for Let's Build Together button */
+    .floating-cta {
+      background: linear-gradient(270deg, #2563eb, #9333ea, #16a34a, #ca8a04);
+      background-size: 400% 400%;
+      animation: gradient-shift 5s ease infinite, pulse 2s infinite;
+    }
+
+    /* Add advanced hover effects */
+    .fun-fact-card:hover {
+      transform: rotateY(15deg) scale(1.1);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .technology-button:hover {
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.8), rgba(34, 197, 94, 0.8));
+      color: white;
+      transform: scale(1.2);
+    }
+
+    /* Add dynamic background using particles.js */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/demo/particles.json');
+      z-index: -1;
+      pointer-events: none;
     }
   </style>
 </head>
-
-<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
-  <!-- Audio for theme toggle -->
+<body class="opacity-0 transition-opacity duration-500 bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
+  <div id="loading-screen">
+    <div class="spinner"></div>
+  </div>
+  <div id="popup-greeting" class="fixed bottom-24 right-6 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 text-sm font-medium hidden transition-all duration-500 ease-in-out transform hover:scale-105 animate-fade-in"></div>
   <audio id="theme-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-light-switch-on-2585.mp3" preload="auto"></audio>
 
   <!-- Header -->
-  <header class="sticky top-0 bg-blue-600 text-white shadow z-50">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-xl font-semibold">Sumit Malik</h1>
+  <header class="sticky top-0 text-white shadow z-50 text-xs py-1 transition-all duration-300 ease-in-out">
+    <div class="max-w-6xl mx-auto px-4 py-1 flex justify-between items-center">
+      <h1 class="text-base font-semibold flex items-center gap-2 hover:scale-105 transition-transform duration-300">
+        <span id="status-badge" class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+        </span>
+        Sumit Malik
+      </h1>
       <nav class="space-x-4 hidden sm:block">
-        <a href="#bio" class="hover:underline">Bio</a>
-        <a href="#experience" class="hover:underline">Experience</a>
-        <a href="#technology" class="hover:underline">Technology</a>
-        <a href="#contact" class="hover:underline">Contact</a>
-        <button onclick="toggleTheme()" class="ml-4 text-2xl hover:scale-110 transition-transform duration-200">
-  <span id="theme-icon" class="transition-transform duration-500 ease-in-out transform hover:rotate-180">🌞</span>
-</button>
+        <a href="#bio" class="hover:underline hover:text-blue-300 transition-colors duration-300">Bio</a>
+        <a href="#experience" class="hover:underline hover:text-blue-300 transition-colors duration-300">Experience</a>
+        <a href="#technology" class="hover:underline hover:text-blue-300 transition-colors duration-300">Technology</a>
+        <a href="#contact" class="hover:underline hover:text-blue-300 transition-colors duration-300">Contact</a>
+        <button onclick="toggleTheme()" class="ml-4 text-lg hover:scale-110 transition-transform duration-300">
+          <span id="theme-icon" class="transition-transform duration-500 ease-in-out transform hover:rotate-180">🌞</span>
+        </button>
       </nav>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section id="bio" class="py-16 text-center bg-white dark:bg-gray-900 transition-colors duration-500">
+  <section id="bio" class="py-16 text-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 transition-colors duration-500 text-xs py-4">
     <div class="max-w-3xl mx-auto" data-aos="fade-up">
       <img src="https://avatars.githubusercontent.com/u/50233625?v=4" alt="Sumit Malik" class="mx-auto rounded-full w-32 h-32 mb-4">
-      <h2 class="text-3xl font-bold mb-2">Technical Lead | Azure Cloud Architect</h2>
+      <h2 id="animated-title" class="text-3xl font-bold mb-2 animate-pulse">Technical Lead | Azure Cloud Architect</h2>
       <p class="text-lg mb-4">I have 4.2+ years of experience in cloud computing platforms, especially Microsoft Azure and Windows Server Administration. I specialize in automation, DevOps, and cloud infrastructure.</p>
-      
     </div>
   </section>
 
-  <!-- Experience -->
-  <section id="experience" class="py-16 bg-gray-100 dark:bg-gray-800">
-    <div class="max-w-4xl mx-auto px-4 space-y-8">
-      <h3 class="text-2xl font-bold mb-6 text-center">Experience</h3>
-      <div class="space-y-8">
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300" data-aos="fade-right">
-          <h4 class="text-xl font-semibold">Technical Lead – Cloud Team (May 2022 – Present)</h4>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
-          <ul class="list-disc list-inside text-sm">
-            <li>Managed Microsoft AIW and Cloud Workshop projects</li>
-            <li>Terraform automation, ARM/Bicep templates, CI/CD pipelines</li>
-            <li>Landing zones, AKS, Azure DevOps automation</li>
-          </ul>
-        </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300" data-aos="fade-up">
-          <h4 class="text-xl font-semibold">Consultant – Cloud Team (Jan 2019 – May 2022)</h4>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
-          <ul class="list-disc list-inside text-sm">
-            <li>Azure policy, ML, App Services, Virtual Networking</li>
-            <li>Application Insights, VM image creation, NSG setup</li>
-          </ul>
-        </div>
+<!-- Experience -->
+<section id="experience" class="py-16 bg-gray-100 dark:bg-gray-800">
+  <div class="max-w-4xl mx-auto px-4 space-y-8">
+    <h3 class="text-2xl font-bold mb-6 text-center">Experience</h3>
+    <div class="space-y-8">
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300" data-aos="fade-right">
+        <h4 class="text-xl font-semibold">Technical Lead – Cloud Team (May 2022 – Present)</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
+        <ul class="list-disc list-inside text-sm">
+          <li>Managed Microsoft AIW and Cloud Workshop projects</li>
+          <li>Terraform automation, ARM/Bicep templates, CI/CD pipelines</li>
+          <li>Landing zones, AKS, Azure DevOps automation</li>
+        </ul>
+      </div>
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300" data-aos="fade-up">
+        <h4 class="text-xl font-semibold">Consultant – Cloud Team (Jan 2019 – May 2022)</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
+        <ul class="list-disc list-inside text-sm">
+          <li>Azure policy, ML, App Services, Virtual Networking</li>
+          <li>Application Insights, VM image creation, NSG setup</li>
+        </ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Technology -->
-  <section id="technology" class="py-16 bg-white dark:bg-gray-900 transition-colors duration-500">
-    <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-left">
-      <h3 class="text-2xl font-bold mb-6">Technology</h3>
-      <div class="flex flex-wrap justify-center gap-3">
-        <span class="bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">Azure IaaS & PaaS</span>
-        <span class="bg-purple-100 dark:bg-purple-800 text-purple-800 dark:text-purple-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">Terraform, Bicep, ARM</span>
-        <span class="bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">PowerShell CLI</span>
-        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">Windows Servers</span>
-        <span class="bg-yellow-100 dark:bg-yellow-700 text-yellow-800 dark:text-yellow-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">Azure DevOps</span>
-        <span class="bg-pink-100 dark:bg-pink-700 text-pink-800 dark:text-pink-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">Kubernetes</span>
-        <span class="bg-indigo-100 dark:bg-indigo-700 text-indigo-800 dark:text-indigo-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">Monitoring, Insights</span>
-        <span class="bg-blue-200 dark:bg-blue-700 text-blue-900 dark:text-blue-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">Azure Migrate</span>
-        <span class="bg-teal-100 dark:bg-teal-700 text-teal-800 dark:text-teal-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">RBAC, Policies</span>
+<!-- GitHub Stats -->
+<section class="py-16 bg-gray-100 dark:bg-gray-800">
+  <div class="max-w-4xl mx-auto px-4 text-center" data-aos="zoom-in">
+    <h3 class="text-2xl font-bold mb-6">GitHub Activity</h3>
+    <img src="https://github-readme-stats.vercel.app/api?username=sumitmalik51&show_icons=true&theme=radical" class="mx-auto rounded-lg shadow-lg w-full max-w-xl" alt="GitHub Stats" loading="lazy">
+  </div>
+</section>
+
+<!-- Fun Facts -->
+<section class="py-16 bg-white dark:bg-gray-900">
+  <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
+    <h3 class="text-2xl font-bold mb-6">Fun Facts</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="bg-blue-50 dark:bg-blue-800 p-6 rounded-lg transition-transform transform hover:rotate-1 hover:scale-105 duration-300 shadow fun-fact-card">
+        <h4 class="text-lg font-semibold mb-2">🏍️ Triumph Rider</h4>
+        <p class="text-sm text-blue-900 dark:text-blue-100">Loves hitting the rugged trails with my Scrambler 400X. Just completed the Spiti circuit!</p>
+      </div>
+      <div class="bg-green-50 dark:bg-green-800 p-6 rounded-lg transition-transform transform hover:-rotate-1 hover:scale-105 duration-300 shadow fun-fact-card">
+        <h4 class="text-lg font-semibold mb-2">⚡ Always Automating</h4>
+        <p class="text-sm text-green-900 dark:text-green-100">Scripts, pipelines, infra — if I can automate it, I will.</p>
+      </div>
+      <div class="bg-yellow-50 dark:bg-yellow-800 p-6 rounded-lg transition-transform transform hover:rotate-2 hover:scale-105 duration-300 shadow fun-fact-card">
+        <h4 class="text-lg font-semibold mb-2">🏕️ Offbeat Explorer</h4>
+        <p class="text-sm text-yellow-900 dark:text-yellow-100">Planning a ride to Zanskar & Ladakh. Adventure fuels my creativity.</p>
+      </div>
+      <div class="bg-pink-50 dark:bg-pink-800 p-6 rounded-lg transition-transform transform hover:-rotate-2 hover:scale-105 duration-300 shadow fun-fact-card">
+        <h4 class="text-lg font-semibold mb-2">💡 Tech Workshop Ninja</h4>
+        <p class="text-sm text-pink-900 dark:text-pink-100">Own the tech side of Microsoft Hands-on Labs and partner workshops globally.</p>
       </div>
     </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="py-16 bg-gray-100 dark:bg-gray-800">
-    <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
-      <h3 class="text-2xl font-bold mb-4">Get In Touch</h3>
-      <p class="mb-4">Feel free to reach out via email or check out my LinkedIn & GitHub profiles. <br><span class='text-lg'>📧 🔗 🐙</span></p>
-      <p>Email: <a href="mailto:sumitmalik51@gmail.com" class="text-blue-500 hover:underline">sumitmalik51@gmail.com</a></p>
-      <p>LinkedIn: <a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="text-blue-500 hover:underline">sumitmalik51</a></p>
-      <p>GitHub: <a href="https://github.com/sumitmalik51" target="_blank" class="text-blue-500 hover:underline">sumitmalik51</a></p>
+  </div>
+</section>
+<!-- Certifications -->
+<section id="certifications" class="py-16 bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
+    <h3 class="text-2xl font-bold mb-6">Certifications</h3>
+    <div class="grid gap-6 max-w-3xl mx-auto">
+  <style>
+    .cert-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+  </style>
+      <div class="flex items-start gap-4 transition-transform duration-300 hover:scale-105 hover:bg-blue-50 dark:hover:bg-blue-900 p-2 rounded-md">
+        <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg" alt="AZ-104 Badge" class="w-6 h-6 md:w-8 md:h-8 object-contain">
+        <p class="text-sm text-gray-800 dark:text-gray-200 leading-tight mt-0.5">AZ-104: Microsoft Certified Azure Administrator Associate</p>
+      </div>
+      <div class="flex items-start gap-4 transition-transform duration-300 hover:scale-105 hover:bg-blue-50 dark:hover:bg-blue-900 p-2 rounded-md">
+        <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-expert-badge.svg" alt="AZ-400 Badge" class="w-6 h-6 md:w-8 md:h-8 object-contain">
+        <p class="text-sm text-gray-800 dark:text-gray-200 leading-tight mt-0.5">AZ-400: Microsoft Certified Azure DevOps Engineer Expert</p>
+      </div>
+      <div class="flex items-start gap-4 transition-transform duration-300 hover:scale-105 hover:bg-blue-50 dark:hover:bg-blue-900 p-2 rounded-md">
+        <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg" alt="AZ-500 Badge" class="w-6 h-6 md:w-8 md:h-8 object-contain">
+        <p class="text-sm text-gray-800 dark:text-gray-200 leading-tight mt-0.5">AZ-500: Microsoft Certified Azure Security Engineer Associate</p>
+      </div>
+      <div class="flex items-start gap-4 transition-transform duration-300 hover:scale-105 hover:bg-blue-50 dark:hover:bg-blue-900 p-2 rounded-md">
+        <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg" alt="AZ-900 Badge" class="w-6 h-6 md:w-8 md:h-8 object-contain">
+        <p class="text-sm text-gray-800 dark:text-gray-200 leading-tight mt-0.5">AZ-900: Microsoft Certified Azure Fundamentals</p>
+      </div>
+      <div class="flex items-start gap-4 transition-transform duration-300 hover:scale-105 hover:bg-blue-50 dark:hover:bg-blue-900 p-2 rounded-md">
+        <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg" alt="DP-900 Badge" class="w-6 h-6 md:w-8 md:h-8 object-contain">
+        <p class="text-sm text-gray-800 dark:text-gray-200 leading-tight mt-0.5">DP-900: Microsoft Certified Azure Data Fundamentals</p>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer class="text-center text-xs py-4">
-    <p>&copy; 2025 Sumit Malik. All rights reserved.</p>
-  </footer>
+<!-- Technology -->
+<section id="technology" class="py-16 bg-white dark:bg-gray-900 transition-colors duration-500">
+  <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-left">
+    <h3 class="text-2xl font-bold mb-6">Technology</h3>
+    <div class="text-center mb-6">
+      <div class="technology-group">
+        <button onclick="filterTech('all')" class="technology-button">All</button>
+        <button onclick="filterTech('cloud')" class="technology-button">Cloud</button>
+        <button onclick="filterTech('devops')" class="technology-button">DevOps</button>
+        <button onclick="filterTech('scripting')" class="technology-button">Scripting</button>
+        <button onclick="filterTech('infra')" class="technology-button">Infra</button>
+      </div>
+    </div>
+    <div id="tech-tags" class="flex flex-wrap justify-center gap-3">
+  <span class="tag cloud" data-tooltip="Azure IaaS & PaaS services">Azure IaaS &amp; PaaS</span>
+  <span class="tag devops" data-tooltip="Infrastructure as Code tools">Terraform, Bicep, ARM</span>
+  <span class="tag scripting" data-tooltip="Command-line scripting">PowerShell CLI</span>
+  <span class="tag infra" data-tooltip="Server management">Windows Servers</span>
+  <span class="tag devops" data-tooltip="DevOps practices">Azure DevOps</span>
+  <span class="tag devops" data-tooltip="Container orchestration">Kubernetes</span>
+  <span class="tag devops" data-tooltip="Monitoring and insights">Monitoring, Insights</span>
+  <span class="tag cloud" data-tooltip="Migration services">Azure Migrate</span>
+  <span class="tag cloud" data-tooltip="Role-based access control">RBAC, Policies</span>
+</div>
+  </div>
+</section>
 
-  <script>
-    AOS.init();
 
-    function toggleTheme() {
-      const html = document.documentElement;
-      const icon = document.getElementById('theme-icon');
-      const audio = document.getElementById('theme-sound');
-      html.classList.toggle('dark');
-      const isDark = html.classList.contains('dark');
-      icon.textContent = isDark ? '🌙' : '🌞';
-      audio.currentTime = 0;
-      audio.play();
-    }
-  </script>
-  <!-- Back to Top Button -->
-  <button onclick="scrollToTop()" id="backToTop" class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300 z-50">
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-  </svg>
-</button>
+<script>
+  function filterTech(category) {
+    const tags = document.querySelectorAll('#tech-tags .tag');
+    const buttons = document.querySelectorAll('.technology-button');
 
-  <script>
-    AOS.init();
-
-    function toggleTheme() {
-      const html = document.documentElement;
-      const icon = document.getElementById('theme-icon');
-      const audio = document.getElementById('theme-sound');
-      html.classList.toggle('dark');
-      const isDark = html.classList.contains('dark');
-      icon.textContent = isDark ? '🌙' : '🌞';
-      audio.currentTime = 0;
-      audio.play();
-    }
-
-    window.addEventListener("scroll", () => {
-      document.getElementById("backToTop").classList.toggle("hidden", window.scrollY < 200);
+    // Reset button colors
+    buttons.forEach(button => {
+      button.style.backgroundColor = '#2563eb';
+      button.style.color = 'white';
     });
 
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    // Highlight the clicked button
+    const activeButton = document.querySelector(`.technology-button[onclick="filterTech('${category}')"]`);
+    if (activeButton) {
+      activeButton.style.backgroundColor = '#1e3a8a';
+      activeButton.style.color = '#93c5fd';
     }
-  </script>
-</body>
 
+    // Filter tags
+    tags.forEach(tag => {
+      tag.classList.remove('hidden');
+      if (category !== 'all' && !tag.classList.contains(category)) {
+        tag.classList.add('hidden');
+      }
+    });
+  }
+</script>
+<style>
+    .tag {
+      position: relative;
+      padding: 0.5rem 0.75rem; /* Reduced padding */
+      border-radius: 9999px;
+      font-size: 0.75rem; /* Reduced font size */
+      transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+      background-color: rgba(147, 197, 253, 0.2);
+      color: #1e40af;
+      border: none;
+      box-shadow: none;
+      cursor: pointer;
+    }
+    .tag:hover {
+      transform: scale(1.1);
+      background-color: rgba(59, 130, 246, 0.3);
+      color: #1e3a8a;
+    }
+    .tag.cloud {
+      background-color: rgba(59, 130, 246, 0.2);
+      color: #2563eb;
+    }
+    .tag.devops {
+      background-color: rgba(34, 197, 94, 0.2);
+      color: #16a34a;
+    }
+    .tag.scripting {
+      background-color: rgba(234, 179, 8, 0.2);
+      color: #ca8a04;
+    }
+    .tag.infra {
+      background-color: rgba(168, 85, 247, 0.2);
+      color: #9333ea;
+    }
+    .tag::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-in-out;
+    }
+    .tag:hover::after {
+      opacity: 1;
+    }
+  </style>
+
+<!-- Contact -->
+<section id="contact" class="py-16 bg-gray-100 dark:bg-gray-800">
+  <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
+    <h3 class="text-2xl font-bold mb-4">Get In Touch</h3>
+    <p class="mb-4">Feel free to reach out via email or check out my LinkedIn & GitHub profiles. <br><span class='text-lg'>📧 🔗 🐙</span></p>
+    <p>Email: <a href="mailto:sumitmalik51@gmail.com" class="text-blue-500 hover:underline">sumitmalik51@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="text-blue-500 hover:underline">sumitmalik51</a></p>
+    <p>GitHub: <a href="https://github.com/sumitmalik51" target="_blank" class="text-blue-500 hover:underline">sumitmalik51</a></p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center text-xs py-4">
+  <p>&copy; 2025 Sumit Malik. All rights reserved.</p>
+</footer>
+
+<script>
+  AOS.init();
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const icon = document.getElementById('theme-icon');
+    const audio = document.getElementById('theme-sound');
+
+    // Add transition effect
+    document.body.style.transition = 'background-color 0.5s ease, color 0.5s ease';
+
+    html.classList.toggle('dark');
+    const isDark = html.classList.contains('dark');
+    icon.textContent = isDark ? '🌙' : '🌞';
+    audio.currentTime = 0;
+    audio.play();
+  }
+
+  window.addEventListener("scroll", () => {
+    document.getElementById("backToTop").classList.toggle("hidden", window.scrollY < 200);
+  });
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+</script>
+<button onclick="scrollToTop()" id="backToTop" class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300 z-50">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </button>
+
+  <script>
+    document.addEventListener('mousemove', (e) => {
+      const cursorDot = document.getElementById('cursor-dot');
+      if (cursorDot) {
+        cursorDot.style.left = `${e.clientX}px`;
+        cursorDot.style.top = `${e.clientY}px`;
+      }
+    });
+
+    document.querySelectorAll('a, button, .tag').forEach((element) => {
+      element.addEventListener('mouseenter', () => {
+        document.getElementById('cursor-dot').classList.add('hovered');
+      });
+      element.addEventListener('mouseleave', () => {
+        document.getElementById('cursor-dot').classList.remove('hovered');
+      });
+    });
+  </script>
+
+  <div id="cursor-dot" class="cursor-dot hidden"></div>
+<a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="floating-cta">🚀 Let’s build together</a>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script>
+  // GSAP animations
+  document.addEventListener('DOMContentLoaded', () => {
+    gsap.from("header", {
+      duration: 1.5,
+      y: -50,
+      opacity: 0,
+      ease: "power2.out"
+    });
+
+    gsap.from("#bio img", {
+      duration: 1.5,
+      scale: 0.8,
+      opacity: 0,
+      ease: "elastic.out(1, 0.5)",
+      delay: 0.5
+    });
+
+    gsap.from("#bio h2", {
+      duration: 1,
+      x: -100,
+      opacity: 0,
+      ease: "power2.out",
+      delay: 0.8
+    });
+
+    gsap.from("#bio p", {
+      duration: 1,
+      x: 100,
+      opacity: 0,
+      ease: "power2.out",
+      delay: 1
+    });
+
+    gsap.from(".fun-fact-card", {
+      duration: 1,
+      y: 50,
+      opacity: 0,
+      stagger: 0.2,
+      ease: "power2.out"
+    });
+
+    gsap.from(".technology-button", {
+      duration: 1,
+      scale: 0.8,
+      opacity: 0,
+      stagger: 0.2,
+      ease: "back.out(1.7)"
+    });
+
+    gsap.from(".tag", {
+      duration: 1,
+      y: 50,
+      opacity: 0,
+      stagger: 0.1,
+      ease: "power2.out"
+    });
+  });
+</script>
+<script>
+  // Show loading spinner until page loads
+  document.addEventListener('DOMContentLoaded', () => {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+      loadingScreen.style.display = 'none';
+    }
+  });
+</script>
+</body>
 </html>
