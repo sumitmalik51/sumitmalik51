@@ -320,13 +320,13 @@
     }
 
     body.light #bio {
-      background: linear-gradient(to bottom, #e0f7fa, #ffffff); /* Light gradient for better visibility */
-      color: #000000; /* Black text for readability */
+      background: none; /* Ensure no gradient background */
+      color: inherit; /* Keep text color unchanged */
     }
 
-    .light-bio {
-      background: linear-gradient(to bottom, #e0f7fa, #ffffff) !important; /* Light gradient for better visibility */
-      color: #000000 !important; /* Black text for readability */
+    #animated-title {
+      background: none !important; /* Remove gradient from title */
+      color: inherit !important; /* Keep text color unchanged */
     }
   </style>
 </head>
@@ -363,7 +363,7 @@
     <div class="max-w-3xl mx-auto" data-aos="fade-up">
       <img src="https://avatars.githubusercontent.com/u/50233625?v=4" alt="Sumit Malik" class="mx-auto rounded-full w-32 h-32 mb-4">
       <h2 id="animated-title" class="text-3xl font-bold mb-2 animate-pulse">Technical Lead | Azure Cloud Architect</h2>
-      <p class="text-lg mb-4">I have 4.2+ years of experience in cloud computing platforms, especially Microsoft Azure and Windows Server Administration. I specialize in automation, DevOps, and cloud infrastructure.</p>
+      <p class="text-lg mb-4">With over 6 years of experience in cloud computing, I specialize in designing and delivering scalable Azure solutions. My expertise spans Azure AI, infrastructure automation, DevOps pipelines, and robust Windows Server administration. I’m passionate about bridging strategy and execution—helping businesses automate, innovate, and operate confidently in the cloud.</p>
     </div>
   </section>
 
@@ -593,19 +593,23 @@
   AOS.init();
 
   function toggleTheme() {
-    const html = document.documentElement;
-    const icon = document.getElementById('theme-icon');
-    const audio = document.getElementById('theme-sound');
+      const html = document.documentElement;
+      const icon = document.getElementById('theme-icon');
+      const audio = document.getElementById('theme-sound');
 
-    // Add transition effect
-    document.body.style.transition = 'background-color 0.5s ease, color 0.5s ease';
+      // Add transition effect
+      document.body.style.transition = 'background-color 0.5s ease, color 0.5s ease';
 
-    html.classList.toggle('dark');
-    const isDark = html.classList.contains('dark');
-    icon.textContent = isDark ? '🌙' : '🌞';
-    audio.currentTime = 0;
-    audio.play();
-  }
+      html.classList.toggle('dark');
+      const isDark = html.classList.contains('dark');
+      icon.textContent = isDark ? '🌙' : '🌞';
+
+      // Play audio only if source is valid
+      if (audio && audio.readyState >= 2) {
+        audio.currentTime = 0;
+        audio.play();
+      }
+    }
 
   window.addEventListener("scroll", () => {
     document.getElementById("backToTop").classList.toggle("hidden", window.scrollY < 200);
@@ -619,11 +623,7 @@
       const html = document.documentElement;
       const bioSection = document.getElementById('bio');
 
-      if (html.classList.contains('light')) {
-        bioSection.style.color = '#000000';
-      } else {
-        bioSection.style.color = ''; // Reset to default dark theme color
-      }
+      // Removed dynamic styling logic for bio section
     });
 </script>
 <button onclick="scrollToTop()" id="backToTop" class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300 z-50">
