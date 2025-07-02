@@ -446,7 +446,7 @@ window.addEventListener('DOMContentLoaded', () => {
   <audio id="theme-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-light-switch-on-2585.mp3" preload="auto"></audio>
 
   <!-- Header -->
-  <header class="sticky top-0 text-white shadow z-50 text-xs py-1 transition-all duration-300 ease-in-out">
+  <header id="main-header" class="sticky top-0 text-white shadow z-50 text-xs py-1 transition-all duration-300 ease-in-out">
     <div class="max-w-6xl mx-auto px-4 py-1 flex justify-between items-center">
       <h1 class="text-base font-semibold flex items-center gap-2 hover:scale-105 transition-transform duration-300">
         <span id="status-badge" class="relative flex h-3 w-3">
@@ -457,7 +457,7 @@ window.addEventListener('DOMContentLoaded', () => {
       </h1>
       <nav class="space-x-4 hidden sm:block">
         <a href="#bio" class="hover:underline hover:text-blue-300 transition-colors duration-300">Bio</a>
-        <a href="#experience" class="hover:underline hover:text-blue-300 transition-colors duration-300">Experience</a>
+        <a href="#experience" class="hover:underline hover:text-blue-300 transition-colors duration-300">What I Do</a>
         <a href="#technology" class="hover:underline hover:text-blue-300 transition-colors duration-300">Technology</a>
         <a href="#contact" class="hover:underline hover:text-blue-300 transition-colors duration-300">Contact</a>
         <button onclick="toggleTheme()" class="ml-4 text-lg hover:scale-110 transition-transform duration-300">
@@ -466,6 +466,16 @@ window.addEventListener('DOMContentLoaded', () => {
       </nav>
     </div>
   </header>
+  <script>
+    document.addEventListener('scroll', () => {
+    const header = document.getElementById('main-header');
+    if (window.scrollY > 100) {
+      header.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    } else {
+      header.style.backgroundColor = 'transparent';
+    }
+  });
+  </script>
 
   <section id="bio" class="py-16 text-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 transition-colors duration-500 text-xs py-4">
     <div class="max-w-3xl mx-auto" data-aos="fade-up">
@@ -484,7 +494,7 @@ window.addEventListener('DOMContentLoaded', () => {
         <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
           <span class="text-blue-500">🤖</span> Azure AI Solutions
         </h4>
-        <p class="text-sm text-blue-900 dark:text-blue-100">Design and implement Azure AI solutions, including Azure OpenAI integration, Cognitive Services, and machine learning workspaces.</p>
+        <p class="text-sm text-blue-900 dark:text-blue-100">Design and implement Azure AI solutions, including Azure OpenAI integration, AI Services, and machine learning workspaces.</p>
       </div>
       <div class="bg-green-50 dark:bg-green-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
         <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
@@ -548,62 +558,64 @@ window.addEventListener('DOMContentLoaded', () => {
 <section class="py-16 bg-gray-100 dark:bg-gray-800">
   <div class="max-w-4xl mx-auto px-4 text-center" data-aos="zoom-in">
     <h3 class="text-2xl font-bold mb-6">GitHub Activity</h3>
-    <img src="https://github-readme-stats.vercel.app/api?username=sumitmalik51&show_icons=true&theme=radical" class="mx-auto rounded-lg shadow-lg w-full max-w-xl" alt="GitHub Stats" loading="lazy">
+    <img src="https://github-readme-stats.vercel.app/api?username=sumitmalik51&show_icons=true&theme=tokyonight" class="mx-auto rounded-lg shadow-lg w-full max-w-xl" alt="GitHub Stats" loading="lazy">
   </div>
 </section>
 
 <!-- Fun Facts -->
 <section class="py-16 bg-white dark:bg-gray-900">
   <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
-    <h3 class="text-2xl font-bold mb-6">Fun Facts</h3>
+    <h3 class="text-2xl font-bold mb-6">Cloud Meets Adventure</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
       <div class="bg-blue-50 dark:bg-blue-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
         <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
-          <span class="text-blue-500">🏍️</span> Triumph Rider
+          <span class="text-blue-500">🏍️</span> Trail-Hardened Rider
         </h4>
-        <p class="text-sm text-blue-900 dark:text-blue-100">Loves hitting the rugged trails with my Scrambler 400X. Just completed the Spiti circuit!</p>
+        <p class="text-sm text-blue-900 dark:text-blue-100">Conquered Spiti, Zanskar, and Umling La — the world’s highest motorable pass, soaring above Everest Base Camp.</p>
       </div>
       <div class="bg-green-50 dark:bg-green-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
         <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
-          <span class="text-green-500">⚡</span> Always Automating
+          <span class="text-green-500">⚡</span> Automation Evangelist
         </h4>
-        <p class="text-sm text-green-900 dark:text-green-100">Scripts, pipelines, infra — if I can automate it, I will.</p>
+        <p class="text-sm text-green-900 dark:text-green-100">If it can be scripted, I’ve automated it. Infra, pipelines, provisioning — cloud on autopilot.</p>
       </div>
       <div class="bg-yellow-50 dark:bg-yellow-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
         <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
-          <span class="text-yellow-500">🏕️</span> Offbeat Explorer
+          <span class="text-yellow-500">🏕️</span> Offbeat Wanderer
         </h4>
-        <p class="text-sm text-yellow-900 dark:text-yellow-100">Planning a ride to Zanskar & Ladakh. Adventure fuels my creativity.</p>
+        <p class="text-sm text-yellow-900 dark:text-yellow-100">I chase altitude and adrenaline — my best ideas start above 10,000 ft.</p>
       </div>
       <div class="bg-pink-50 dark:bg-pink-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
         <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
-          <span class="text-pink-500">💡</span> Tech Workshop Ninja
+          <span class="text-pink-500">🌍</span> Cloud Enablement Specialist
         </h4>
-        <p class="text-sm text-pink-900 dark:text-pink-100">Own the tech side of Microsoft Hands-on Labs and partner workshops globally.</p>
+        <p class="text-sm text-pink-900 dark:text-pink-100">Leading Azure enablement for global partners — from scalable infrastructure to enterprise workshops.</p>
       </div>
     </div>
     <!-- Interactive Map -->
-    <div id="map" class="w-full h-96 rounded-lg shadow-lg mt-8"></div>
+    <div id="map" class="w-full h-96 rounded-lg shadow-lg mt-8" style="z-index: 0;"></div>
     <script>
-      // Initialize the map
-      const map = L.map('map').setView([32.0, 77.0], 5); // Centered around Spiti region
+      document.addEventListener('DOMContentLoaded', () => {
+    // Initialize the map
+    const map = L.map('map').setView([32.0, 77.0], 5); // Centered around Spiti region
 
-      // Add OpenStreetMap tiles
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-      }).addTo(map);
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
 
-      // Add markers for locations
-      const locations = [
-        { lat: 32.2396, lng: 78.0179, title: 'Spiti Circuit', description: 'Completed the rugged trails with my Scrambler 400X.' },
-        { lat: 34.2268, lng: 77.5619, title: 'Ladakh Adventure', description: 'Planning a ride to Zanskar & Ladakh.' },
-        { lat: 12.9716, lng: 77.5946, title: 'Tech Workshops', description: 'Delivered Microsoft AIW and Cloud Workshops globally.' }
-      ];
+    // Add markers for locations
+    const locations = [
+      { lat: 32.2396, lng: 78.0179, title: 'Spiti Circuit', description: 'Completed the rugged trails with my Scrambler 400X.' },
+      { lat: 34.2268, lng: 77.5619, title: 'Ladakh Adventure', description: 'Planning a ride to Zanskar & Ladakh.' },
+      { lat: 12.9716, lng: 77.5946, title: 'Tech Workshops', description: 'Delivered Microsoft AIW and Cloud Workshops globally.' }
+    ];
 
-      locations.forEach(location => {
-        L.marker([location.lat, location.lng]).addTo(map)
-          .bindPopup(`<strong>${location.title}</strong><br>${location.description}`);
-      });
+    locations.forEach(location => {
+      L.marker([location.lat, location.lng]).addTo(map)
+        .bindPopup(`<strong>${location.title}</strong><br>${location.description}`);
+    });
+  });
     </script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
@@ -796,16 +808,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
   window.addEventListener("scroll", () => {
-    document.getElementById("backToTop").classList.toggle("hidden", window.scrollY < 200);
-  });
-
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-      const html = document.documentElement;
-      const bioSection = document.getElementById('bio');
 
       // Removed dynamic styling logic for bio section
     });
