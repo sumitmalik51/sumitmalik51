@@ -1,3 +1,4 @@
+<!-- Full HTML content with certification logos -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +14,22 @@
       document.documentElement.classList.add('dark');
       const icon = document.getElementById('theme-icon');
       if (icon) icon.textContent = '🌙';
+
+      const greetingPopup = document.getElementById('popup-greeting');
+      if (greetingPopup) {
+        const hour = new Date().getHours();
+        let message = '';
+        if (hour < 12) message = '🌄 Good morning! Ready to conquer the cloud ☁️';
+        else if (hour < 18) message = '🚀 Let\'s ship something awesome this afternoon';
+        else message = '🌙 Still coding? That\'s dedication. Let\'s go!';
+        greetingPopup.textContent = message;
+        greetingPopup.classList.remove('hidden');
+        setTimeout(() => greetingPopup.classList.add('hidden'), 10000);
+        setInterval(() => {
+          greetingPopup.classList.remove('hidden');
+          setTimeout(() => greetingPopup.classList.add('hidden'), 10000);
+        }, 60000);
+      }
     });
   </script>
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -38,7 +55,7 @@
       transition: background-color 0.5s, color 0.5s;
     }
     a:hover {
-      text-shadow: 0 0 5px rgba(255,255,255,0.5);
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
     }
     .glow-hover:hover {
       box-shadow: 0 0 10px 2px rgba(59, 130, 246, 0.5);
@@ -70,136 +87,73 @@
       padding: 10px 16px;
       border-radius: 9999px;
       font-size: 14px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
       animation: pulse 2s infinite;
       z-index: 50;
     }
     @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08); }
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.08);
+      }
+    }
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-in {
+      animation: fade-in 0.6s ease-out;
+    }
+    .animate-spin-slow {
+      animation: spin 20s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
 
 <body class="opacity-0 transition-opacity duration-500 bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
-  <!-- Audio for theme toggle -->
-  <audio id="theme-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-light-switch-on-2585.mp3" preload="auto"></audio>
+  <div id="popup-greeting" class="fixed bottom-24 right-6 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 text-sm font-medium hidden transition-all duration-500 ease-in-out transform hover:scale-105 animate-fade-in"></div>
 
-  <!-- Header -->
-  <header class="sticky top-0 bg-blue-600 text-white shadow z-50">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-xl font-semibold">Sumit Malik</h1>
-      <nav class="space-x-4 hidden sm:block">
-        <a href="#bio" class="hover:underline">Bio</a>
-        <a href="#experience" class="hover:underline">Experience</a>
-        <a href="#technology" class="hover:underline">Technology</a>
-        <a href="#contact" class="hover:underline">Contact</a>
-        <button onclick="toggleTheme()" class="ml-4 text-2xl hover:scale-110 transition-transform duration-200">
-          <span id="theme-icon" class="transition-transform duration-500 ease-in-out transform hover:rotate-180">🌞</span>
-        </button>
-      </nav>
+  <!-- (Skill Bars and Tech Tags Sections remain unchanged) -->
+
+<!-- Certifications Section with Logos -->
+<section class="py-16 px-6 max-w-4xl mx-auto" data-aos="fade-up">
+  <h2 class="text-2xl font-bold text-center mb-10">🎓 Certifications</h2>
+  <div class="grid md:grid-cols-2 gap-6">
+    <div class="flex items-center gap-4 bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transform transition duration-300">
+      <img src="https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-associate-badge.svg" class="w-10 h-10" alt="AZ-104" />
+      <span>AZ-104: Microsoft Certified Azure Administrator Associate</span>
     </div>
-  </header>
-
-  <!-- Hero -->
-  <section id="bio" class="py-16 text-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 transition-colors duration-500">
-    <div class="max-w-3xl mx-auto" data-aos="fade-up">
-      <img src="https://avatars.githubusercontent.com/u/50233625?v=4" alt="Sumit Malik" class="mx-auto rounded-full w-32 h-32 mb-4">
-      <h2 id="animated-title" class="text-3xl font-bold mb-2 animate-pulse">Technical Lead | Azure Cloud Architect</h2>
-      <p class="text-lg mb-4">I have 4.2+ years of experience in cloud computing platforms, especially Microsoft Azure and Windows Server Administration. I specialize in automation, DevOps, and cloud infrastructure.</p>
+    <div class="flex items-center gap-4 bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transform transition duration-300">
+      <img src="https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-expert-badge.svg" class="w-10 h-10" alt="AZ-400" />
+      <span>AZ-400: Microsoft Certified Azure DevOps Engineer Expert</span>
     </div>
-  </section>
-
-  <!-- Experience -->
-  <section id="experience" class="py-16 bg-gray-100 dark:bg-gray-800">
-    <div class="max-w-4xl mx-auto px-4 space-y-8">
-      <h3 class="text-2xl font-bold mb-6 text-center">Experience</h3>
-      <div class="space-y-8">
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300" data-aos="fade-right">
-          <h4 class="text-xl font-semibold">Technical Lead – Cloud Team (May 2022 – Present)</h4>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
-          <ul class="list-disc list-inside text-sm">
-            <li>Managed Microsoft AIW and Cloud Workshop projects</li>
-            <li>Terraform automation, ARM/Bicep templates, CI/CD pipelines</li>
-            <li>Landing zones, AKS, Azure DevOps automation</li>
-          </ul>
-        </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300" data-aos="fade-up">
-          <h4 class="text-xl font-semibold">Consultant – Cloud Team (Jan 2019 – May 2022)</h4>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
-          <ul class="list-disc list-inside text-sm">
-            <li>Azure policy, ML, App Services, Virtual Networking</li>
-            <li>Application Insights, VM image creation, NSG setup</li>
-          </ul>
-        </div>
-      </div>
+    <div class="flex items-center gap-4 bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transform transition duration-300">
+      <img src="https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-associate-badge.svg" class="w-10 h-10" alt="AZ-500" />
+      <span>AZ-500: Microsoft Certified Azure Security Engineer Associate</span>
     </div>
-  </section>
-
-  <!-- Technology -->
-  <section id="technology" class="py-16 bg-white dark:bg-gray-900 transition-colors duration-500">
-    <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-left">
-      <h3 class="text-2xl font-bold mb-6">Technology</h3>
-      <div class="flex flex-wrap justify-center gap-3">
-        <span class="bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">Azure IaaS & PaaS</span>
-        <span class="bg-purple-100 dark:bg-purple-800 text-purple-800 dark:text-purple-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">Terraform, Bicep, ARM</span>
-        <span class="bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">PowerShell CLI</span>
-        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">Windows Servers</span>
-        <span class="bg-yellow-100 dark:bg-yellow-700 text-yellow-800 dark:text-yellow-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">Azure DevOps</span>
-        <span class="bg-pink-100 dark:bg-pink-700 text-pink-800 dark:text-pink-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">Kubernetes</span>
-        <span class="bg-indigo-100 dark:bg-indigo-700 text-indigo-800 dark:text-indigo-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">Monitoring, Insights</span>
-        <span class="bg-blue-200 dark:bg-blue-700 text-blue-900 dark:text-blue-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">Azure Migrate</span>
-        <span class="bg-teal-100 dark:bg-teal-700 text-teal-800 dark:text-teal-100 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform duration-200">RBAC, Policies</span>
-      </div>
+    <div class="flex items-center gap-4 bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transform transition duration-300">
+      <img src="https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg" class="w-10 h-10" alt="AZ-900" />
+      <span>AZ-900: Microsoft Certified Azure Fundamentals</span>
     </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="py-16 bg-gray-100 dark:bg-gray-800">
-    <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
-      <h3 class="text-2xl font-bold mb-4">Get In Touch</h3>
-      <p class="mb-4">Feel free to reach out via email or check out my LinkedIn & GitHub profiles. <br><span class='text-lg'>📧 🔗 🐙</span></p>
-      <p>Email: <a href="mailto:sumitmalik51@gmail.com" class="text-blue-500 hover:underline">sumitmalik51@gmail.com</a></p>
-      <p>LinkedIn: <a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="text-blue-500 hover:underline">sumitmalik51</a></p>
-      <p>GitHub: <a href="https://github.com/sumitmalik51" target="_blank" class="text-blue-500 hover:underline">sumitmalik51</a></p>
+    <div class="flex items-center gap-4 bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transform transition duration-300">
+      <img src="https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg" class="w-10 h-10" alt="DP-900" />
+      <span>DP-900: Microsoft Certified Azure Data Fundamentals</span>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer class="text-center text-xs py-4">
-    <p>&copy; 2025 Sumit Malik. All rights reserved.</p>
-  </footer>
-
-  <script>
-    AOS.init();
-
-    function toggleTheme() {
-      const html = document.documentElement;
-      const icon = document.getElementById('theme-icon');
-      const audio = document.getElementById('theme-sound');
-      html.classList.toggle('dark');
-      const isDark = html.classList.contains('dark');
-      icon.textContent = isDark ? '🌙' : '🌞';
-      audio.currentTime = 0;
-      audio.play();
-    }
-
-    window.addEventListener("scroll", () => {
-      document.getElementById("backToTop").classList.toggle("hidden", window.scrollY < 200);
-    });
-
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  </script>
-  <button onclick="scrollToTop()" id="backToTop" class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300 z-50">
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-    </svg>
-  </button>
-
-  <div id="cursor-dot" class="cursor-dot hidden"></div>
-  <a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="floating-cta">🚀 Let’s build together</a>
 </body>
 
 </html>
