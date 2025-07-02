@@ -118,14 +118,14 @@
       flex: 1 1 auto;
       max-width: 150px;
       text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Default shadow */
     }
     .technology-button:hover {
       text-decoration: underline;
       background-color: #1e3a8a;
       color: #93c5fd;
-      transform: scale(1.1);
-      transition: all 0.3s ease-in-out;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transform: none;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
     }
     .technology-group {
       display: flex;
@@ -263,7 +263,7 @@
     /* Add advanced hover effects */
     .fun-fact-card:hover {
       transform: rotateY(15deg) scale(1.1);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
     }
 
     .technology-button:hover {
@@ -284,12 +284,164 @@
       z-index: -1;
       pointer-events: none;
     }
+
+    body.light {
+      background-color: #f9fafb; /* Slightly lighter background for better contrast */
+      color: #1f2937; /* Darker text for improved readability */
+    }
+
+    body.light header {
+      background: linear-gradient(270deg, #2563eb, #9333ea, #16a34a, #ca8a04);
+      background-size: 400% 400%;
+      animation: header-gradient 10s ease infinite;
+    }
+
+    body.light .tag {
+      background-color: rgba(147, 197, 253, 0.3); /* Increased opacity for better visibility */
+      color: #1e40af;
+    }
+
+    body.light .tag:hover {
+      background-color: rgba(59, 130, 246, 0.4); /* Slightly darker hover background */
+      color: #1e3a8a;
+    }
+
+    body.light .technology-button {
+      background-color: #2563eb;
+      color: white;
+    }
+
+    body.light .technology-button:hover {
+      background-color: #1e3a8a;
+      color: #93c5fd;
+    }
+
+    body.light .cert-row:hover {
+      background-color: #e0f2fe; /* Slightly darker hover background for certifications */
+    }
+
+    body.light #bio {
+      background: none; /* Ensure no gradient background */
+      color: inherit; /* Keep text color unchanged */
+    }
+
+    #animated-title {
+      background: none !important; /* Remove gradient from title */
+      color: inherit !important; /* Keep text color unchanged */
+    }
+
+    /* Ensure shadows are visible in both light and dark themes */
+    .fun-fact-card {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Slightly darker default shadow */
+    }
+
+    .fun-fact-card:hover {
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
+    }
+
+    .technology-button {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Slightly darker default shadow */
+    }
+
+    .technology-button:hover {
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
+    }
+
+    /* Responsive navigation menu */
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .menu {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    nav .menu-button {
+      display: none;
+      background-color: #2563eb;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      nav .menu-button {
+        display: block;
+      }
+
+      nav .menu {
+        display: flex;
+      }
+    }
+
+    /* Adjust bio title and paragraph size */
+    #animated-title {
+  font-size: 2rem; /* Reduced size for better fit */
+}
+
+#bio p {
+  font-size: 0.9rem; /* Reduced paragraph size */
+}
+
+/* Add ripple effect to buttons */
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(59, 130, 246, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+}
+
+button:active::after {
+  width: 200px;
+  height: 200px;
+  opacity: 1;
+}
+
+/* Add hover effects for links and icons */
+a, .icon {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+a:hover, .icon:hover {
+  color: #2563eb;
+  transform: scale(1.1);
+}
+
+/* Ensure bounce animation for bio image */
+<script>
+// Ensure bounce animation for bio image works
+window.addEventListener('DOMContentLoaded', () => {
+  const bioImage = document.querySelector('#bio img');
+  if (bioImage) {
+    bioImage.style.position = 'absolute';
+    bioImage.style.top = '10px';
+    bioImage.style.left = '50%';
+    bioImage.style.transform = 'translateX(-50%)';
+    bioImage.style.zIndex = '100';
+  }
+});
+</script>
   </style>
 </head>
 <body class="opacity-0 transition-opacity duration-500 bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
-  <div id="loading-screen">
-    <div class="spinner"></div>
-  </div>
   <div id="popup-greeting" class="fixed bottom-24 right-6 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 text-sm font-medium hidden transition-all duration-500 ease-in-out transform hover:scale-105 animate-fade-in"></div>
   <audio id="theme-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-light-switch-on-2585.mp3" preload="auto"></audio>
 
@@ -318,32 +470,75 @@
   <section id="bio" class="py-16 text-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 transition-colors duration-500 text-xs py-4">
     <div class="max-w-3xl mx-auto" data-aos="fade-up">
       <img src="https://avatars.githubusercontent.com/u/50233625?v=4" alt="Sumit Malik" class="mx-auto rounded-full w-32 h-32 mb-4">
-      <h2 id="animated-title" class="text-3xl font-bold mb-2 animate-pulse">Technical Lead | Azure Cloud Architect</h2>
-      <p class="text-lg mb-4">I have 4.2+ years of experience in cloud computing platforms, especially Microsoft Azure and Windows Server Administration. I specialize in automation, DevOps, and cloud infrastructure.</p>
+      <h2 id="animated-title" class="text-3xl font-bold mb-2 animate-pulse">Cloud Infrastructure & Automation Expert | Microsoft Azure Certified</h2>
+      <p class="text-lg mb-4">With over 6 years of experience in cloud computing, I specialize in designing and delivering scalable Azure solutions. My expertise spans Azure AI, infrastructure automation, DevOps pipelines, and robust Windows Server administration. I’m passionate about bridging strategy and execution—helping businesses automate, innovate, and operate confidently in the cloud.</p>
     </div>
   </section>
 
 <!-- Experience -->
 <section id="experience" class="py-16 bg-gray-100 dark:bg-gray-800">
   <div class="max-w-4xl mx-auto px-4 space-y-8">
-    <h3 class="text-2xl font-bold mb-6 text-center">Experience</h3>
-    <div class="space-y-8">
-      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300" data-aos="fade-right">
-        <h4 class="text-xl font-semibold">Technical Lead – Cloud Team (May 2022 – Present)</h4>
-        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
-        <ul class="list-disc list-inside text-sm">
-          <li>Managed Microsoft AIW and Cloud Workshop projects</li>
-          <li>Terraform automation, ARM/Bicep templates, CI/CD pipelines</li>
-          <li>Landing zones, AKS, Azure DevOps automation</li>
-        </ul>
+    <h3 class="text-2xl font-bold mb-6 text-center">What I Do</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="bg-blue-50 dark:bg-blue-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-blue-500">🤖</span> Azure AI Solutions
+        </h4>
+        <p class="text-sm text-blue-900 dark:text-blue-100">Design and implement Azure AI solutions, including Azure OpenAI integration, Cognitive Services, and machine learning workspaces.</p>
       </div>
-      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300" data-aos="fade-up">
-        <h4 class="text-xl font-semibold">Consultant – Cloud Team (Jan 2019 – May 2022)</h4>
-        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
-        <ul class="list-disc list-inside text-sm">
-          <li>Azure policy, ML, App Services, Virtual Networking</li>
-          <li>Application Insights, VM image creation, NSG setup</li>
-        </ul>
+      <div class="bg-green-50 dark:bg-green-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-green-500">⚙️</span> Infrastructure Automation
+        </h4>
+        <p class="text-sm text-green-900 dark:text-green-100">Create and automate Azure infrastructure using Terraform, Bicep, ARM templates, and PowerShell.</p>
+      </div>
+      <div class="bg-yellow-50 dark:bg-yellow-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-yellow-500">🚀</span> CI/CD Pipelines
+        </h4>
+        <p class="text-sm text-yellow-900 dark:text-yellow-100">Build and manage CI/CD pipelines with Azure DevOps and GitHub Actions for seamless application delivery.</p>
+      </div>
+      <div class="bg-purple-50 dark:bg-purple-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-purple-500">🔒</span> Secure Azure Landing Zones
+        </h4>
+        <p class="text-sm text-purple-900 dark:text-purple-100">Architect and deliver secure, scalable Azure Landing Zones, incorporating policy enforcement, RBAC, and resource consistency.</p>
+      </div>
+      <div class="bg-red-50 dark:bg-red-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-red-500">📦</span> Reusable Infrastructure Modules
+        </h4>
+        <p class="text-sm text-red-900 dark:text-red-100">Develop reusable infrastructure modules for enterprise-wide cloud adoption.</p>
+      </div>
+      <div class="bg-teal-50 dark:bg-teal-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-teal-500">📦</span> AKS & Container Management
+        </h4>
+        <p class="text-sm text-teal-900 dark:text-teal-100">Configure and manage AKS clusters, container registries, and DevOps-integrated deployments.</p>
+      </div>
+      <div class="bg-indigo-50 dark:bg-indigo-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-indigo-500">📚</span> Microsoft AIW & Cloud Workshops
+        </h4>
+        <p class="text-sm text-indigo-900 dark:text-indigo-100">Deliver Microsoft AIW and Cloud Workshops through automated lab environments (30+ environments managed).</p>
+      </div>
+      <div class="bg-pink-50 dark:bg-pink-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-pink-500">🌐</span> Azure Migration Projects
+        </h4>
+        <p class="text-sm text-pink-900 dark:text-pink-100">Lead Azure migration projects involving networking, VM provisioning, image snapshotting, and cross-region setups.</p>
+      </div>
+      <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-gray-500">📊</span> Monitoring & Observability
+        </h4>
+        <p class="text-sm text-gray-900 dark:text-gray-100">Automate monitoring and observability using Azure Monitor, Log Analytics, and Application Insights.</p>
+      </div>
+      <div class="bg-orange-50 dark:bg-orange-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-orange-500">🔗</span> Hybrid Scenarios
+        </h4>
+        <p class="text-sm text-orange-900 dark:text-orange-100">Support hybrid scenarios using Azure Arc and Azure Stack HCI with ARM and scripting.</p>
       </div>
     </div>
   </div>
@@ -362,20 +557,28 @@
   <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
     <h3 class="text-2xl font-bold mb-6">Fun Facts</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-      <div class="bg-blue-50 dark:bg-blue-800 p-6 rounded-lg transition-transform transform hover:rotate-1 hover:scale-105 duration-300 shadow fun-fact-card">
-        <h4 class="text-lg font-semibold mb-2">🏍️ Triumph Rider</h4>
+      <div class="bg-blue-50 dark:bg-blue-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-blue-500">🏍️</span> Triumph Rider
+        </h4>
         <p class="text-sm text-blue-900 dark:text-blue-100">Loves hitting the rugged trails with my Scrambler 400X. Just completed the Spiti circuit!</p>
       </div>
-      <div class="bg-green-50 dark:bg-green-800 p-6 rounded-lg transition-transform transform hover:-rotate-1 hover:scale-105 duration-300 shadow fun-fact-card">
-        <h4 class="text-lg font-semibold mb-2">⚡ Always Automating</h4>
+      <div class="bg-green-50 dark:bg-green-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-green-500">⚡</span> Always Automating
+        </h4>
         <p class="text-sm text-green-900 dark:text-green-100">Scripts, pipelines, infra — if I can automate it, I will.</p>
       </div>
-      <div class="bg-yellow-50 dark:bg-yellow-800 p-6 rounded-lg transition-transform transform hover:rotate-2 hover:scale-105 duration-300 shadow fun-fact-card">
-        <h4 class="text-lg font-semibold mb-2">🏕️ Offbeat Explorer</h4>
+      <div class="bg-yellow-50 dark:bg-yellow-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-yellow-500">🏕️</span> Offbeat Explorer
+        </h4>
         <p class="text-sm text-yellow-900 dark:text-yellow-100">Planning a ride to Zanskar & Ladakh. Adventure fuels my creativity.</p>
       </div>
-      <div class="bg-pink-50 dark:bg-pink-800 p-6 rounded-lg transition-transform transform hover:-rotate-2 hover:scale-105 duration-300 shadow fun-fact-card">
-        <h4 class="text-lg font-semibold mb-2">💡 Tech Workshop Ninja</h4>
+      <div class="bg-pink-50 dark:bg-pink-800 p-6 rounded-lg transition-transform transform hover:scale-105 duration-300 shadow">
+        <h4 class="text-lg font-semibold mb-2 flex items-center gap-2">
+          <span class="text-pink-500">💡</span> Tech Workshop Ninja
+        </h4>
         <p class="text-sm text-pink-900 dark:text-pink-100">Own the tech side of Microsoft Hands-on Labs and partner workshops globally.</p>
       </div>
     </div>
@@ -490,6 +693,7 @@
       transform: scale(1.1);
       background-color: rgba(59, 130, 246, 0.3);
       color: #1e3a8a;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
     .tag.cloud {
       background-color: rgba(59, 130, 246, 0.2);
@@ -548,19 +752,23 @@
   AOS.init();
 
   function toggleTheme() {
-    const html = document.documentElement;
-    const icon = document.getElementById('theme-icon');
-    const audio = document.getElementById('theme-sound');
+      const html = document.documentElement;
+      const icon = document.getElementById('theme-icon');
+      const audio = document.getElementById('theme-sound');
 
-    // Add transition effect
-    document.body.style.transition = 'background-color 0.5s ease, color 0.5s ease';
+      // Add transition effect
+      document.body.style.transition = 'background-color 0.5s ease, color 0.5s ease';
 
-    html.classList.toggle('dark');
-    const isDark = html.classList.contains('dark');
-    icon.textContent = isDark ? '🌙' : '🌞';
-    audio.currentTime = 0;
-    audio.play();
-  }
+      html.classList.toggle('dark');
+      const isDark = html.classList.contains('dark');
+      icon.textContent = isDark ? '🌙' : '🌞';
+
+      // Play audio only if source is valid
+      if (audio && audio.readyState >= 2) {
+        audio.currentTime = 0;
+        audio.play();
+      }
+    }
 
   window.addEventListener("scroll", () => {
     document.getElementById("backToTop").classList.toggle("hidden", window.scrollY < 200);
@@ -569,6 +777,13 @@
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+      const html = document.documentElement;
+      const bioSection = document.getElementById('bio');
+
+      // Removed dynamic styling logic for bio section
+    });
 </script>
 <button onclick="scrollToTop()" id="backToTop" class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300 z-50">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -582,6 +797,8 @@
       if (cursorDot) {
         cursorDot.style.left = `${e.clientX}px`;
         cursorDot.style.top = `${e.clientY}px`;
+      } else {
+        console.warn('Cursor dot element not found');
       }
     });
 
@@ -591,6 +808,12 @@
       });
       element.addEventListener('mouseleave', () => {
         document.getElementById('cursor-dot').classList.remove('hovered');
+      });
+    });
+
+    document.querySelectorAll('.tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        alert(`You clicked on ${tag.textContent}`);
       });
     });
   </script>
@@ -660,11 +883,264 @@
 <script>
   // Show loading spinner until page loads
   document.addEventListener('DOMContentLoaded', () => {
-    const loadingScreen = document.getElementById('loading-screen');
-    if (loadingScreen) {
-      loadingScreen.style.display = 'none';
-    }
+    const logo = document.createElement('div');
+
+    // Create logo animation
+    logo.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="80" height="80">
+        <circle cx="50" cy="50" r="45" stroke="#2563eb" stroke-width="5" fill="none" />
+        <text x="50" y="55" text-anchor="middle" font-size="20" fill="#2563eb" font-family="Poppins, sans-serif">SM</text>
+      </svg>
+    `;
+    logo.style.animation = 'spin 2s linear infinite';
+
+    // Ensure loading screen is removed after 0.5 seconds
+    setTimeout(() => {
+      logo.remove();
+    }, 500);
   });
+
+  // Add spin animation keyframes
+  const style = document.createElement('style');
+  style.textContent = `
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }`;
+  document.head.appendChild(style);
+
+  document.addEventListener('DOMContentLoaded', () => {
+  const title = document.getElementById('animated-title');
+  const profileImage = document.querySelector('#bio img');
+
+  // Typewriter effect for title with increased speed
+  if (title) {
+    const text = title.textContent;
+    title.textContent = '';
+    let index = 0;
+    const typeWriter = setInterval(() => {
+      if (index < text.length) {
+        title.textContent += text.charAt(index);
+        index++;
+      } else {
+        clearInterval(typeWriter);
+      }
+    }, 50); // Faster typing speed
+  }
+
+  if (profileImage) {
+    profileImage.style.zIndex = '100'; // Ensure it appears above the header
+    profileImage.style.position = 'relative';
+  }
+});
+
+// Add bounce animation keyframes
+const style = document.createElement('style');
+style.textContent = `
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}`;
+document.head.appendChild(style);
+/* Ensure Back to Top button animation works */
+window.addEventListener('scroll', () => {
+  const backToTopButton = document.getElementById('backToTop');
+  if (backToTopButton) {
+    const isAtTop = window.scrollY === 0;
+    backToTopButton.style.transform = isAtTop ? 'translateY(-100px)' : 'translateY(0)';
+    backToTopButton.style.opacity = isAtTop ? '0' : '1';
+    backToTopButton.style.pointerEvents = isAtTop ? 'none' : 'auto'; // Disable interaction when hidden
+  }
+});
+</script>
+
+<!-- Add particles.js configuration -->
+<script>
+  const particlesConfig = {
+  particles: {
+    number: {
+      value: 100,
+      density: {
+        enable: true,
+        value_area: 800
+      }
+    },
+    color: {
+      value: '#2563eb'
+    },
+    shape: {
+      type: 'circle',
+      stroke: {
+        width: 0,
+        color: '#000000'
+      },
+      polygon: {
+        nb_sides: 5
+      }
+    },
+    opacity: {
+      value: 0.5,
+      random: false,
+      anim: {
+        enable: false,
+        speed: 1,
+        opacity_min: 0.1,
+        sync: false
+      }
+    },
+    size: {
+      value: 3,
+      random: true,
+      anim: {
+        enable: false,
+        speed: 40,
+        size_min: 0.1,
+        sync: false
+      }
+    },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: '#2563eb',
+      opacity: 0.4,
+      width: 1
+    },
+    move: {
+      enable: true,
+      speed: 6,
+      direction: 'none',
+      random: false,
+      straight: false,
+      out_mode: 'out',
+      bounce: false,
+      attract: {
+        enable: false,
+        rotateX: 600,
+        rotateY: 1200
+      }
+    }
+  },
+  interactivity: {
+    detect_on: 'canvas',
+    events: {
+      onhover: {
+        enable: true,
+        mode: 'repulse'
+      },
+      onclick: {
+        enable: true,
+        mode: 'push'
+      },
+      resize: true
+    },
+    modes: {
+      grab: {
+        distance: 400,
+        line_linked: {
+          opacity: 1
+        }
+      },
+      bubble: {
+        distance: 400,
+        size: 40,
+        duration: 2,
+        opacity: 8,
+        speed: 3
+      },
+      repulse: {
+        distance: 200,
+        duration: 0.4
+      },
+      push: {
+        particles_nb: 4
+      },
+      remove: {
+        particles_nb: 2
+      }
+    }
+  },
+  retina_detect: true
+};
+
+// Load particles.js
+const script = document.createElement('script');
+script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
+script.onload = () => {
+  particlesJS('particles-js', particlesConfig);
+};
+document.head.appendChild(script);
+
+/* Add particles container */
+const particlesContainer = document.createElement('div');
+particlesContainer.id = 'particles-js';
+particlesContainer.style.position = 'fixed';
+particlesContainer.style.top = '0';
+particlesContainer.style.left = '0';
+particlesContainer.style.width = '100%';
+particlesContainer.style.height = '100%';
+particlesContainer.style.zIndex = '-1';
+document.body.appendChild(particlesContainer);
+</script>
+<!-- Ensure logo popping animation works -->
+<script>
+  const logo = document.createElement('div');
+  logo.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="80" height="80">
+      <circle cx="50" cy="50" r="45" stroke="#2563eb" stroke-width="5" fill="none" />
+      <text x="50" y="55" text-anchor="middle" font-size="20" fill="#2563eb" font-family="Poppins, sans-serif">SM</text>
+    </svg>
+  `;
+  logo.style.animation = 'pop 0.5s ease-out';
+  logo.style.position = 'fixed';
+  logo.style.top = '50%';
+  logo.style.left = '50%';
+  logo.style.transform = 'translate(-50%, -50%)';
+  logo.style.zIndex = '9999';
+
+  // Add pop animation keyframes
+  const style = document.createElement('style');
+  style.textContent = `
+  @keyframes pop {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }`;
+  document.head.appendChild(style);
+
+  // Append logo to body
+  const loadingScreen = document.createElement('div');
+  loadingScreen.id = 'loading-screen';
+  loadingScreen.style.position = 'fixed';
+  loadingScreen.style.top = '0';
+  loadingScreen.style.left = '0';
+  loadingScreen.style.width = '100%';
+  loadingScreen.style.height = '100%';
+  loadingScreen.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+  loadingScreen.style.zIndex = '9998';
+  loadingScreen.appendChild(logo);
+
+  document.body.appendChild(loadingScreen);
+
+  // Remove logo after animation
+  setTimeout(() => {
+    loadingScreen.remove();
+  }, 500);
 </script>
 </body>
 </html>
