@@ -638,6 +638,8 @@
       if (cursorDot) {
         cursorDot.style.left = `${e.clientX}px`;
         cursorDot.style.top = `${e.clientY}px`;
+      } else {
+        console.warn('Cursor dot element not found');
       }
     });
 
