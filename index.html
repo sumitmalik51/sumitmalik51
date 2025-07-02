@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,7 +11,14 @@
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
   <script>
     tailwind.config = {
-      darkMode: 'class'
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          },
+        },
+      },
     }
   </script>
   <style>
@@ -19,85 +27,95 @@
     }
   </style>
 </head>
-<body class="bg-white text-gray-900 font-[Poppins] dark:bg-gray-900 dark:text-white">
-  <header class="sticky top-0 z-50 p-6 shadow-md flex justify-between items-center bg-gradient-to-r from-blue-700 to-blue-500 text-white">
-    <div class="flex items-center space-x-3">
-      <img src="logo.png" alt="Sumit Malik Logo" class="h-10 w-10 rounded-full" />
-      <h1 class="text-xl font-bold">Sumit Malik</h1>
+
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans">
+  <!-- Header -->
+  <header class="sticky top-0 bg-blue-600 text-white shadow z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-semibold">Sumit Malik</h1>
+      <nav class="space-x-4 hidden sm:block">
+        <a href="#bio" class="hover:underline">Bio</a>
+        <a href="#experience" class="hover:underline">Experience</a>
+        <a href="#technology" class="hover:underline">Technology</a>
+        <a href="#contact" class="hover:underline">Contact</a>
+        <button onclick="document.documentElement.classList.toggle('dark')" class="ml-4 bg-white text-blue-600 px-2 py-1 rounded hover:bg-gray-100">Toggle Theme</button>
+      </nav>
     </div>
-    <nav class="space-x-4">
-      <a href="#bio" class="hover:underline">Bio</a>
-      <a href="#experience" class="hover:underline">Experience</a>
-      <a href="#tech" class="hover:underline">Technology</a>
-      <a href="#contact" class="hover:underline">Contact</a>
-      <button onclick="document.documentElement.classList.toggle('dark')" class="bg-white text-blue-600 px-2 py-1 rounded text-sm">Toggle Theme</button>
-    </nav>
   </header>
 
-  <main id="app" class="max-w-5xl mx-auto px-6">
-    <section id="bio" class="text-center py-20" data-aos="fade-up">
-      <img src="logo.png" alt="Sumit Malik" class="mx-auto h-24 mb-4 rounded-full shadow-lg" />
-      <h2 class="text-2xl font-semibold">Technical Lead | Azure Cloud Architect</h2>
-      <p class="max-w-2xl mx-auto mt-4 text-lg">I’m a technical lead with 4.2+ years of experience in cloud computing platforms, especially Microsoft Azure and Windows Server Administration. I specialize in automation, DevOps, and cloud infrastructure.</p>
-      <div class="mt-4">
-        <a href="mailto:sumitmalik51@gmail.com" class="text-blue-500">sumitmalik51@gmail.com</a>
-      </div>
-    </section>
+  <!-- Hero -->
+  <section id="bio" class="py-16 text-center">
+    <div class="max-w-3xl mx-auto" data-aos="fade-up">
+      <img src="https://avatars.githubusercontent.com/u/50233625?v=4" alt="Sumit Malik" class="mx-auto rounded-full w-32 h-32 mb-4">
+      <h2 class="text-3xl font-bold mb-2">Technical Lead | Azure Cloud Architect</h2>
+      <p class="text-lg mb-4">I have 4.2+ years of experience in cloud computing platforms, especially Microsoft Azure and Windows Server Administration. I specialize in automation, DevOps, and cloud infrastructure.</p>
+      <a href="mailto:sumitmalik51@gmail.com" class="text-blue-500 hover:underline">sumitmalik51@gmail.com</a>
+    </div>
+  </section>
 
-    <section id="experience" class="py-20 bg-gray-100 dark:bg-gray-800 rounded-lg px-6" data-aos="fade-right">
-      <h2 class="text-3xl font-semibold mb-8 text-center">Experience</h2>
-      <div class="space-y-6">
+  <!-- Experience -->
+  <section id="experience" class="py-16 bg-gray-100 dark:bg-gray-800">
+    <div class="max-w-4xl mx-auto px-4" data-aos="fade-right">
+      <h3 class="text-2xl font-bold mb-6 text-center">Experience</h3>
+      <div class="space-y-8">
         <div>
-          <h3 class="text-xl font-bold">Technical Lead – Cloud Team (May 2022 – Present)</h3>
-          <p class="italic">Spektra Systems LLC</p>
-          <ul class="list-disc list-inside mt-2 space-y-1">
+          <h4 class="text-xl font-semibold">Technical Lead – Cloud Team (May 2022 – Present)</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
+          <ul class="list-disc list-inside text-sm">
             <li>Managed Microsoft AIW and Cloud Workshop projects</li>
             <li>Terraform automation, ARM/Bicep templates, CI/CD pipelines</li>
             <li>Landing zones, AKS, Azure DevOps automation</li>
           </ul>
         </div>
         <div>
-          <h3 class="text-xl font-bold">Consultant – Cloud Team (Jan 2019 – May 2022)</h3>
-          <p class="italic">Spektra Systems LLC</p>
-          <ul class="list-disc list-inside mt-2 space-y-1">
+          <h4 class="text-xl font-semibold">Consultant – Cloud Team (Jan 2019 – May 2022)</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Spektra Systems LLC</p>
+          <ul class="list-disc list-inside text-sm">
             <li>Azure policy, ML, App Services, Virtual Networking</li>
             <li>Application Insights, VM image creation, NSG setup</li>
           </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="tech" class="py-20" data-aos="fade-left">
-      <h2 class="text-3xl font-semibold mb-8 text-center">Technology</h2>
+  <!-- Technology -->
+  <section id="technology" class="py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-left">
+      <h3 class="text-2xl font-bold mb-6">Technology</h3>
       <div class="flex flex-wrap justify-center gap-3">
-        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Azure IAAS & PAAS</span>
-        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Terraform, Bicep, ARM</span>
-        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">PowerShell, CLI</span>
-        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Windows Servers</span>
-        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Azure DevOps</span>
-        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Kubernetes</span>
-        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Monitoring, Insights</span>
-        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Azure Migrate</span>
-        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">RBAC, Policies</span>
+        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Azure IaaS & PaaS</span>
+        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Terraform, Bicep, ARM</span>
+        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">PowerShell CLI</span>
+        <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">Windows Servers</span>
+        <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Azure DevOps</span>
+        <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">Kubernetes</span>
+        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">Monitoring, Insights</span>
+        <span class="bg-blue-200 text-blue-900 px-3 py-1 rounded-full text-sm">Azure Migrate</span>
+        <span class="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">RBAC, Policies</span>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="contact" class="py-20 bg-gray-100 dark:bg-gray-800 rounded-lg px-6" data-aos="fade-up">
-      <h2 class="text-3xl font-semibold mb-6 text-center">Get In Touch</h2>
-      <div class="text-center space-y-2">
-        <p>Email: <a href="mailto:sumitmalik51@gmail.com" class="text-blue-500">sumitmalik51@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/sumitmalik51/" class="text-blue-500">linkedin.com/in/sumitmalik51</a></p>
-        <p>GitHub: <a href="https://github.com/sumitmalik51" class="text-blue-500">github.com/sumitmalik51</a></p>
-      </div>
-    </section>
-  </main>
+  <!-- Contact -->
+  <section id="contact" class="py-16 bg-gray-100 dark:bg-gray-800">
+    <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
+      <h3 class="text-2xl font-bold mb-4">Get In Touch</h3>
+      <p class="mb-4">Feel free to reach out via email or check out my LinkedIn & GitHub profiles.</p>
+      <p>Email: <a href="mailto:sumitmalik51@gmail.com" class="text-blue-500 hover:underline">sumitmalik51@gmail.com</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="text-blue-500 hover:underline">sumitmalik51</a></p>
+      <p>GitHub: <a href="https://github.com/sumitmalik51" target="_blank" class="text-blue-500 hover:underline">sumitmalik51</a></p>
+    </div>
+  </section>
 
-  <footer class="text-center p-4 text-sm text-gray-500 dark:text-gray-400">
-    © 2025 Sumit Malik. All rights reserved.
+  <!-- Footer -->
+  <footer class="text-center text-xs py-4">
+    <p>&copy; 2025 Sumit Malik. All rights reserved.</p>
   </footer>
 
   <script>
     AOS.init();
   </script>
 </body>
+
 </html>
