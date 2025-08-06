@@ -37,6 +37,9 @@
   </script>
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -45,6 +48,12 @@
           fontFamily: {
             sans: ['Poppins', 'sans-serif'],
           },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'glow': 'glow 2s ease-in-out infinite alternate',
+            'matrix': 'matrix 20s linear infinite',
+            'code-rain': 'codeRain 10s linear infinite',
+          }
         },
       },
     }
@@ -425,23 +434,325 @@ a:hover, .icon:hover {
   transform: scale(1.1);
 }
 
-/* Ensure bounce animation for bio image */
-<script>
-// Ensure bounce animation for bio image works
-window.addEventListener('DOMContentLoaded', () => {
-  const bioImage = document.querySelector('#bio img');
-  if (bioImage) {
-    bioImage.style.position = 'absolute';
-    bioImage.style.top = '10px';
-    bioImage.style.left = '50%';
-    bioImage.style.transform = 'translateX(-50%)';
-    bioImage.style.zIndex = '100';
-  }
-});
-</script>
+    /* Ensure bounce animation for bio image */
+    .bio-image {
+      position: relative;
+      z-index: 100;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(2deg); }
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 10px rgba(59, 130, 246, 0.3); }
+      to { box-shadow: 0 0 20px rgba(34, 197, 94, 0.4), 0 0 30px rgba(168, 85, 247, 0.2); }
+    }
+
+    @keyframes matrix {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+
+    @keyframes codeRain {
+      0% { transform: translateY(-100vh); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    /* Advanced particle background */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    /* 3D Card Effects */
+    .card-3d {
+      perspective: 1000px;
+      transform-style: preserve-3d;
+      transition: all 0.3s ease;
+    }
+
+    .card-3d:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-inner {
+      transition: transform 0.3s;
+      transform-style: preserve-3d;
+    }
+
+    /* Removed the flip effect that was making content unreadable */
+
+    /* Morphing background */
+    .morphing-bg {
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Code rain effect */
+    .code-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .code-drop {
+      position: absolute;
+      color: #00ff41;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      animation: codeRain 10s linear infinite;
+      opacity: 0.7;
+    }
+
+    /* Glitch effect */
+    .glitch {
+      position: relative;
+      display: inline-block;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .glitch::before {
+      animation: glitch-anim-1 0.2s infinite;
+      color: #ff0000;
+      z-index: -1;
+    }
+
+    .glitch::after {
+      animation: glitch-anim-2 0.3s infinite;
+      color: #00ffff;
+      z-index: -2;
+    }
+
+    @keyframes glitch-anim-1 {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    @keyframes glitch-anim-2 {
+      0% { transform: translate(0); }
+      20% { transform: translate(2px, -2px); }
+      40% { transform: translate(2px, 2px); }
+      60% { transform: translate(-2px, -2px); }
+      80% { transform: translate(-2px, 2px); }
+      100% { transform: translate(0); }
+    }
+
+    /* Project showcase cards */
+    .project-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .project-card:hover::before {
+      left: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Typing animation */
+    .typing-animation {
+      overflow: hidden;
+      border-right: 2px solid #2563eb;
+      white-space: nowrap;
+      margin: 0 auto;
+      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: #2563eb; }
+    }
+
+    /* Enhanced skill bars */
+    .skill-bar {
+      background: linear-gradient(90deg, #2563eb, #9333ea, #16a34a);
+      height: 8px;
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    /* Subtle glow effect */
+    .neon-glow {
+      text-shadow: 
+        0 0 3px currentColor,
+        0 0 6px currentColor,
+        0 0 9px #2563eb;
+      /* Removed animation for less distraction */
+    }
+
+    /* Terminal cursor animation */
+    .cursor {
+      animation: cursor-blink 1s infinite;
+    }
+
+    @keyframes cursor-blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    /* Typing command animation */
+    .typing-command {
+      border-right: 2px solid #22c55e;
+      animation: typing-cursor 1s infinite;
+    }
+
+    @keyframes typing-cursor {
+      0%, 50% { border-color: #22c55e; }
+      51%, 100% { border-color: transparent; }
+    }
+
+    /* Skill progress bars */
+    .skill-progress {
+      transition: width 2s ease-in-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-progress::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      animation: skill-shimmer 2s infinite;
+    }
+
+    @keyframes skill-shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    /* Code syntax highlighting */
+    .text-green-400 { color: #4ade80; }
+    .text-blue-400 { color: #60a5fa; }
+    .text-yellow-400 { color: #facc15; }
+    .text-purple-400 { color: #c084fc; }
+    .text-pink-400 { color: #f472b6; }
+
+    /* Enhanced hover effects for skill items */
+    .skill-item {
+      padding: 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .skill-item:hover {
+      background: rgba(59, 130, 246, 0.1);
+      transform: translateX(10px);
+    }
+
+    /* Status indicators */
+    .status-online {
+      position: relative;
+    }
+
+    .status-online::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #22c55e, #16a34a);
+      border-radius: 50%;
+      animation: pulse-ring 2s infinite;
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1.3);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body class="opacity-0 transition-opacity duration-500 bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+  
+  <!-- Code Rain Effect -->
+  <div class="code-rain" id="code-rain"></div>
+  
   <div id="popup-greeting" class="fixed bottom-24 right-6 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 text-sm font-medium hidden transition-all duration-500 ease-in-out transform hover:scale-105 animate-fade-in"></div>
   <audio id="theme-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-light-switch-on-2585.mp3" preload="auto"></audio>
 
@@ -455,11 +766,14 @@ window.addEventListener('DOMContentLoaded', () => {
         </span>
         Sumit Malik
       </h1>
-      <nav class="space-x-4 hidden sm:block">
-        <a href="#bio" class="hover:underline hover:text-blue-300 transition-colors duration-300">Bio</a>
-        <a href="#experience" class="hover:underline hover:text-blue-300 transition-colors duration-300">What I Do</a>
-        <a href="#technology" class="hover:underline hover:text-blue-300 transition-colors duration-300">Technology</a>
-        <a href="#contact" class="hover:underline hover:text-blue-300 transition-colors duration-300">Contact</a>
+      <nav class="space-x-3 hidden sm:block">
+        <a href="#bio" class="hover:underline hover:text-blue-300 transition-colors duration-300 text-sm">Bio</a>
+        <a href="#projects" class="hover:underline hover:text-blue-300 transition-colors duration-300 text-sm">Projects</a>
+        <a href="#skills" class="hover:underline hover:text-blue-300 transition-colors duration-300 text-sm">Skills</a>
+        <a href="#experience" class="hover:underline hover:text-blue-300 transition-colors duration-300 text-sm">Experience</a>
+        <a href="#technology" class="hover:underline hover:text-blue-300 transition-colors duration-300 text-sm">Tech</a>
+        <a href="#status-dashboard" class="hover:underline hover:text-blue-300 transition-colors duration-300 text-sm">Status</a>
+        <a href="#contact" class="hover:underline hover:text-blue-300 transition-colors duration-300 text-sm">Contact</a>
         <button onclick="toggleTheme()" class="ml-4 text-lg hover:scale-110 transition-transform duration-300">
           <span id="theme-icon" class="transition-transform duration-500 ease-in-out transform hover:rotate-180">🌞</span>
         </button>
@@ -480,10 +794,170 @@ window.addEventListener('DOMContentLoaded', () => {
   <section id="bio" class="py-16 text-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 transition-colors duration-500 text-xs py-4">
     <div class="max-w-3xl mx-auto" data-aos="fade-up">
       <img src="https://avatars.githubusercontent.com/u/50233625?v=4" alt="Sumit Malik" class="mx-auto rounded-full w-32 h-32 mb-4">
-      <h2 id="animated-title" class="text-3xl font-bold mb-2 animate-pulse">Cloud Infrastructure & Automation Expert | Microsoft Azure Certified</h2>
-      <p class="text-lg mb-4">With over 6 years of experience in cloud computing, I specialize in designing and delivering scalable Azure solutions. My expertise spans Azure AI, infrastructure automation, DevOps pipelines, and robust Windows Server administration. I’m passionate about bridging strategy and execution—helping businesses automate, innovate, and operate confidently in the cloud.</p>
+      <h2 id="animated-title" class="text-4xl md:text-5xl font-bold mb-4 neon-glow">Cloud Architect & AI Innovator | Microsoft Azure Certified</h2>
+      <p class="text-lg mb-4">With 6+ years of hands-on experience in cloud computing, I architect secure, scalable solutions on Microsoft Azure. My core strengths lie in Azure AI integration, infrastructure automation using ARM, Terraform & Bicep, CI/CD pipelines with GitHub Actions and Azure DevOps, and enterprise-grade Windows Server environments. I thrive at the intersection of strategy and execution, empowering organizations to automate confidently, innovate rapidly, and scale seamlessly in the cloud</p>
     </div>
   </section>
+
+<!-- Recent Projects & Innovations -->
+<section id="projects" class="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4" data-aos="fade-up">
+    <h3 class="text-3xl md:text-4xl font-bold mb-12 text-center neon-glow">Recent Projects & Innovations</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Azure Infrastructure Automation -->
+      <div class="project-card card-3d p-8 h-full">
+        <div class="card-inner">
+          <div class="text-center mb-6">
+            <div class="text-5xl mb-4 animate-spin" style="animation-duration: 3s;">⚙️</div>
+            <h4 class="text-xl font-bold mb-2 text-blue-400">Infrastructure Automation</h4>
+            <p class="text-sm text-gray-300 mb-4">Enterprise-scale Azure infrastructure with Terraform and Bicep</p>
+          </div>
+          <div class="space-y-3 text-sm">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+              <span>Terraform Modules</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-blue-400 rounded-full"></span>
+              <span>Azure Bicep Templates</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-purple-400 rounded-full"></span>
+              <span>PowerShell Automation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Azure AI Solutions -->
+      <div class="project-card card-3d p-8 h-full">
+        <div class="card-inner">
+          <div class="text-center mb-6">
+            <div class="text-5xl mb-4 animate-pulse">🤖</div>
+            <h4 class="text-xl font-bold mb-2 text-green-400">Azure AI Automation</h4>
+            <p class="text-sm text-gray-300 mb-4">Enterprise-grade AI solutions with OpenAI integration</p>
+          </div>
+          <div class="space-y-3 text-sm">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+              <span>Azure OpenAI Service</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-blue-400 rounded-full"></span>
+              <span>Cognitive Services</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-purple-400 rounded-full"></span>
+              <span>Machine Learning Pipelines</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Infrastructure as Code -->
+      <div class="project-card card-3d p-8 h-full">
+        <div class="card-inner">
+          <div class="text-center mb-6">
+            <div class="text-5xl mb-4 animate-spin" style="animation-duration: 3s;">⚙️</div>
+            <h4 class="text-xl font-bold mb-2 text-yellow-400">IaC Modules</h4>
+            <p class="text-sm text-gray-300 mb-4">Reusable Terraform & Bicep modules for enterprise deployment</p>
+          </div>
+          <div class="space-y-3 text-sm">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+              <span>Terraform Modules</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-blue-400 rounded-full"></span>
+              <span>Azure Bicep Templates</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-purple-400 rounded-full"></span>
+              <span>GitHub Actions CI/CD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cloud Migration Projects -->
+      <div class="project-card card-3d p-8 h-full">
+        <div class="card-inner">
+          <div class="text-center mb-6">
+            <div class="text-5xl mb-4">☁️</div>
+            <h4 class="text-xl font-bold mb-2 text-indigo-400">Cloud Migration</h4>
+            <p class="text-sm text-gray-300 mb-4">Large-scale on-premises to Azure migrations</p>
+          </div>
+          <div class="space-y-3 text-sm">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+              <span>Azure Migrate</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-blue-400 rounded-full"></span>
+              <span>Site Recovery</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-purple-400 rounded-full"></span>
+              <span>Network Optimization</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Azure Landing Zones -->
+      <div class="project-card card-3d p-8 h-full">
+        <div class="card-inner">
+          <div class="text-center mb-6">
+            <div class="text-5xl mb-4 animate-pulse">🏗️</div>
+            <h4 class="text-xl font-bold mb-2 text-red-400">Enterprise Landing Zones</h4>
+            <p class="text-sm text-gray-300 mb-4">Secure, scalable Azure foundations for enterprise adoption</p>
+          </div>
+          <div class="space-y-3 text-sm">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+              <span>Azure CAF Framework</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-blue-400 rounded-full"></span>
+              <span>Policy & Governance</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-purple-400 rounded-full"></span>
+              <span>Zero Trust Security</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio Website -->
+      <div class="project-card card-3d p-8 h-full">
+        <div class="card-inner">
+          <div class="text-center mb-6">
+            <div class="text-5xl mb-4 animate-bounce">🌐</div>
+            <h4 class="text-xl font-bold mb-2 text-pink-400">This Portfolio!</h4>
+            <p class="text-sm text-gray-300 mb-4">Interactive portfolio with advanced animations and modern design</p>
+          </div>
+          <div class="space-y-3 text-sm">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+              <span>TailwindCSS + Animations</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-blue-400 rounded-full"></span>
+              <span>Modern Web Technologies</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-purple-400 rounded-full"></span>
+              <span>3D Effects & Particles</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- Experience -->
 <section id="experience" class="py-16 bg-gray-100 dark:bg-gray-800">
@@ -554,11 +1028,76 @@ window.addEventListener('DOMContentLoaded', () => {
   </div>
 </section>
 
-<!-- GitHub Stats -->
-<section class="py-16 bg-gray-100 dark:bg-gray-800">
-  <div class="max-w-4xl mx-auto px-4 text-center" data-aos="zoom-in">
-    <h3 class="text-2xl font-bold mb-6">GitHub Activity</h3>
-    <img src="https://github-readme-stats.vercel.app/api?username=sumitmalik51&show_icons=true&theme=tokyonight" class="mx-auto rounded-lg shadow-lg w-full max-w-xl" alt="GitHub Stats" loading="lazy">
+<!-- GitHub Stats & Code Analytics -->
+<section class="py-20 bg-gray-100 dark:bg-gray-800 relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4 text-center" data-aos="zoom-in">
+    <h3 class="text-3xl md:text-4xl font-bold mb-12 neon-glow">Code Analytics & GitHub Activity</h3>
+    
+    <!-- Interactive Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <div class="project-card p-6 text-center card-3d">
+        <div class="text-4xl font-bold text-blue-400 mb-2 counter" data-target="1000">0</div>
+        <div class="text-sm text-gray-300">Lines of Code This Month</div>
+      </div>
+      <div class="project-card p-6 text-center card-3d">
+        <div class="text-4xl font-bold text-green-400 mb-2 counter" data-target="150">0</div>
+        <div class="text-sm text-gray-300">GitHub Commits</div>
+      </div>
+      <div class="project-card p-6 text-center card-3d">
+        <div class="text-4xl font-bold text-purple-400 mb-2 counter" data-target="25">0</div>
+        <div class="text-sm text-gray-300">Projects Deployed</div>
+      </div>
+      <div class="project-card p-6 text-center card-3d">
+        <div class="text-4xl font-bold text-yellow-400 mb-2 counter" data-target="99">0</div>
+        <div class="text-sm text-gray-300">Automation Score</div>
+      </div>
+    </div>
+
+    <!-- GitHub Stats -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+      <div class="relative">
+        <img src="https://github-readme-stats.vercel.app/api?username=sumitmalik51&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=58A6FF&text_color=C9D1D9&icon_color=1F6FEB" 
+             class="rounded-lg shadow-2xl w-full project-card" alt="GitHub Stats" loading="lazy">
+      </div>
+      <div class="relative">
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=sumitmalik51&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=58A6FF&text_color=C9D1D9" 
+             class="rounded-lg shadow-2xl w-full project-card" alt="Top Languages" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Coding Activity Heatmap -->
+    <div class="mt-12">
+      <img src="https://github-readme-activity-graph.vercel.app/graph?username=sumitmalik51&theme=tokyo-night&hide_border=true&bg_color=0D1117&color=58A6FF&line=1F6FEB&point=C9D1D9" 
+           class="rounded-lg shadow-2xl w-full project-card" alt="Contribution Graph" loading="lazy">
+    </div>
+
+    <!-- Tech Stack Visualization -->
+    <div class="mt-12 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      <div class="project-card p-4 text-center">
+        <div class="text-3xl mb-2">☁️</div>
+        <div class="text-xs">Azure</div>
+      </div>
+      <div class="project-card p-4 text-center">
+        <div class="text-3xl mb-2">🔧</div>
+        <div class="text-xs">Terraform</div>
+      </div>
+      <div class="project-card p-4 text-center">
+        <div class="text-3xl mb-2">🐙</div>
+        <div class="text-xs">GitHub</div>
+      </div>
+      <div class="project-card p-4 text-center">
+        <div class="text-3xl mb-2">🚀</div>
+        <div class="text-xs">DevOps</div>
+      </div>
+      <div class="project-card p-4 text-center">
+        <div class="text-3xl mb-2">🤖</div>
+        <div class="text-xs">AI/ML</div>
+      </div>
+      <div class="project-card p-4 text-center">
+        <div class="text-3xl mb-2">⚙️</div>
+        <div class="text-xs">Automation</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -657,6 +1196,180 @@ window.addEventListener('DOMContentLoaded', () => {
   </div>
 </section>
 
+<!-- Skills & Expertise Visualization -->
+<section id="skills" class="py-20 bg-white dark:bg-gray-900 relative">
+  <div class="max-w-6xl mx-auto px-4" data-aos="fade-up">
+    <h3 class="text-3xl md:text-4xl font-bold mb-12 text-center neon-glow">Technical Expertise</h3>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Cloud & Infrastructure -->
+      <div class="space-y-6">
+        <h4 class="text-2xl font-bold text-blue-400 mb-6">☁️ Cloud & Infrastructure</h4>
+        
+        <div class="skill-item">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-medium">Azure Cloud Platform</span>
+            <span class="text-sm text-gray-400">95%</span>
+          </div>
+          <div class="w-full bg-gray-700 rounded-full h-3">
+            <div class="skill-progress bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" data-width="95%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-medium">Terraform & IaC</span>
+            <span class="text-sm text-gray-400">92%</span>
+          </div>
+          <div class="w-full bg-gray-700 rounded-full h-3">
+            <div class="skill-progress bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full" data-width="92%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-medium">Azure DevOps & GitHub Actions</span>
+            <span class="text-sm text-gray-400">88%</span>
+          </div>
+          <div class="w-full bg-gray-700 rounded-full h-3">
+            <div class="skill-progress bg-gradient-to-r from-purple-500 to-purple-600 h-3 rounded-full" data-width="88%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-medium">Kubernetes & AKS</span>
+            <span class="text-sm text-gray-400">85%</span>
+          </div>
+          <div class="w-full bg-gray-700 rounded-full h-3">
+            <div class="skill-progress bg-gradient-to-r from-cyan-500 to-cyan-600 h-3 rounded-full" data-width="85%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI & Development -->
+      <div class="space-y-6">
+        <h4 class="text-2xl font-bold text-green-400 mb-6">🤖 AI & Development</h4>
+        
+        <div class="skill-item">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-medium">Azure AI Services</span>
+            <span class="text-sm text-gray-400">90%</span>
+          </div>
+          <div class="w-full bg-gray-700 rounded-full h-3">
+            <div class="skill-progress bg-gradient-to-r from-pink-500 to-pink-600 h-3 rounded-full" data-width="90%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-medium">Azure Workshops</span>
+            <span class="text-sm text-gray-400">87%</span>
+          </div>
+          <div class="w-full bg-gray-700 rounded-full h-3">
+            <div class="skill-progress bg-gradient-to-r from-yellow-500 to-yellow-600 h-3 rounded-full" data-width="87%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-medium">TypeScript & React</span>
+            <span class="text-sm text-gray-400">82%</span>
+          </div>
+          <div class="w-full bg-gray-700 rounded-full h-3">
+            <div class="skill-progress bg-gradient-to-r from-indigo-500 to-indigo-600 h-3 rounded-full" data-width="82%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-medium">PowerShell & Python</span>
+            <span class="text-sm text-gray-400">89%</span>
+          </div>
+          <div class="w-full bg-gray-700 rounded-full h-3">
+            <div class="skill-progress bg-gradient-to-r from-red-500 to-red-600 h-3 rounded-full" data-width="89%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certifications Timeline -->
+    <div class="mt-16">
+      <h4 class="text-2xl font-bold text-center mb-8">🏆 Certification Journey</h4>
+      <div class="relative">
+        <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 to-purple-500"></div>
+        
+        <div class="space-y-8">
+          <div class="flex items-center justify-between">
+            <div class="w-5/12 text-right">
+              <div class="project-card p-4">
+                <h5 class="font-bold text-yellow-400">AZ-900 Azure Fundamentals</h5>
+                <p class="text-sm text-gray-400">Azure journey begins</p>
+              </div>
+            </div>
+            <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center relative z-10">
+              <span class="text-white font-bold">1</span>
+            </div>
+            <div class="w-5/12"></div>
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <div class="w-5/12"></div>
+            <div class="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center relative z-10">
+              <span class="text-white font-bold">2</span>
+            </div>
+            <div class="w-5/12">
+              <div class="project-card p-4">
+                <h5 class="font-bold text-indigo-400">DP-900 Data Fundamentals</h5>
+                <p class="text-sm text-gray-400">Data & analytics foundation</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <div class="w-5/12 text-right">
+              <div class="project-card p-4">
+                <h5 class="font-bold text-blue-400">AZ-104 Azure Administrator</h5>
+                <p class="text-sm text-gray-400">Core Azure administration</p>
+              </div>
+            </div>
+            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center relative z-10">
+              <span class="text-white font-bold">3</span>
+            </div>
+            <div class="w-5/12"></div>
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <div class="w-5/12"></div>
+            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center relative z-10">
+              <span class="text-white font-bold">4</span>
+            </div>
+            <div class="w-5/12">
+              <div class="project-card p-4">
+                <h5 class="font-bold text-green-400">AZ-400 DevOps Engineer</h5>
+                <p class="text-sm text-gray-400">Advanced CI/CD & automation</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <div class="w-5/12 text-right">
+              <div class="project-card p-4">
+                <h5 class="font-bold text-purple-400">AZ-500 Security Engineer</h5>
+                <p class="text-sm text-gray-400">Cloud security & compliance</p>
+              </div>
+            </div>
+            <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center relative z-10">
+              <span class="text-white font-bold">5</span>
+            </div>
+            <div class="w-5/12"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Technology -->
 <section id="technology" class="py-16 bg-white dark:bg-gray-900 transition-colors duration-500">
   <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-left">
@@ -671,15 +1384,21 @@ window.addEventListener('DOMContentLoaded', () => {
       </div>
     </div>
     <div id="tech-tags" class="flex flex-wrap justify-center gap-3">
-  <span class="tag cloud" data-tooltip="Azure IaaS & PaaS services">Azure IaaS &amp; PaaS</span>
-  <span class="tag devops" data-tooltip="Infrastructure as Code tools">Terraform, Bicep, ARM</span>
-  <span class="tag scripting" data-tooltip="Command-line scripting">PowerShell CLI</span>
-  <span class="tag infra" data-tooltip="Server management">Windows Servers</span>
-  <span class="tag devops" data-tooltip="DevOps practices">Azure DevOps</span>
-  <span class="tag devops" data-tooltip="Container orchestration">Kubernetes</span>
-  <span class="tag devops" data-tooltip="Monitoring and insights">Monitoring, Insights</span>
-  <span class="tag cloud" data-tooltip="Migration services">Azure Migrate</span>
-  <span class="tag cloud" data-tooltip="Role-based access control">RBAC, Policies</span>
+  <span class="tag cloud" data-tooltip="Azure IaaS & PaaS services">Azure Cloud Platform</span>
+  <span class="tag devops" data-tooltip="Infrastructure as Code tools">Terraform & Bicep</span>
+  <span class="tag scripting" data-tooltip="Command-line scripting">PowerShell & Azure CLI</span>
+  <span class="tag infra" data-tooltip="Server management">Windows Server</span>
+  <span class="tag devops" data-tooltip="DevOps practices">Azure DevOps & GitHub Actions</span>
+  <span class="tag devops" data-tooltip="Container orchestration">Kubernetes & AKS</span>
+  <span class="tag cloud" data-tooltip="AI and machine learning">Azure AI Services</span>
+  <span class="tag scripting" data-tooltip="Workshop delivery">Azure Training</span>
+  <span class="tag cloud" data-tooltip="AI-powered development">GitHub Copilot</span>
+  <span class="tag infra" data-tooltip="Frontend technologies">React & TypeScript</span>
+  <span class="tag devops" data-tooltip="Monitoring and insights">Azure Monitor & Application Insights</span>
+  <span class="tag cloud" data-tooltip="Migration services">Azure Migrate & Site Recovery</span>
+  <span class="tag cloud" data-tooltip="Security and compliance">Azure Security Center & Policies</span>
+  <span class="tag scripting" data-tooltip="Automation scripting">Python & Node.js</span>
+  <span class="tag infra" data-tooltip="Database technologies">Azure SQL & Cosmos DB</span>
 </div>
   </div>
 </section>
@@ -768,8 +1487,105 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   </style>
 
+<!-- Real-time Status Dashboard -->
+<section id="status-dashboard" class="py-20 bg-gradient-to-br from-gray-800 via-gray-900 to-black relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4" data-aos="fade-up">
+    <h3 class="text-3xl md:text-4xl font-bold mb-12 text-center text-white neon-glow">Live Status Dashboard</h3>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <!-- Current Status -->
+      <div class="project-card p-6 text-center">
+        <div class="flex items-center justify-center mb-4">
+          <div class="w-4 h-4 bg-green-500 rounded-full animate-pulse mr-2"></div>
+          <span class="text-green-400 font-bold">ONLINE</span>
+        </div>
+        <h4 class="text-lg font-bold text-white mb-2">Current Status</h4>
+        <p class="text-sm text-gray-300">Available for Azure consulting</p>
+      </div>
+
+      <!-- Current Project -->
+      <div class="project-card p-6 text-center">
+        <div class="text-4xl mb-2">🚀</div>
+        <h4 class="text-lg font-bold text-blue-400 mb-2">Active Project</h4>
+        <p class="text-sm text-gray-300">Azure AI Workshops</p>
+        <div class="w-full bg-gray-700 rounded-full h-2 mt-2">
+          <div class="bg-blue-500 h-2 rounded-full" style="width: 75%"></div>
+        </div>
+      </div>
+
+      <!-- GitHub Streak -->
+      <div class="project-card p-6 text-center">
+        <div class="text-4xl mb-2">🔥</div>
+        <h4 class="text-lg font-bold text-orange-400 mb-2">GitHub Streak</h4>
+        <p class="text-2xl font-bold text-white counter" data-target="15">0</p>
+        <p class="text-sm text-gray-300">days</p>
+      </div>
+
+      <!-- Coffee Counter -->
+      <div class="project-card p-6 text-center">
+        <div class="text-4xl mb-2">☕</div>
+        <h4 class="text-lg font-bold text-yellow-400 mb-2">Coffee Today</h4>
+        <p class="text-2xl font-bold text-white counter" data-target="4">0</p>
+        <p class="text-sm text-gray-300">cups</p>
+      </div>
+    </div>
+
+    <!-- Current Weather & Location -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div class="project-card p-6">
+        <h4 class="text-xl font-bold text-blue-400 mb-4">📍 Current Location</h4>
+        <div class="flex items-center space-x-4">
+          <div class="text-4xl">🏢</div>
+          <div>
+            <p class="font-bold text-white">Delhi, India</p>
+            <p class="text-sm text-gray-300">Building Azure solutions remotely</p>
+            <p class="text-xs text-gray-400">GMT+5:30 • <span id="current-time"></span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card p-6">
+        <h4 class="text-xl font-bold text-green-400 mb-4">🎯 Current Focus</h4>
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span class="text-sm">Azure AI Services integration</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+            <span class="text-sm">Azure workshop delivery</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+            <span class="text-sm">GitHub Copilot experiments</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="text-center">
+        <div class="text-2xl font-bold text-blue-400 counter" data-target="50">0</div>
+        <div class="text-sm text-gray-400">Azure Resources</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl font-bold text-green-400 counter" data-target="12">0</div>
+        <div class="text-sm text-gray-400">Active Pipelines</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl font-bold text-purple-400 counter" data-target="99.9">0</div>
+        <div class="text-sm text-gray-400">Uptime %</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl font-bold text-yellow-400 counter" data-target="24">0</div>
+        <div class="text-sm text-gray-400">Hours/Day</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Contact -->
-<section id="contact" class="py-16 bg-gray-100 dark:bg-gray-800">
   <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
     <h3 class="text-2xl font-bold mb-4">Get In Touch</h3>
     <p class="mb-4">Feel free to reach out via email or check out my LinkedIn & GitHub profiles. <br><span class='text-lg'>📧 🔗 🐙</span></p>
@@ -785,31 +1601,361 @@ window.addEventListener('DOMContentLoaded', () => {
 </footer>
 
 <script>
-  AOS.init();
+  AOS.init({
+    duration: 1200,
+    once: true,
+    offset: 100
+  });
 
-  function toggleTheme() {
-      const html = document.documentElement;
-      const icon = document.getElementById('theme-icon');
-      const audio = document.getElementById('theme-sound');
-
-      // Add transition effect
-      document.body.style.transition = 'background-color 0.5s ease, color 0.5s ease';
-
-      html.classList.toggle('dark');
-      const isDark = html.classList.contains('dark');
-      icon.textContent = isDark ? '🌙' : '🌞';
-
-      // Play audio only if source is valid
-      if (audio && audio.readyState >= 2) {
-        audio.currentTime = 0;
-        audio.play();
-      }
+  // Initialize Particles.js
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof particlesJS !== 'undefined') {
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 80, density: { enable: true, value_area: 800 } },
+          color: { value: '#2563eb' },
+          shape: { type: 'circle' },
+          opacity: { value: 0.5, random: false },
+          size: { value: 3, random: true },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: '#2563eb',
+            opacity: 0.4,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 6,
+            direction: 'none',
+            random: false,
+            straight: false,
+            out_mode: 'out',
+            bounce: false
+          }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: {
+            onhover: { enable: true, mode: 'repulse' },
+            onclick: { enable: true, mode: 'push' },
+            resize: true
+          }
+        },
+        retina_detect: true
+      });
     }
 
-  window.addEventListener("scroll", () => {
+    // Code Rain Effect
+    function createCodeRain() {
+      const codeRain = document.getElementById('code-rain');
+      const codes = ['01', '10', '11', '00', 'AZ', 'AI', 'ML', '{}', '[]', '<>', '/>', '&&', '||'];
+      
+      setInterval(() => {
+        const drop = document.createElement('div');
+        drop.className = 'code-drop';
+        drop.textContent = codes[Math.floor(Math.random() * codes.length)];
+        drop.style.left = Math.random() * 100 + '%';
+        drop.style.animationDuration = (Math.random() * 3 + 7) + 's';
+        drop.style.opacity = Math.random();
+        codeRain.appendChild(drop);
 
-      // Removed dynamic styling logic for bio section
+        setTimeout(() => {
+          if (drop.parentNode) drop.parentNode.removeChild(drop);
+        }, 10000);
+      }, 200);
+    }
+    createCodeRain();
+
+    // Enhanced greeting with more dynamic messages
+    const greetingPopup = document.getElementById('popup-greeting');
+    if (greetingPopup) {
+      const messages = [
+        '🌄 Good morning! Ready to conquer the cloud ☁️',
+        '🚀 Let\'s ship something awesome this afternoon',
+        '🌙 Still coding? That\'s dedication. Let\'s go!',
+        '⚡ Building the future with Azure & AI',
+        '🤖 GitHub Copilot + Azure = Magic',
+        '🎓 Azure workshop preparations in progress...',
+        '☁️ Infrastructure as Code is the way!'
+      ];
+
+      function showGreeting() {
+        const hour = new Date().getHours();
+        let message = messages[Math.floor(Math.random() * messages.length)];
+        
+        if (hour < 12) message = messages[0];
+        else if (hour < 18) message = messages[1];
+        else message = messages[2];
+
+        greetingPopup.textContent = message;
+        greetingPopup.classList.remove('hidden');
+        setTimeout(() => greetingPopup.classList.add('hidden'), 8000);
+      }
+
+      setTimeout(showGreeting, 3000);
+      setInterval(showGreeting, 45000);
+    }
+
+    // Enhanced typewriter effect
+    const typingElement = document.querySelector('.typing-animation');
+    if (typingElement) {
+      const texts = [
+        'Building the future with Azure, AI & Cloud Training',
+        'Automating cloud infrastructure with Terraform & Bicep',
+        'Creating intelligent developer tools with GitHub Copilot',
+        'Designing secure Azure Landing Zones for enterprises'
+      ];
+      let textIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+
+      function typeWriter() {
+        const currentText = texts[textIndex];
+        
+        if (isDeleting) {
+          typingElement.textContent = currentText.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          typingElement.textContent = currentText.substring(0, charIndex + 1);
+          charIndex++;
+        }
+
+        let typeSpeed = isDeleting ? 50 : 100;
+
+        if (!isDeleting && charIndex === currentText.length) {
+          typeSpeed = 2000;
+          isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          textIndex = (textIndex + 1) % texts.length;
+          typeSpeed = 500;
+        }
+
+        setTimeout(typeWriter, typeSpeed);
+      }
+      typeWriter();
+    }
+
+    // Enhanced 3D card hover effects
+    document.querySelectorAll('.card-3d').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+      });
     });
+
+    // Counter animation for stats
+    function animateCounters() {
+      const counters = document.querySelectorAll('.counter');
+      const speed = 200;
+
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const target = +counter.getAttribute('data-target');
+          const count = +counter.innerText;
+          const inc = target / speed;
+
+          if (count < target) {
+            counter.innerText = Math.ceil(count + inc);
+            setTimeout(updateCount, 1);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        updateCount();
+      });
+    }
+
+    // Initialize counter animation when section comes into view
+    const statsSection = document.querySelector('.counter');
+    if (statsSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCounters();
+            observer.unobserve(entry.target);
+          }
+        });
+      });
+      observer.observe(statsSection.closest('section'));
+    }
+
+    // Initialize the map
+    if (typeof L !== 'undefined') {
+      const map = L.map('map').setView([32.0, 77.0], 5);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(map);
+
+      const locations = [
+        { lat: 32.2396, lng: 78.0179, title: 'Spiti Circuit', description: 'Completed the rugged trails with my Scrambler 400X at 15,000+ ft.' },
+        { lat: 34.2268, lng: 77.5619, title: 'Ladakh Adventure', description: 'Conquered Umling La - World\'s highest motorable pass at 19,300 ft!' },
+        { lat: 28.7041, lng: 77.1025, title: 'Delhi HQ', description: 'Azure cloud solutions and workshops development hub.' },
+      ];
+
+      locations.forEach(location => {
+        L.marker([location.lat, location.lng]).addTo(map)
+          .bindPopup(`<strong>${location.title}</strong><br>${location.description}`);
+      });
+    }
+
+    // Skill progress bar animations
+    function animateSkillBars() {
+      const skillBars = document.querySelectorAll('.skill-progress');
+      skillBars.forEach(bar => {
+        const width = bar.getAttribute('data-width');
+        bar.style.width = '0%';
+        setTimeout(() => {
+          bar.style.transition = 'width 2s ease-in-out';
+          bar.style.width = width;
+        }, 500);
+      });
+    }
+
+    // Initialize skill bars when section comes into view
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateSkillBars();
+            observer.unobserve(entry.target);
+          }
+        });
+      });
+      observer.observe(skillsSection);
+    }
+
+    // Update current time
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('en-IN', { 
+        timeZone: 'Asia/Kolkata',
+        hour12: true 
+      });
+      const timeElement = document.getElementById('current-time');
+      if (timeElement) {
+        timeElement.textContent = timeString;
+      }
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    // Typing command animation
+    function animateTypingCommands() {
+      const commands = document.querySelectorAll('.typing-command');
+      commands.forEach((cmd, index) => {
+        const text = cmd.textContent;
+        cmd.textContent = '';
+        
+        setTimeout(() => {
+          let i = 0;
+          const typeInterval = setInterval(() => {
+            if (i < text.length) {
+              cmd.textContent += text.charAt(i);
+              i++;
+            } else {
+              clearInterval(typeInterval);
+            }
+          }, 50);
+        }, index * 2000);
+      });
+    }
+
+    // Initialize typing animation when skills section comes into view
+    if (skillsSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateTypingCommands();
+            observer.unobserve(entry.target);
+          }
+        });
+      });
+      observer.observe(codeSection);
+    }
+  });
+
+  // Copy code function
+  function copyCode(elementId) {
+    const codeElement = document.getElementById(elementId);
+    const text = codeElement.textContent;
+    
+    navigator.clipboard.writeText(text).then(() => {
+      // Show success feedback
+      const button = event.target;
+      const originalText = button.textContent;
+      button.textContent = '✅ Copied!';
+      button.style.backgroundColor = '#16a34a';
+      
+      setTimeout(() => {
+        button.textContent = originalText;
+        button.style.backgroundColor = '';
+      }, 2000);
+    });
+  }
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const icon = document.getElementById('theme-icon');
+    const audio = document.getElementById('theme-sound');
+
+    // Add transition effect
+    document.body.style.transition = 'background-color 0.5s ease, color 0.5s ease';
+
+    html.classList.toggle('dark');
+    const isDark = html.classList.contains('dark');
+    icon.textContent = isDark ? '🌙' : '🌞';
+
+    // Update particles color based on theme
+    if (typeof pJSDom !== 'undefined' && pJSDom[0]) {
+      const newColor = isDark ? '#2563eb' : '#1e40af';
+      pJSDom[0].pJS.particles.color.value = newColor;
+      pJSDom[0].pJS.particles.line_linked.color = newColor;
+    }
+
+    // Play audio only if source is valid
+    if (audio && audio.readyState >= 2) {
+      audio.currentTime = 0;
+      audio.play().catch(() => {}); // Silent fail if autoplay is blocked
+    }
+  }
+
+  // Enhanced scroll animations
+  window.addEventListener("scroll", () => {
+    const scrolled = window.pageYOffset;
+    const header = document.getElementById('main-header');
+    
+    if (scrolled > 100) {
+      header.style.background = 'rgba(0, 0, 0, 0.9)';
+      header.style.backdropFilter = 'blur(10px)';
+    } else {
+      header.style.background = 'linear-gradient(270deg, #2563eb, #9333ea, #16a34a, #ca8a04)';
+      header.style.backdropFilter = 'none';
+    }
+
+    // Parallax effect for bio section
+    const bioSection = document.getElementById('bio');
+    if (bioSection) {
+      const rate = scrolled * -0.5;
+      bioSection.style.transform = `translateY(${rate}px)`;
+    }
+  });
 </script>
 <button onclick="scrollToTop()" id="backToTop" class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300 z-50">
   <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -863,62 +2009,155 @@ window.addEventListener('DOMContentLoaded', () => {
   <div id="cursor-dot" class="cursor-dot hidden"></div>
 <a href="https://linkedin.com/in/sumitmalik51" target="_blank" class="floating-cta">🚀 Let’s build together</a>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
 <script>
-  // GSAP animations
+  // Enhanced GSAP animations with ScrollTrigger
   document.addEventListener('DOMContentLoaded', () => {
-    gsap.from("header", {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Initial page load animations
+    const tl = gsap.timeline();
+    
+    tl.from("header", {
       duration: 1.5,
-      y: -50,
+      y: -100,
+      opacity: 0,
+      ease: "power3.out"
+    })
+    .from("#bio img", {
+      duration: 2,
+      scale: 0,
+      rotation: 360,
+      opacity: 0,
+      ease: "elastic.out(1, 0.3)"
+    }, "-=1")
+    .from("#animated-title", {
+      duration: 1.5,
+      x: -200,
       opacity: 0,
       ease: "power2.out"
-    });
-
-    gsap.from("#bio img", {
-      duration: 1.5,
-      scale: 0.8,
-      opacity: 0,
-      ease: "elastic.out(1, 0.5)",
-      delay: 0.5
-    });
-
-    gsap.from("#bio h2", {
-      duration: 1,
-      x: -100,
-      opacity: 0,
-      ease: "power2.out",
-      delay: 0.8
-    });
-
-    gsap.from("#bio p", {
-      duration: 1,
-      x: 100,
-      opacity: 0,
-      ease: "power2.out",
-      delay: 1
-    });
-
-    gsap.from(".fun-fact-card", {
+    }, "-=0.5")
+    .from(".typing-animation", {
       duration: 1,
       y: 50,
       opacity: 0,
-      stagger: 0.2,
       ease: "power2.out"
+    }, "-=0.5")
+    .from("#bio p", {
+      duration: 1,
+      y: 30,
+      opacity: 0,
+      ease: "power2.out"
+    }, "-=0.3");
+
+    // Project cards animations
+    gsap.fromTo(".project-card", 
+      {
+        y: 100,
+        opacity: 0,
+        scale: 0.8
+      }, 
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "#projects",
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    // Experience cards animations
+    gsap.fromTo("#experience .bg-blue-50, #experience .bg-green-50, #experience .bg-yellow-50, #experience .bg-purple-50, #experience .bg-red-50, #experience .bg-teal-50, #experience .bg-indigo-50, #experience .bg-pink-50, #experience .bg-gray-50, #experience .bg-orange-50", 
+      {
+        x: -100,
+        opacity: 0,
+        rotation: -5
+      }, 
+      {
+        x: 0,
+        opacity: 1,
+        rotation: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "#experience",
+          start: "top 70%",
+          end: "bottom 30%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    // Technology tags animations
+    gsap.fromTo(".tag", 
+      {
+        scale: 0,
+        opacity: 0,
+        rotation: 180
+      }, 
+      {
+        scale: 1,
+        opacity: 1,
+        rotation: 0,
+        duration: 0.5,
+        stagger: 0.05,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: "#technology",
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    // Continuous animations
+    gsap.to(".skill-bar", {
+      scaleX: 1,
+      duration: 2,
+      ease: "power2.out",
+      stagger: 0.3,
+      scrollTrigger: {
+        trigger: ".skill-bar",
+        start: "top 80%",
+        toggleActions: "play none none reverse"
+      }
     });
 
-    gsap.from(".technology-button", {
-      duration: 1,
-      scale: 0.8,
-      opacity: 0,
-      stagger: 0.2,
-      ease: "back.out(1.7)"
+    // Floating animation for project icons
+    gsap.to(".project-card .text-5xl", {
+      y: -10,
+      duration: 2,
+      ease: "sine.inOut",
+      yoyo: true,
+      repeat: -1,
+      stagger: 0.2
     });
 
-    gsap.from(".tag", {
-      duration: 1,
-      y: 50,
-      opacity: 0,
-      stagger: 0.1,
-      ease: "power2.out"
+    // Parallax effect for sections
+    gsap.utils.toArray("section").forEach((section, i) => {
+      if (section.id !== 'bio') {
+        gsap.fromTo(section, 
+          { y: 50 }, 
+          {
+            y: -50,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true
+            }
+          }
+        );
+      }
     });
   });
 </script>
@@ -1005,5 +2244,10 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 </script>
+
+<!-- Leaflet for Interactive Map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
 </body>
 </html>
