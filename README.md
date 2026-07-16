@@ -82,8 +82,7 @@ output collaboration string = 'open — especially cloud automation & AI agent p
 ## 📊 Telemetry
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=sumitmalik51&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000" alt="GitHub stats" height="165">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=sumitmalik51&layout=compact&theme=tokyonight&hide_border=true&bg_color=00000000" alt="Top languages" height="165">
+  <img src="https://raw.githubusercontent.com/sumitmalik51/sumitmalik51/metrics/github-metrics.svg" alt="GitHub metrics dashboard — regenerated nightly by Actions">
 </p>
 <p align="center">
   <img src="https://streak-stats.demolab.com?user=sumitmalik51&theme=tokyonight&hide_border=true&background=00000000" alt="streak" height="165">
